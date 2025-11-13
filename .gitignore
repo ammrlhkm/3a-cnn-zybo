@@ -1,0 +1,125 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Dataset files (CIFAR-10 is large and can be re-downloaded)
+cifar-10-batches-py/
+cifar-10-batches-bin/
+cifar-10-python.tar.gz
+*.tar.gz
+*.zip
+
+# Large binary files
+*.weights
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.ckpt
+*.pth
+
+# Generated images and outputs
+output/
+results/
+logs/
+*.log
+
+# Xilinx Vivado
+*.jou
+*.log
+*.str
+*.xpr
+.Xil/
+vivado*.backup.*
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+*.gen/
+*.hw_emu/
+*.sw_emu/
+*.tmp/
+webtalk*
+usage_statistics_webtalk.*
+.hbs/
+
+# Catapult HLS
+Catapult*/
+*.out
+*.v.sav
+*.cpp.sav
+*.h.sav
+*_rtl.v
+*_rtl.vhd
+*.sim
+*.log
+.catapult/
+hls_output/
+solution*/
+
+# Synthesis reports and temporary files
+*.rpt
+*.dcp
+*.bit
+*.bin
+*.ltx
+
+# OS specific
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Temporary and backup files
+*.bak
+*.tmp
+*.temp
+*~
