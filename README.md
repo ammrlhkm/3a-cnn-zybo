@@ -10,7 +10,24 @@ The main objective of this project is to design and implement a complete hardwar
 tar -xzvf cifar-10-python.tar.gz -C dataset
 ```
 
-2. Source the environment setup script for EDA tools:
+2. Set up Python environment (optional but recommended):
+
+```bash
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+```
+
+3. Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+
+3. Source the environment setup script for EDA tools:
 
 ```bash
 source config/bash_mentor_24
