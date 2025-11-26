@@ -64,6 +64,7 @@ cifar-10-python.tar.gz
 *.pth
 
 # Generated images and outputs
+bin/
 output/
 results/
 logs/
