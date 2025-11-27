@@ -9,18 +9,12 @@ using namespace std;
 
 // Type pour les pixels et poids (32 bits dont 16 entiers)
 //image
-typedef ac_fixed<64, 16, true> image_t;
-//kernel
-typedef ac_fixed<64, 16, true> kernel_t;
-//bias
-typedef ac_fixed<64, 16, true> bias_t;
+typedef ac_fixed<16, 8, true> image_t;
+typedef ac_fixed<16, 8, true> kernel_t;
+typedef ac_fixed<16, 8, true> bias_t;
+typedef ac_fixed<16, 8, true> out_t;
 
-//accumulateur
-typedef ac_fixed<106, 74, true> acc_t;
-
-//out image
-typedef ac_fixed<64, 16, true> out_t;
-
-//full connect
-typedef ac_fixed<64, 16, true> full_conn_weigh_t;
+// Accumulateur : Doit être grand pour sommer 576 multiplications sans déborder.
+// W=32, I=16 -> Range [ -32768, +32768 ]
+typedef ac_fixed<32, 16, true> acc_t;
 #endif // FIXEDP_H
