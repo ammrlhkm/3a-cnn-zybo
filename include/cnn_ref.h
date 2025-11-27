@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include "cifar10_loader.h"
-#include "weights_loader.h"
+#include "coeffs_double.h"
 
 using namespace std;
 

@@ -1,12 +1,11 @@
 #include "cifar10_loader.h"
-#include "weights_loader.h"
 #include "cnn_ref.h"
 #include <iostream>
 
 using namespace std;
 
 int main(int argc, char** argv) {
-    int num_images = 1000;  // Default: test 10 images
+    int num_images = 1000;  // Default: test 1000 images
     string cifar10_filename = "dataset/cifar-10-batches-bin/data_batch_1.bin";
     if (argc > 1) {
         cifar10_filename = string(argv[1]);
@@ -27,9 +26,6 @@ int main(int argc, char** argv) {
     if (num_images > test_batch.num_images) {     // Limit to available images
         num_images = test_batch.num_images;
     }
-    
-    load_cnn_weights("dataset/CNN_coeff_3x3.txt");
-    cout << "Loaded CNN weights (3x3 kernels)" << endl << endl;
     
     int correct = 0;
     int total = 0;
