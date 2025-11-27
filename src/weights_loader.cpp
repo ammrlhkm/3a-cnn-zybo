@@ -1,16 +1,16 @@
 #include "weights_loader.h"
 
 // Define the global variables here (not in the header)
-float CONV1_W[3][3][3][64];
-float CONV2_W[3][3][64][32];
-float CONV3_W[3][3][32][20];
-float LOCAL3_W[180][10];
-float CONV1_B[64];
-float CONV2_B[32];
-float CONV3_B[20];
-float LOCAL3_B[10];
+double CONV1_W[3][3][3][64];
+double CONV2_W[3][3][64][32];
+double CONV3_W[3][3][32][20];
+double LOCAL3_W[180][10];
+double CONV1_B[64];
+double CONV2_B[32];
+double CONV3_B[20];
+double LOCAL3_B[10];
 
-void load_data(istream& f, int total_elements, float* array_ptr) {
+void load_data(istream& f, int total_elements, double* array_ptr) {
     string token;
     int count = 0;
     
@@ -29,8 +29,8 @@ void load_data(istream& f, int total_elements, float* array_ptr) {
         }
         
         try {
-            float val_float = stof(token);
-            array_ptr[count] = val_float;
+            double val_double = stof(token);
+            array_ptr[count] = val_double;
             count++;
         } catch (const exception& e) {
             cerr << "ERROR: Invalid number encountered: '" << token << "' at index " << count << endl;
@@ -82,21 +82,21 @@ void load_cnn_weights(const string& filename) {
             
             // Map tensor name to appropriate array and load
             if (tensor_name == "conv1/weights") {
-                load_data(ss, 3 * 3 * 3 * 64, (float*)CONV1_W);
+                load_data(ss, 3 * 3 * 3 * 64, (double*)CONV1_W);
             } else if (tensor_name == "conv2/weights") {
-                load_data(ss, 3 * 3 * 64 * 32, (float*)CONV2_W);
+                load_data(ss, 3 * 3 * 64 * 32, (double*)CONV2_W);
             } else if (tensor_name == "conv3/weights") {
-                load_data(ss, 3 * 3 * 32 * 20, (float*)CONV3_W);
+                load_data(ss, 3 * 3 * 32 * 20, (double*)CONV3_W);
             } else if (tensor_name == "local3/weights") {
-                load_data(ss, 180 * 10, (float*)LOCAL3_W);
+                load_data(ss, 180 * 10, (double*)LOCAL3_W);
             } else if (tensor_name == "conv1/biases") {
-                load_data(ss, 64, (float*)CONV1_B);
+                load_data(ss, 64, (double*)CONV1_B);
             } else if (tensor_name == "conv2/biases") {
-                load_data(ss, 32, (float*)CONV2_B);
+                load_data(ss, 32, (double*)CONV2_B);
             } else if (tensor_name == "conv3/biases") {
-                load_data(ss, 20, (float*)CONV3_B);
+                load_data(ss, 20, (double*)CONV3_B);
             } else if (tensor_name == "local3/biases") {
-                load_data(ss, 10, (float*)LOCAL3_B);
+                load_data(ss, 10, (double*)LOCAL3_B);
             }
             
             pos = data_end + 1; // Move past the last ']'

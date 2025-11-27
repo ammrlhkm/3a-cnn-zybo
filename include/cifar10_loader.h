@@ -16,16 +16,16 @@ using namespace std;
 struct PPMImage {
     int width;
     int height;
-    float mean;
-    float std;
-    float* data;  // Flat contiguous array for RGB data, size = height * width * 3
+    double mean;
+    double std;
+    double* data;  // Flat contiguous array for RGB data, size = height * width * 3
     
     // Helper to access as 3D array: data[h][w][c]
-    inline float& at(int h, int w, int c) {
+    inline double& at(int h, int w, int c) {
         return data[(h * width + w) * 3 + c];
     }
     
-    inline const float& at(int h, int w, int c) const {
+    inline const double& at(int h, int w, int c) const {
         return data[(h * width + w) * 3 + c];
     }
 };
