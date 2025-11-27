@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra
+CXXFLAGS = -std=c++11 -Wall -Wextra -DUSE_AC_FIXED
 INCLUDES = -I./include
 LDFLAGS = 
 
@@ -18,7 +18,7 @@ OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 TARGET = $(BIN_DIR)/cnn
 
 # Object files
-OBJS = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/weights_loader.o $(BUILD_DIR)/main.o
+OBJS = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/weights_loader.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_testbench.o
 
 # Default target
 all: directories $(TARGET)
@@ -44,8 +44,4 @@ clean:
 # Rebuild
 rebuild: clean all
 
-# Run CIFAR batch test (default 10 images)
-run: $(TARGET)
-	@./$(TARGET) 10
-
-.PHONY: all clean rebuild run directories
+.PHONY: all clean rebuild directories

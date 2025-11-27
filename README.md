@@ -56,7 +56,7 @@ source config/bash_mentor_24
 ```bash
 make clean && make
 
-./bin/cnn
+./bin/cnn "dataset/cifar-10-batches-bin/test_batch.bin" 1000
 ```
 
 ## The CIFAR-10 Dataset

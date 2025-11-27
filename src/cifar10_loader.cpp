@@ -9,11 +9,11 @@ using namespace std;
 
 void normalizeImage(PPMImage& image) {
     int N = image.height * image.width * 3;
-    float min_std = 1.0f / sqrtf(static_cast<float>(N));
+    double min_std = 1.0f / sqrtf(static_cast<double>(N));
     for (int h = 0; h < image.height; h++) {
         for (int w = 0; w < image.width; w++) {
             for (int c = 0; c < 3; c++) {
-                float& pixel = image.at(h, w, c);
+                double& pixel = image.at(h, w, c);
                 pixel = (pixel - image.mean) / max(min_std, image.std);
             }
         }
@@ -21,14 +21,14 @@ void normalizeImage(PPMImage& image) {
 }
 
 void computeMeanStd(PPMImage& image) {
-    float sum = 0;
-    float sum_sq = 0;
+    double sum = 0;
+    double sum_sq = 0;
     int N = image.width * image.height * 3;
 
     for (int h = 0; h < image.height; h++) {
         for (int w = 0; w < image.width; w++) {
             for (int c = 0; c < 3; c++) {
-                float val = image.at(h, w, c);
+                double val = image.at(h, w, c);
                 sum += val;
                 sum_sq += val * val;
             }
@@ -68,7 +68,7 @@ bool loadPPM(const char* filename, PPMImage& image) {
     fgetc(fp); // consume newline
 
     // Allocate flat contiguous memory for image data
-    image.data = new float[image.height * image.width * 3];
+    image.data = new double[image.height * image.width * 3];
 
     // Read pixel data
     for (int h = 0; h < image.height; h++) {
@@ -76,7 +76,7 @@ bool loadPPM(const char* filename, PPMImage& image) {
             for (int c = 0; c < 3; c++) {
                 int pixel_value;
                 fscanf(fp, "%d", &pixel_value);
-                image.at(h, w, c) = static_cast<float>(pixel_value);
+                image.at(h, w, c) = static_cast<double>(pixel_value);
             }
         }
     }  
@@ -121,17 +121,17 @@ PPMImage CIFAR10Image::toPPMImage() const {
     img.height = 24;
     img.mean = 0.0f;
     img.std = 1.0f;
-    img.data = new float[24 * 24 * 3];
+    img.data = new double[24 * 24 * 3];
     
     // Convert to HWC 24x24
     unsigned char cropped[24][24][3];
     toHWC24x24(cropped);
     
-    // Convert to float
+    // Convert to double
     for (int h = 0; h < 24; h++) {
         for (int w = 0; w < 24; w++) {
             for (int c = 0; c < 3; c++) {
-                img.data[h * 24 * 3 + w * 3 + c] = float(cropped[h][w][c]);
+                img.data[h * 24 * 3 + w * 3 + c] = double(cropped[h][w][c]);
             }
         }
     }
