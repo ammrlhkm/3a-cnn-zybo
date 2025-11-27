@@ -1,27 +1,22 @@
 #ifndef FIXEDP_H
 #define FIXEDP_H
 
-
-
-
 #include <ac_fixed.h>
 
 using namespace std;
 
+// --- Définition des TYPES (et non des variables) ---
+
+// Type pour les pixels et poids (32 bits dont 16 entiers)
 //image
-ac_fixed<32, 16, true> image;
+typedef ac_fixed<32, 16, true> image_t;
 //kernel
-ac_fixed<32, 16, true> kernel;
+typedef ac_fixed<32, 16, true> kernel_t;
 //bias
-ac_fixed<32, 16, true> bias;
-
+typedef ac_fixed<32, 16, true> bias_t;
 //out image
-ac_fixed<106, 74, true> out_image;
-
-//Performs a 3x3 convolution (SAME padding),
-//adds bias, applies ReLU, and returns output feature maps.
-out_image conv2d_relu(PPMImage& image, kernel, bias);
-
-
+typedef ac_fixed<32, 16, true> out_image_t;
+//accumulateur
+typedef ac_fixed<106, 74, true> acc_t;
 
 #endif // FIXEDP_H
