@@ -1,0 +1,16 @@
+#!/bin/sh
+
+host=`uname -n`
+#export PRECISION_HOME=/softslin/precision2016_1_1/Mgc_home/
+export PRECISION_HOME=/softslin/precision2018_1/Mgc_home/
+#export MODELSIM_HOME=/softslin/modelsim10_5c/modeltech/
+export MODELSIM_HOME=/softslin/questa_core_prime_2019/questasim/
+#export CATAHOME=/softslin/catapultc10_0a/64bit/Mgc_home
+#export CATAHOME=/softslin/catapultc10_1b/Mgc_home
+export CATAHOME=/softslin/catapultc10_4b/Mgc_home
+export SCCOM_LD_ARGS='-B/usr/bin'
+export PATH=$PATH:$MODELSIM_HOME/bin:$PRECISION_HOME/bin:$CATAHOME/bin/
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LIBRARY_PATH
+
+export  LM_LICENSE_FILE=1718@cimekey1:1717@v212.cime.inpg.fr
+

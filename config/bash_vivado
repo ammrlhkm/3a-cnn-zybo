@@ -1,0 +1,3 @@
+#!/bin/sh
+
+source /softslin/vivado_17.1/Vivado/2017.1/settings64.sh
