@@ -18,7 +18,7 @@ OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 TARGET = $(BIN_DIR)/cnn
 
 # Object files
-OBJS = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_testbench.o
+OBJS = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_testbench_fixed.o
 
 # Default target
 all: directories $(TARGET)
