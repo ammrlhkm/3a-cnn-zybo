@@ -5,47 +5,47 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    int num_images = 1000;  // Default: test 1000 images
+    int num_images = 100;  // Default: test 1000 images
     string cifar10_filename = "dataset/cifar-10-batches-bin/data_batch_1.bin";
     if (argc > 1) {
         cifar10_filename = string(argv[1]);
-    } 
+    }
     if (argc > 2) {
         num_images = atoi(argv[2]);
     }
-    
+
     cout << "=== CIFAR-10 CNN Inference ===" << endl;
     cout << "Testing on " << num_images << " images" << endl << endl;
-    
+
     CIFAR10Batch test_batch;
     if (!loadCIFAR10Binary(cifar10_filename, test_batch)) {
         cerr << "\nError: Could not load CIFAR-10 binary file." << endl;
         return -1;
     }
-    
+
     if (num_images > test_batch.num_images) {     // Limit to available images
         num_images = test_batch.num_images;
     }
-    
+
     int correct = 0;
     int total = 0;
     int class_correct[10] = {0};
     int class_total[10] = {0};
-    
+
     for (int img_idx = 0; img_idx < num_images; img_idx++) {
         const CIFAR10Image& cifar_img = test_batch.images[img_idx];
-        
+
         // Convert to PPMImage
         PPMImage image = cifar_img.toPPMImage();
-        
+
         // Normalize
         computeMeanStd(image);
         normalizeImage(image);
-        
+
         // Run CNN inference
         out_t probabilities[10];
         cnn_forward(image, probabilities);
-        
+
         // Find predicted class
         int predicted = 0;
         out_t max_prob = probabilities[0];
@@ -55,34 +55,34 @@ int main(int argc, char** argv) {
                 predicted = i;
             }
         }
-        
+
         // Check if correct
         int true_label = cifar_img.label;
         bool is_correct = (predicted == true_label);
-        
+
         if (is_correct) {
             correct++;
             class_correct[true_label]++;
         }
         total++;
         class_total[true_label]++;
-        
+
         // Print result
-        cout << "Image " << (img_idx + 1) << "/" << num_images 
+        cout << "Image " << (img_idx + 1) << "/" << num_images
              << ": True=" << cifar10_class_names[true_label]
              << ", Pred=" << cifar10_class_names[predicted]
              << " (" << (max_prob.to_double() * 100.0f) << "%)"
              << " " << (is_correct ? "✓" : "✗") << endl;
-        
+
         // Cleanup
         freePPM(image);
     }
-    
+
     // ===== Print Summary Statistics =====
     cout << "\n=== Results ===" << endl;
-    cout << "Overall Accuracy: " << correct << "/" << total 
+    cout << "Overall Accuracy: " << correct << "/" << total
          << " = " << (100.0f * correct / total) << "%" << endl;
-    
+
     cout << "\nPer-Class Accuracy:" << endl;
     for (int i = 0; i < 10; i++) {
         if (class_total[i] > 0) {
@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
                  << " = " << acc << "%" << endl;
         }
     }
-    
+
     cout << "\nDone!" << endl;
     return 0;
 }

@@ -56,7 +56,13 @@ source config/bash_mentor_24
 ```bash
 make clean && make
 
-./bin/cnn "dataset/cifar-10-batches-bin/test_batch.bin" 1000
+./bin/cnn_ref "dataset/cifar-10-batches-bin/test_batch.bin" 1000
+```
+
+or for fixed-point implementation:
+
+```bash
+./bin/cnn_fixed "dataset/cifar-10-batches-bin/test_batch.bin" 1000
 ```
 
 ## The CIFAR-10 Dataset
