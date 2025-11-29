@@ -1,74 +1,48 @@
 #include "cnn_fixed.h"
 
-// =========================================================================
-// 1. CONVOLUTION GENÉRIQUE
-// =========================================================================
-#pragma hls_design_top
 template <int H, int W, int Cin, int Cout>
 void conv2d(const image_t image[H][W][Cin],
             const kernel_t kernel[3][3][Cin][Cout],
             const bias_t bias[Cout],
-            out_t output[H][W][Cout])
-{
-    // MATCH REF: La référence crée une image "padded_image[H+2][W+2]".
-    // En HLS, on évite de copier toute l'image. On gère le padding par index.
-    // Le noyau est 3x3, donc le padding est de 1 pixel de chaque côté.
+            image_t output[H][W][Cout]) {
 
     F_LOOP: for (int f = 0; f < Cout; ++f) {
         R_LOOP: for (int i = 0; i < H; ++i) {
             C_LOOP: for (int j = 0; j < W; ++j) {
-                #pragma HLS PIPELINE II=1
 
-                // 1. Initialisation avec le biais (MATCH REF)
-                // Utilisation de acc_t pour éviter l'overflow pendant la somme
                 acc_t sum = bias[f];
 
-                // 2. Convolution 3x3
                 KR_LOOP: for (int kr = 0; kr < 3; ++kr) {
                     KC_LOOP: for (int kc = 0; kc < 3; ++kc) {
                         CH_LOOP: for (int c = 0; c < Cin; ++c) {
 
-                            // Calcul de l'index sur l'image d'entrée correspondant au padding SAME
-                            // i, j sont les coordonnées de sortie.
-                            // kr, kc vont de 0 à 2.
-                            // -1 est le décalage pour centrer le noyau 3x3 (Padding=1)
                             int r_in = i + kr - 1;
                             int c_in = j + kc - 1;
 
-                            // Simulation du Zero-Padding (MATCH REF: padded_image=0 aux bords)
-                            out_t pixel_val;
+                            image_t pixel_val;
                             if (r_in >= 0 && r_in < H && c_in >= 0 && c_in < W) {
                                 pixel_val = image[r_in][c_in][c];
                             } else {
                                 pixel_val = 0;
                             }
 
-                            // MAC (Multiply-Accumulate)
                             sum += pixel_val * kernel[kr][kc][c][f];
                         }
                     }
                 }
 
-                // 3. Activation ReLU (MATCH REF: max(0.0, sum))
                 if (sum < 0) {
                     output[i][j][f] = 0;
                 } else {
-                    // Cast explicite de l'accumulateur large vers le type de sortie
-                    output[i][j][f] = (out_t)sum;
+                    output[i][j][f] = (image_t)sum;
                 }
             }
         }
     }
 }
 
-// =========================================================================
-// 2. MAXPOOLING
-// =========================================================================
-// Note: Votre ref utilise pool_size=3 et stride=2 (Overlapping pooling)
-// C'est inhabituel (souvent 2x2 s=2), mais je respecte VOTRE code ref.
-
 template <int H_IN, int W_IN, int CH, int H_OUT, int W_OUT>
-void maxpool_generic(const image_t input[H_IN][W_IN][CH], out_t output[H_OUT][W_OUT][CH]) {
+void maxpool_generic(const image_t input[H_IN][W_IN][CH], image_t output[H_OUT][W_OUT][CH]) {
     const int pool_size = 3;
     const int stride = 2;
 
@@ -80,7 +54,7 @@ void maxpool_generic(const image_t input[H_IN][W_IN][CH], out_t output[H_OUT][W_
                 int w_start = j * stride;
 
                 // Initialisation avec le premier pixel de la fenêtre
-                out_t max_val = input[h_start][w_start][c];
+                image_t max_val = input[h_start][w_start][c];
 
                 // Parcours de la fenêtre 3x3
                 PKR_LOOP: for (int kh = 0; kh < pool_size; kh++) {
@@ -91,7 +65,7 @@ void maxpool_generic(const image_t input[H_IN][W_IN][CH], out_t output[H_OUT][W_
 
                         // Vérification des bornes (MATCH REF: loop condition)
                         if (cur_h < H_IN && cur_w < W_IN) {
-                            out_t val = input[cur_h][cur_w][c];
+                            image_t val = input[cur_h][cur_w][c];
                             if (val > max_val) {
                                 max_val = val;
                             }
@@ -105,26 +79,19 @@ void maxpool_generic(const image_t input[H_IN][W_IN][CH], out_t output[H_OUT][W_
 }
 
 // Wrappers spécifiques
-void maxpool_24to12(const image_t input[24][24][64], out_t output[12][12][64]) {
+void maxpool_24to12(const image_t input[24][24][64], image_t output[12][12][64]) {
     maxpool_generic<24, 24, 64, 12, 12>(input, output);
 }
-void maxpool_12to6(const image_t input[12][12][32], out_t output[6][6][32]) {
+void maxpool_12to6(const image_t input[12][12][32], image_t output[6][6][32]) {
     maxpool_generic<12, 12, 32, 6, 6>(input, output);
 }
-void maxpool_6to3(const image_t input[6][6][20], out_t output[3][3][20]) {
+void maxpool_6to3(const image_t input[6][6][20], image_t output[3][3][20]) {
     maxpool_generic<6, 6, 20, 3, 3>(input, output);
 }
 
-// =========================================================================
-// 3. FULLY CONNECTED
-// =========================================================================
-// C'est souvent ici que ça casse. L'ordre des boucles doit correspondre
-// exactement à la façon dont LOCAL3_W a été généré.
-
-void fc_forward(const image_t input[3][3][20], out_t output[10]) {
+void fc_forward(const image_t input[3][3][20], image_t output[10]) {
 
     // 1. Flattening
-    // MATCH REF: for h, for w, for c
     image_t flattened[180];
     int idx = 0;
 
@@ -144,21 +111,14 @@ void fc_forward(const image_t input[3][3][20], out_t output[10]) {
         DENSE_DOT: for (int j = 0; j < 180; j++) {
             sum += flattened[j] * LOCAL3_W[j][i];
         }
-        output[i] = (out_t)sum;
+        output[i] = (image_t)sum;
     }
 }
 
-
-// =========================================================================
-// 5. CNN FORWARD
-// =========================================================================
-
-// Wrapper Conv1 pour gérer l'entrée PPM
-void conv1_forward(const PPMImage& input, out_t output[24][24][64]) {
+void conv1_forward(const PPMImage& input, image_t output[24][24][64]) {
     image_t img_buffer[24][24][3];
 
     // Conversion PPM (double/float) vers Fixed Point
-    // MATCH REF ORDER: h, w, c
     for(int h=0; h<24; h++) {
         for(int w=0; w<24; w++) {
             for(int c=0; c<3; c++) {
@@ -170,19 +130,17 @@ void conv1_forward(const PPMImage& input, out_t output[24][24][64]) {
     conv2d<24, 24, 3, 64>(img_buffer, CONV1_W, CONV1_B, output);
 }
 
-void cnn_forward(const PPMImage& input, out_t output[10]) {
-    // Buffers intermédiaires (statiques pour éviter l'allocation dynamique en HLS)
-    // Note: En pure simulation C++, static n'est pas obligatoire mais aide.
-    static out_t layer1_conv[24][24][64];
-    static out_t layer1_pool[12][12][64];
+void cnn_forward(const PPMImage& input, image_t output[10]) {
+    static image_t layer1_conv[24][24][64];
+    static image_t layer1_pool[12][12][64];
 
-    static out_t layer2_conv[12][12][32];
-    static out_t layer2_pool[6][6][32];
+    static image_t layer2_conv[12][12][32];
+    static image_t layer2_pool[6][6][32];
 
-    static out_t layer3_conv[6][6][20];
-    static out_t layer3_pool[3][3][20];
+    static image_t layer3_conv[6][6][20];
+    static image_t layer3_pool[3][3][20];
 
-    static out_t fc_output[10];
+    static image_t fc_output[10];
 
     // --- Layer 1 ---
     conv1_forward(input, layer1_conv);
@@ -198,7 +156,4 @@ void cnn_forward(const PPMImage& input, out_t output[10]) {
 
     // --- Fully Connected ---
     fc_forward(layer3_pool, output);
-
-    // --- Softmax ---
-    //softmax(fc_output, output);
 }
