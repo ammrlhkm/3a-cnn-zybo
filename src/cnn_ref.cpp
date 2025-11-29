@@ -6,16 +6,6 @@ void conv2d(const double image[H][W][Cin],
             const double bias[Cout], 
             double output[H][W][Cout]) {
 
-    // Create padded image with zeros
-    double padded_image[H + 2][W + 2][Cin] = {0};
-    for (int h = 0; h < H; ++h) {
-        for (int w = 0; w < W; ++w) {
-            for (int c = 0; c < Cin; ++c) {
-                padded_image[h + 1][w + 1][c] = image[h][w][c];
-            }
-        }
-    }
-
     // Perform convolution with ReLU activation
     for (int f = 0; f < Cout; ++f) {
         for (int i = 0; i < H; ++i) {
@@ -28,98 +18,74 @@ void conv2d(const double image[H][W][Cin],
                 for (int c = 0; c < Cin; ++c) {
                     for (int kr = 0; kr < 3; ++kr) {
                         for (int kc = 0; kc < 3; ++kc) {
-                            sum += padded_image[i+kr][j+kc][c] * kernel[kr][kc][c][f];
+
+                            int r_in = i + kr - 1;
+                            int c_in = j + kc - 1;
+
+                            double padded_image;
+                            if (r_in >= 0 && r_in < H && c_in >= 0 && c_in < W) {
+                                padded_image = image[r_in][c_in][c];
+                            } else {
+                                padded_image = 0;
+                            }
+                            
+                            sum += padded_image * kernel[kr][kc][c][f];
                         }
                     }
                 }
                 
-                // Apply ReLU activation
-                output[i][j][f] = max(0.0, sum);
+                if (sum < 0) output[i][j][f] = 0.0;
+                else output[i][j][f] = sum;
             }
         }
     }
 }
 
-
-void maxpool_24to12(const double input[24][24][64], double output[12][12][64]) {
+template <int H_IN, int W_IN, int CH, int H_OUT, int W_OUT>
+void maxpool(const double input[H_IN][W_IN][CH], double output[H_OUT][W_OUT][CH]) {
     const int pool_size = 3;
     const int stride = 2;
-    
-    for (int c = 0; c < 64; c++) {
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 12; j++) {
+
+    for (int c = 0; c < CH; c++) {
+        for (int i = 0; i < H_OUT; i++) {
+            for (int j = 0; j < W_OUT; j++) {
+
                 int h_start = i * stride;
                 int w_start = j * stride;
-                
+
+                // Initialize with the first pixel in the window
                 double max_val = input[h_start][w_start][c];
-                
-                for (int kh = 0; kh < pool_size && (h_start + kh) < 24; kh++) {
-                    for (int kw = 0; kw < pool_size && (w_start + kw) < 24; kw++) {
-                        double val = input[h_start + kh][w_start + kw][c];
-                        if (val > max_val) {
-                            max_val = val;
+
+                // Traverse the 3x3 window
+                for (int kh = 0; kh < pool_size && (h_start + kh) < H_IN; kh++) {
+                    for (int kw = 0; kw < pool_size && (w_start + kw) < W_IN; kw++) {
+                        int cur_h = h_start + kh;
+                        int cur_w = w_start + kw;
+
+                        if (cur_h < H_IN && cur_w < W_IN) {
+                            double val = input[cur_h][cur_w][c];
+                            if (val > max_val) {
+                                max_val = val;
+                            }
                         }
                     }
                 }
-                
                 output[i][j][c] = max_val;
             }
         }
     }
+}
+
+void maxpool_24to12(const double input[][24][64], double output[12][12][64]) {
+    maxpool<24, 24, 64, 12, 12>(input, output);
 }
 
 void maxpool_12to6(const double input[12][12][32], double output[6][6][32]) {
-    const int pool_size = 3;
-    const int stride = 2;
-    
-    for (int c = 0; c < 32; c++) {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                int h_start = i * stride;
-                int w_start = j * stride;
-                
-                double max_val = input[h_start][w_start][c];
-                
-                for (int kh = 0; kh < pool_size && (h_start + kh) < 12; kh++) {
-                    for (int kw = 0; kw < pool_size && (w_start + kw) < 12; kw++) {
-                        double val = input[h_start + kh][w_start + kw][c];
-                        if (val > max_val) {
-                            max_val = val;
-                        }
-                    }
-                }
-                
-                output[i][j][c] = max_val;
-            }
-        }
-    }
+    maxpool<12, 12, 32, 6, 6>(input, output);
 }
 
 void maxpool_6to3(const double input[6][6][20], double output[3][3][20]) {
-    const int pool_size = 3;
-    const int stride = 2;
-    
-    for (int c = 0; c < 20; c++) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                int h_start = i * stride;
-                int w_start = j * stride;
-                
-                double max_val = input[h_start][w_start][c];
-                
-                for (int kh = 0; kh < pool_size && (h_start + kh) < 6; kh++) {
-                    for (int kw = 0; kw < pool_size && (w_start + kw) < 6; kw++) {
-                        double val = input[h_start + kh][w_start + kw][c];
-                        if (val > max_val) {
-                            max_val = val;
-                        }
-                    }
-                }
-                
-                output[i][j][c] = max_val;
-            }
-        }
-    }
+    maxpool<6, 6, 20, 3, 3>(input, output);
 }
 
 void softmax(const double input[10], double output[10]) {
@@ -192,7 +158,6 @@ void fc_forward(const double input[3][3][20], double output[10]) {
         }
     }
     
-    // Fully connected: output[i] = sum(flattened[j] * LOCAL3_W[j][i]) + LOCAL3_B[i]
     for (int i = 0; i < 10; i++) {
         double sum = LOCAL3_B[i];
         for (int j = 0; j < 180; j++) {
