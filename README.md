@@ -74,12 +74,16 @@ python model/cnn_ref.py [options]
 python model/cnn_ref.py -k 3 -n 1000 -c
 ```
 
-2. To run the C++ reference implementation:
+2. To run the C++ implementation:
 
 ```bash
-make clean && make
+make rebuild
 
+# floating point 
 ./bin/cnn_ref "dataset/cifar-10-batches-bin/test_batch.bin" 1000
+
+# fixed point
+./bin/cnn_fixed "dataset/cifar-10-batches-bin/test_batch.bin" 1000
 ```
 
 **Arguments:**
@@ -93,10 +97,10 @@ make clean && make
 ./bin/cnn_ref "dataset/cifar-10-batches-bin/test_batch.bin" 100
 ```
 
-3. For comparison floating-point and fixed-point implementation:
+3. For noise error comparison of floating-point and fixed-point implementation:
 
 ```bash
-./bin/cnn_fixed
+./bin/cnn_scverify
 ```
 
 ## The CIFAR-10 Dataset

@@ -23,6 +23,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+Zynq/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 */.ipynb_checkpoints/*

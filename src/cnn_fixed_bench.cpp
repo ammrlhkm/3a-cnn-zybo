@@ -1,84 +1,102 @@
-#include <iostream>
-#include <iomanip>
-#include "config.h"
-#include "cnn_ref.h"
-#include "cnn_fixed.h"
+#include "cifar10_loader.h"
 #include "preprocess_image.h"
-#include "coeffs_double.h"
 #include "coeffs_fixed.h"
+#include "cnn_fixed.h"
+#include <iostream>
 
 using namespace std;
 
-#include "mc_scverify.h"
-
-const char* cifar10_class[10] = {
-    "airplane", "automobile", "bird", "cat", "deer",
-    "dog", "frog", "horse", "ship", "truck"
-};
-
-CCS_MAIN(int argc, char **argv) {
-	cout << "Starting Test" << endl ;
-    double img_in[IMG_SIZE];  
-    
-    // Read file
-	loadPPM("dataset/3_domestic_cat_s_000907.ppm", img_in);
-
-    // Normalize
-    normalizeImage(img_in);
-    
-    image_t img_in_fixed[IMG_SIZE];
-    for (int i=0; i<IMG_SIZE; i++) {
-        img_in_fixed[i] = (image_t) img_in[i];
+int main(int argc, char** argv) {
+    int num_images = 100;  // Default: test 1000 images
+    string cifar10_filename = "dataset/cifar-10-batches-bin/data_batch_1.bin";
+    if (argc > 1) {
+        cifar10_filename = string(argv[1]);
+    }
+    if (argc > 2) {
+        num_images = atoi(argv[2]);
     }
 
-    // Run CNN inference
-    double probabilities[10];
-    cnn_ref(img_in, probabilities);
-    image_t probabilities_fixed[10];
-    CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed);
+    cout << "=== CIFAR-10 CNN Inference ===" << endl;
+    cout << "Testing on " << num_images << " images" << endl << endl;
 
-    // compare with double precision reference
-    double worst_error = 0.0 ;
-    double fixed_out, double_out, diff[10] ;
-    
-    cout << endl << left << setw(6) << "Class" << setw(12) << "Name" 
-         << right << setw(12) << "Ref" << setw(12) << "Fixed P" << setw(12) << "Diff" << endl;
-    cout << string(54, '-') << endl;
-    
-    for(int i=0; i < 10; i++) {
-        double_out = probabilities[i] ;
-        fixed_out = probabilities_fixed[i].to_double() ;
-        diff[i] = fabs(double_out - fixed_out) ;
-        cout << left << setw(6) << i << setw(12) << cifar10_class[i]
-             << right << fixed << setprecision(4)
-             << setw(12) << double_out << setw(12) << fixed_out << setw(12) << diff[i] << endl;
+    CIFAR10Batch test_batch;
+    if (!loadCIFAR10Binary(cifar10_filename, test_batch)) {
+        cerr << "\nError: Could not load CIFAR-10 binary file." << endl;
+        return -1;
     }
-    for(int i=0; i < 10; i++) {
-        if (diff[i] > worst_error) worst_error = diff[i] ;
-    }
-    cout << string(54, '-') << endl;
-    cout << "Worst error: " << worst_error << endl;
 
-    // Determine predicted class for double and fixed-point
-    int pred_double = 0 ;
-    int pred_fixed = 0 ;
-    double max_double = probabilities[0] ;
-    double max_fixed = probabilities_fixed[0].to_double() ;
-    for(int i=1; i < 10; i++) {
-        if (probabilities[i] > max_double) {
-            max_double = probabilities[i] ;
-            pred_double = i ;
+    if (num_images > test_batch.num_images) {     // Limit to available images
+        num_images = test_batch.num_images;
+    }
+
+    int correct = 0;
+    int total = 0;
+    int class_correct[10] = {0};
+    int class_total[10] = {0};
+
+    for (int img_idx = 0; img_idx < num_images; img_idx++) {
+        const CIFAR10Image& cifar_img = test_batch.images[img_idx];
+        
+        double image[IMG_SIZE];
+        test_batch.readCIFAR10(img_idx, image);
+        
+        // Normalize
+        normalizeImage(image);
+        
+        // Convert to fixed-point
+        image_t image_fixed[IMG_SIZE];
+        for (int i = 0; i < IMG_SIZE; i++) {
+            image_fixed[i] = (image_t)image[i];
         }
-        if (probabilities_fixed[i].to_double() > max_fixed) {
-            max_fixed = probabilities_fixed[i].to_double() ;
-            pred_fixed = i ;
+
+        // Run CNN inference
+        image_t probabilities[10];
+        cnn_hardware(image_fixed, probabilities);
+        
+        // Find predicted class
+        int predicted = 0;
+        image_t max_prob = probabilities[0];
+        for (int i = 1; i < 10; i++) {
+            if (probabilities[i] > max_prob) {
+                max_prob = probabilities[i];
+                predicted = i;
+            }
+        }
+
+        // Check if correct
+        int true_label = cifar_img.label;
+        bool is_correct = (predicted == true_label);
+
+        if (is_correct) {
+            correct++;
+            class_correct[true_label]++;
+        }
+        total++;
+        class_total[true_label]++;
+
+        // Print result
+        cout << "Image " << (img_idx + 1) << "/" << num_images
+             << ": True=" << cifar10_class_names[true_label]
+             << ", Pred=" << cifar10_class_names[predicted]
+             << " (" << (max_prob.to_double() * 100.0f) << "%)"
+             << " " << (is_correct ? "✓" : "✗") << endl;
+    }
+
+    // ===== Print Summary Statistics =====
+    cout << "\n=== Results ===" << endl;
+    cout << "Overall Accuracy: " << correct << "/" << total
+         << " = " << (100.0f * correct / total) << "%" << endl;
+
+    cout << "\nPer-Class Accuracy:" << endl;
+    for (int i = 0; i < 10; i++) {
+        if (class_total[i] > 0) {
+            double acc = 100.0f * class_correct[i] / class_total[i];
+            cout << "  " << cifar10_class_names[i] << ": "
+                 << class_correct[i] << "/" << class_total[i]
+                 << " = " << acc << "%" << endl;
         }
     }
-    
-    cout << endl;
-    cout << "Predicted class (double): " << pred_double << " (" << cifar10_class[pred_double] << ")" << endl;
-    cout << "Predicted class (fixed):  " << pred_fixed << " (" << cifar10_class[pred_fixed] << ")" << endl;
 
     cout << "\nDone!" << endl;
-	CCS_RETURN(0) ;
+    return 0;
 }
