@@ -18,8 +18,8 @@ BIN_DIR = bin
 TARGET_REF = $(BIN_DIR)/cnn_ref
 TARGET_FIXED = $(BIN_DIR)/cnn_fixed
 
-OBJS_REF = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_testbench.o
-OBJS_FIXED = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_testbench_fixed.o
+OBJS_REF = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_ref_bench.o
+OBJS_FIXED = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_fixed_bench.o
 
 # Default target: build both
 all: directories $(TARGET_REF) $(TARGET_FIXED)

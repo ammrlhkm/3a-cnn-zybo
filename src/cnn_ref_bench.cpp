@@ -1,4 +1,6 @@
 #include "cifar10_loader.h"
+#include "preprocess_image.h"
+#include "coeffs_double.h"
 #include "cnn_ref.h"
 #include <iostream>
 
@@ -35,16 +37,15 @@ int main(int argc, char** argv) {
     for (int img_idx = 0; img_idx < num_images; img_idx++) {
         const CIFAR10Image& cifar_img = test_batch.images[img_idx];
         
-        // Convert to PPMImage
-        PPMImage image = cifar_img.toPPMImage();
+        double image[IMG_SIZE];
+        test_batch.readCIFAR10(img_idx, image);
         
         // Normalize
-        computeMeanStd(image);
         normalizeImage(image);
         
         // Run CNN inference
         double probabilities[10];
-        cnn_forward(image, probabilities);
+        cnn_ref(image, probabilities);
         
         // Find predicted class
         int predicted = 0;
@@ -73,9 +74,6 @@ int main(int argc, char** argv) {
              << ", Pred=" << cifar10_class_names[predicted]
              << " (" << (max_prob * 100.0f) << "%)"
              << " " << (is_correct ? "✓" : "✗") << endl;
-        
-        // Cleanup
-        freePPM(image);
     }
     
     // ===== Print Summary Statistics =====

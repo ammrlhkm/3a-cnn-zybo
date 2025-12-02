@@ -30,7 +30,6 @@ Softmax → 10 class probabilities
 
 1. Download CIFAR-10 (Python and binary version):
 ```bash
-```bash
 wget -P dataset https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz
 
 tar -xzvf dataset/cifar-10-python.tar.gz -C dataset
@@ -47,11 +46,35 @@ pip install -r requirements.txt
 
 ```bash
 source config/bash_mentor_24
+source config/bash_vivado_20
 ```
 
 ## Quick Start
 
 ### Build and Run
+
+1. To run the Python reference CNN model:
+
+```bash
+python model/cnn_ref.py [options]
+```
+
+**Options:**
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-k`, `--kernel` | Kernel size: `3` (3x3), `5` (5x5), or `both` | `3` |
+| `-n`, `--num_images` | Number of images to test | `1000` |
+| `-d`, `--dataset` | Path to CIFAR-10 batch file | `dataset/cifar-10-batches-py/test_batch` |
+| `--weights_3x3` | Path to 3x3 kernel weights file | `dataset/CNN_coeff_3x3.txt` |
+| `--weights_5x5` | Path to 5x5 kernel weights file | `dataset/CNN_coeff_5x5.txt` |
+| `-c`, `--confusion` | Show confusion matrix analysis | `false` |
+
+**Example:**
+```bash
+python model/cnn_ref.py -k 3 -n 1000 -c
+```
+
+2. To run the C++ reference implementation:
 
 ```bash
 make clean && make
@@ -59,10 +82,21 @@ make clean && make
 ./bin/cnn_ref "dataset/cifar-10-batches-bin/test_batch.bin" 1000
 ```
 
-or for fixed-point implementation:
+**Arguments:**
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `arg1` | Path to CIFAR-10 binary batch file | `dataset/cifar-10-batches-bin/data_batch_1.bin` |
+| `arg2` | Number of images to test | `1000` |
+
+**Example:**
+```bash
+./bin/cnn_ref "dataset/cifar-10-batches-bin/test_batch.bin" 100
+```
+
+3. For comparison floating-point and fixed-point implementation:
 
 ```bash
-./bin/cnn_fixed "dataset/cifar-10-batches-bin/test_batch.bin" 1000
+./bin/cnn_fixed
 ```
 
 ## The CIFAR-10 Dataset
