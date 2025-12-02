@@ -1,83 +1,76 @@
 #include "preprocess_image.h"
 
-void normalizeImage(PPMImage& image) {
-    int N = image.height * image.width * 3;
-    double min_std = 1.0f / sqrtf(static_cast<double>(N));
-    for (int h = 0; h < image.height; h++) {
-        for (int w = 0; w < image.width; w++) {
-            for (int c = 0; c < 3; c++) {
-                double& pixel = image.at(h, w, c);
-                pixel = (pixel - image.mean) / max(min_std, image.std);
-            }
-        }
+bool loadPPM(const char* filename, double* image_data) {
+    ifstream simg_in(filename);
+    char type[255], tmp[255];
+    int sx, sy;
+    
+    // Read file
+    if (!simg_in.is_open()) {
+        printf("File not opened\n");
+        return false;
     }
+    printf("File %s opened\n", filename);
+    
+    simg_in.getline(type, 255);
+    simg_in.getline(tmp, 255);
+    while (tmp[0] == '#') simg_in.getline(tmp, 255);
+    sscanf(tmp, "%d %d", &sx, &sy);
+    
+    int level;
+    simg_in >> level;
+    
+    int data;
+    for (int i = 0; i < sx * sy * 3; i++) {
+        simg_in >> data;
+        image_data[i] = static_cast<double>(data);  // Write directly to output array
+    }
+    
+    return true;
 }
 
-void computeMeanStd(PPMImage& image) {
+bool writePPM(const char* filename, double* image_data) {
+    ofstream simg_out(filename);
+    if (!simg_out.is_open()) {
+        cerr << "Error: Could not open " << filename << " for writing." << endl;
+        return false;
+    }
+
+    simg_out << "P3" << endl;
+    simg_out << IMAGE_SIZE_0 << " " << IMAGE_SIZE_1 << endl;
+    simg_out << "255" << endl;
+
+    for(int i=0; i<IMG_SIZE;i++) {
+        simg_out <<  static_cast<int>(image_data[i]) << endl; 
+    }
+
+    return true;
+}
+
+void normalizeImage(double* image_data) {
     double sum = 0;
     double sum_sq = 0;
-    int N = image.width * image.height * 3;
 
-    for (int h = 0; h < image.height; h++) {
-        for (int w = 0; w < image.width; w++) {
+    for (int h = 0; h < IMAGE_SIZE_0; h++) {
+        for (int w = 0; w < IMAGE_SIZE_1; w++) {
             for (int c = 0; c < 3; c++) {
-                double val = image.at(h, w, c);
+                double val = image_data[AT(h, w, c)];
                 sum += val;
                 sum_sq += val * val;
             }
         }
     }
-
-    image.mean = sum / N;
-    image.std = sqrtf(sum_sq / N - image.mean * image.mean);
-}
-
-bool loadPPM(const char* filename, PPMImage& image) {
-    FILE* fp = fopen(filename, "rb");
-    if (!fp) {
-        perror("Error opening file");
-        return false;
-    }
-
-    char format[3];
-    fscanf(fp, "%2s", format);
-    if (strcmp(format, "P3") != 0) {
-        cerr << "Error: Unsupported PPM format " << format << endl;
-        fclose(fp);
-        return false;
-    }
-
-    // Skip comments
-    int c = fgetc(fp);
-    while (c == '#') {
-        while (fgetc(fp) != '\n');
-        c = fgetc(fp);
-    }
-    ungetc(c, fp);
-
-    fscanf(fp, "%d %d", &image.width, &image.height);
-    int max_val;
-    fscanf(fp, "%d", &max_val);
-    fgetc(fp); // consume newline
-
-    // Allocate flat contiguous memory for image data
-    image.data = new double[image.height * image.width * 3];
-
-    // Read pixel data
-    for (int h = 0; h < image.height; h++) {
-        for (int w = 0; w < image.width; w++) {
+    
+    double mean = sum / IMG_SIZE;
+    double std = sqrtf(sum_sq / IMG_SIZE - mean * mean);
+    double min_std = 1.0 / sqrtf(static_cast<double>(IMG_SIZE));
+    
+    for (int h = 0; h < IMAGE_SIZE_0; h++) {
+        for (int w = 0; w < IMAGE_SIZE_1; w++) {
             for (int c = 0; c < 3; c++) {
-                int pixel_value;
-                fscanf(fp, "%d", &pixel_value);
-                image.at(h, w, c) = static_cast<double>(pixel_value);
+                double& pixel = image_data[AT(h, w, c)];
+                pixel = (pixel - mean) / max(min_std, std);
             }
         }
-    }  
-    fclose(fp);
-    return true;
-}
-
-void freePPM(PPMImage& image) {
-    delete[] image.data;
-    image.data = nullptr;
+    }
 }

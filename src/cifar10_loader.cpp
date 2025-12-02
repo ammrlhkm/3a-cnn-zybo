@@ -1,11 +1,4 @@
 #include "cifar10_loader.h"
-#include <fstream>
-#include <iostream>
-#include <cstring>
-
-using namespace std;
-
-// ===== CIFAR-10 Loading Functions =====
 
 const char* cifar10_class_names[10] = {
     "airplane", "automobile", "bird", "cat", "deer",
@@ -29,30 +22,6 @@ void CIFAR10Image::toHWC24x24(unsigned char output[24][24][3]) const {
             output[h][w][2] = data[2048 + src_idx];       // Blue
         }
     }
-}
-
-PPMImage CIFAR10Image::toPPMImage() const {
-    PPMImage img;
-    img.width = 24;
-    img.height = 24;
-    img.mean = 0.0f;
-    img.std = 1.0f;
-    img.data = new double[24 * 24 * 3];
-    
-    // Convert to HWC 24x24
-    unsigned char cropped[24][24][3];
-    toHWC24x24(cropped);
-    
-    // Convert to double
-    for (int h = 0; h < 24; h++) {
-        for (int w = 0; w < 24; w++) {
-            for (int c = 0; c < 3; c++) {
-                img.data[h * 24 * 3 + w * 3 + c] = double(cropped[h][w][c]);
-            }
-        }
-    }
-    
-    return img;
 }
 
 bool loadCIFAR10Binary(const string& filename, CIFAR10Batch& batch) {
@@ -95,4 +64,24 @@ bool loadCIFAR10Binary(const string& filename, CIFAR10Batch& batch) {
     file.close();
     cout << "Successfully loaded " << batch.num_images << " images" << endl;
     return true;
+}
+
+void CIFAR10Batch::readCIFAR10(int index, double image_data[IMG_SIZE]) {
+    if (index < 0 || index >= num_images) {
+        cerr << "Error: Index out of bounds in readCIFAR10" << endl;
+        return;
+    }
+    
+    const CIFAR10Image& img = images[index];
+    unsigned char hwc_image[24][24][3];
+    img.toHWC24x24(hwc_image);
+    
+    for (int h = 0; h < 24; h++) {
+        for (int w = 0; w < 24; w++) {
+            for (int c = 0; c < 3; c++) {
+                int idx = (h * 24 + w) * 3 + c;
+                image_data[idx] = static_cast<double>(hwc_image[h][w][c]);
+            }
+        }
+    }
 }
