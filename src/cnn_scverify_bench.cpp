@@ -34,7 +34,7 @@ CCS_MAIN(int argc, char **argv) {
     // Run CNN inference
     double probabilities[10];
     cnn_ref(img_in, probabilities);
-    image_t probabilities_fixed[10];
+    prob_t probabilities_fixed[10];
     CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed);
 
     // compare with double precision reference

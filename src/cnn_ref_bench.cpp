@@ -33,7 +33,11 @@ int main(int argc, char** argv) {
     int total = 0;
     int class_correct[10] = {0};
     int class_total[10] = {0};
-    
+    double max_pixel = 0;
+    double min_pixel = 1000;
+    double max_prob_val = 0;
+    double min_prob_val = 1000;
+
     for (int img_idx = 0; img_idx < num_images; img_idx++) {
         const CIFAR10Image& cifar_img = test_batch.images[img_idx];
         
@@ -43,6 +47,11 @@ int main(int argc, char** argv) {
         // Normalize
         normalizeImage(image);
         
+        for (int i = 0; i < IMG_SIZE; i++) {
+            if (image[i] > max_pixel) max_pixel = image[i];
+            if (image[i] < min_pixel) min_pixel = image[i];
+        }
+
         // Run CNN inference
         double probabilities[10];
         cnn_ref(image, probabilities);
@@ -55,6 +64,9 @@ int main(int argc, char** argv) {
                 max_prob = probabilities[i];
                 predicted = i;
             }
+            double prob_val = probabilities[i];
+            if (prob_val > max_prob_val) max_prob_val = prob_val;
+            if (prob_val < min_prob_val) min_prob_val = prob_val;
         }
         
         // Check if correct
@@ -90,6 +102,9 @@ int main(int argc, char** argv) {
                  << " = " << acc << "%" << endl;
         }
     }
+
+    cout << "\nProbability Value Range: [" << min_prob_val << ", " << max_prob_val << "]" << endl;
+    cout << "\nImage Pixel Value Range: [" << min_pixel << ", " << max_pixel << "]" << endl;
     
     cout << "\nDone!" << endl;
     return 0;

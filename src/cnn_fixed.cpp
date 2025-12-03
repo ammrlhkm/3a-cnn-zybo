@@ -93,7 +93,7 @@ void maxpool_fixed_6to3(const image_t input[6][6][20], image_t output[3][3][20])
     maxpool_fixed<6, 6, 20, 3, 3>(input, output);
 }
 
-void fully_connected_fixed(const image_t input[3][3][20], image_t output[10]) {
+void fully_connected_fixed(const image_t input[3][3][20], prob_t output[10]) {
     image_t flattened[180];
     int idx = 0;
     H_FLATTEN_LOOP: for (int h = 0; h < 3; h++) {
@@ -109,11 +109,11 @@ void fully_connected_fixed(const image_t input[3][3][20], image_t output[10]) {
         WEIGHT_SUM_LOOP: for (int j = 0; j < 180; j++) {
             sum += flattened[j] * LOCAL3_W_FIXED[j][i];
         }
-        output[i] = (image_t)sum;
+        output[i] = (prob_t)sum;
     }
 }
 
-void cnn_hardware(const image_t input[IMG_SIZE], image_t output[10]) {
+void cnn_hardware(const image_t input[IMG_SIZE], prob_t output[10]) {
     static image_t img_buffer[24][24][3];
     for(int h=0; h<24; h++) {
         for(int w=0; w<24; w++) {

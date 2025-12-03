@@ -33,6 +33,10 @@ int main(int argc, char** argv) {
     int total = 0;
     int class_correct[10] = {0};
     int class_total[10] = {0};
+    double max_image_t = 0;
+    double min_image_t = 1000;
+    double max_prob_t = 0;
+    double min_prob_t = 1000;
 
     for (int img_idx = 0; img_idx < num_images; img_idx++) {
         const CIFAR10Image& cifar_img = test_batch.images[img_idx];
@@ -43,6 +47,12 @@ int main(int argc, char** argv) {
         // Normalize
         normalizeImage(image);
         
+        // Print pixels in txt file
+        for (int i = 0; i < IMG_SIZE; i++) {
+            if (image[i] > max_image_t) max_image_t = image[i];
+            if (image[i] < min_image_t) min_image_t = image[i];
+        }
+
         // Convert to fixed-point
         image_t image_fixed[IMG_SIZE];
         for (int i = 0; i < IMG_SIZE; i++) {
@@ -50,17 +60,20 @@ int main(int argc, char** argv) {
         }
 
         // Run CNN inference
-        image_t probabilities[10];
+        prob_t probabilities[10];
         cnn_hardware(image_fixed, probabilities);
         
         // Find predicted class
         int predicted = 0;
-        image_t max_prob = probabilities[0];
+        prob_t max_prob = probabilities[0];
         for (int i = 1; i < 10; i++) {
             if (probabilities[i] > max_prob) {
                 max_prob = probabilities[i];
                 predicted = i;
             }
+            double prob_val = probabilities[i].to_double();
+            if (prob_val > max_prob_t) max_prob_t = prob_val;
+            if (prob_val < min_prob_t) min_prob_t = prob_val;
         }
 
         // Check if correct
@@ -78,7 +91,7 @@ int main(int argc, char** argv) {
         cout << "Image " << (img_idx + 1) << "/" << num_images
              << ": True=" << cifar10_class_names[true_label]
              << ", Pred=" << cifar10_class_names[predicted]
-             << " (" << (max_prob.to_double() * 100.0f) << "%)"
+             << " (" << (max_prob.to_double() ) << ")"
              << " " << (is_correct ? "✓" : "✗") << endl;
     }
 
@@ -96,6 +109,9 @@ int main(int argc, char** argv) {
                  << " = " << acc << "%" << endl;
         }
     }
+
+    cout << "\nProbability Value Range: [" << min_prob_t << ", " << max_prob_t << "]" << endl;
+    cout << "\nImage Pixel Value Range: [" << min_image_t << ", " << max_image_t << "]" << endl;
 
     cout << "\nDone!" << endl;
     return 0;
