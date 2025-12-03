@@ -56,6 +56,11 @@ clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)
 	@echo "Clean complete"
 
+clean-hls:
+	rm -rf hls
+	mkdir hls
+	@echo "HLS Clean complete"
+
 # Rebuild
 rebuild: clean all
 

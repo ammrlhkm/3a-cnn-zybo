@@ -181,5 +181,3 @@ void cnn_ref(const double input[IMG_SIZE], double output[10]) {
     // Softmax
     // softmax(logits, output);  Uncomment if softmax probabilities are needed
 }
-
-
