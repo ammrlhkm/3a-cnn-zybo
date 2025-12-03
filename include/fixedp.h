@@ -1,10 +1,8 @@
 #ifndef FIXEDP_H
 #define FIXEDP_H
 
-#include "ac_fixed.h"
+#include <ac_fixed.h>
 #include "config.h"
-
-using namespace std;
 
 // Fixed-point type definitions using macros
 typedef ac_fixed<IMAGE_P> image_t;

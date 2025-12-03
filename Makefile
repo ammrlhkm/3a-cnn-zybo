@@ -2,7 +2,7 @@
 CXX = g++
 # Flags communs
 COMMON_FLAGS = -std=c++11 -Wall -Wextra
-INCLUDES = -I./include -I./include/ac_fixed
+INCLUDES = -I./include -I./ac_fixed
 LDFLAGS =
 
 CXXFLAGS_REF = $(COMMON_FLAGS)
