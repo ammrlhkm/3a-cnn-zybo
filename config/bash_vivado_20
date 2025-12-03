@@ -1,0 +1,14 @@
+export LC_ALL=en_US.utf8
+export LANG=en_US.utf8
+export LANGUAGE=en_US.utf8
+
+##############################################################
+# Copyright (c) 1986-2020 Xilinx, Inc.  All rights reserved. #
+##############################################################
+
+source /softslin/vivado_20.2/DocNav/.settings64-DocNav.sh
+source /softslin/vivado_20.2/Vivado/2020.2/.settings64-Vivado.sh
+source /softslin/vivado_20.2/Vitis/2020.2/.settings64-Vitis.sh
+source /softslin/vivado_20.2/Model_Composer/2020.2/.settings64-Model_Composer.sh
+source /softslin/vivado_20.2/Vitis_HLS/2020.2/.settings64-Vitis_HLS.sh
+export CROSS=arm-none-eabi
