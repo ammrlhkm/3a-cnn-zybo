@@ -15,3 +15,4 @@ bool writePPM(const char* filename, double* image_data);
 void normalizeImage(double* image_data);
 
 #endif // PREPROCESS_IMAGE_H
+

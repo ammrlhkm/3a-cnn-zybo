@@ -30,3 +30,4 @@ extern const char* cifar10_class_names[10];
 bool loadCIFAR10Binary(const string& filename, CIFAR10Batch& batch); 
 
 #endif // CIFAR10_LOADER_H
+

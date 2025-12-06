@@ -1173,3 +1173,4 @@ const double LOCAL3_B[10] = {
 };
 
 #endif // COEFFS_DOUBLE_H_
+

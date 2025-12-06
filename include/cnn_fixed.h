@@ -26,3 +26,4 @@ void fully_connected_fixed(const image_t input[3][3][20], prob_t output[10]);
 void cnn_hardware(const image_t input[IMG_SIZE], prob_t output[10]);
 
 #endif // CNN_FIXED_H
+

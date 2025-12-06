@@ -1175,3 +1175,4 @@ const bias_t LOCAL3_B_FIXED[10] = {
 };
 
 #endif // COEFFS_FIXED_H_
+

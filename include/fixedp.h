@@ -12,3 +12,4 @@ typedef ac_fixed<BIAS_P> bias_t;
 typedef ac_fixed<PROB_P> prob_t;
 
 #endif // FIXEDP_H
+

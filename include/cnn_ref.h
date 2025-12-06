@@ -31,3 +31,4 @@ void softmax(const double input[10], double output[10]);
 void cnn_ref(const double input[IMG_SIZE], double output[10]);
 
 #endif // CNN_REF_H
+
