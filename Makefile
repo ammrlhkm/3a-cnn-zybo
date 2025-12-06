@@ -57,9 +57,10 @@ clean:
 	@echo "Clean complete"
 
 clean-hls:
-	rm -rf hls
-	mkdir hls
-	@echo "HLS Clean complete"
+	@echo "Cleaning HLS generated files, preserving *.tcl scripts..."
+    cd hls && \
+    rm -rf Catapult_CNN/ && \
+	rm *.log *.css *.jou *.summary
 
 # Rebuild
 rebuild: clean all
