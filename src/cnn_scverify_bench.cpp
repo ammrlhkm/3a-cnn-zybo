@@ -20,8 +20,23 @@ CCS_MAIN(int argc, char **argv) {
 	cout << "Starting Test" << endl ;
     double img_in[IMG_SIZE];  
     
-    // Read file
-	loadPPM("dataset/3_domestic_cat_s_000907.ppm", img_in);
+    // Read file - try both paths for flexibility
+    const char* img_paths[] = {
+        "dataset/3_domestic_cat_s_000907.ppm",
+        "../dataset/3_domestic_cat_s_000907.ppm"
+    };
+    bool loaded = false;
+    for (int p = 0; p < 2; p++) {
+        if (loadPPM(img_paths[p], img_in)) {
+            cout << "Loaded image from: " << img_paths[p] << endl;
+            loaded = true;
+            break;
+        }
+    }
+    if (!loaded) {
+        cout << "Error: Could not load image from any path" << endl;
+        CCS_RETURN(1);
+    }
 
     // Normalize
     normalizeImage(img_in);
@@ -29,6 +44,12 @@ CCS_MAIN(int argc, char **argv) {
     image_t img_in_fixed[IMG_SIZE];
     for (int i=0; i<IMG_SIZE; i++) {
         img_in_fixed[i] = (image_t) img_in[i];
+        // if < 10, print conversion and binary representation
+        if (i < 10) {
+            cout << "img_in[" << i << "] = " << img_in[i] 
+                 << " -> fixed: " << img_in_fixed[i] 
+                 << " (bin: " << img_in_fixed[i].to_string(AC_BIN) << ")" << endl;
+        }
     }
 
     // Run CNN inference
