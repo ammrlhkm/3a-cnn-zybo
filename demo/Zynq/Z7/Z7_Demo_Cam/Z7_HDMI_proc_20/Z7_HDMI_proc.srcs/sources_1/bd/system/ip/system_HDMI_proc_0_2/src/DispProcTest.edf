@@ -1,0 +1,1248 @@
+(edif DispProcTest 
+ (edifVersion 2 0 0)
+ (edifLevel 0)
+ (keywordMap (keywordLevel 0))
+ (status 
+  (written 
+   (timestamp 2025 09 29 07 42 34)
+   (program "Precision RTL Synthesis" (version "64-bit 2024.2.0.4"))
+   (author "Siemens")))
+ (external xca7 
+  (edifLevel 0)
+  (technology (numberDefinition ))
+  (cell GND (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port G (direction OUTPUT)))))
+  (cell XORCY (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port CI (direction INPUT))
+     (port LI (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell MUXCY (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port CI (direction INPUT))
+     (port DI (direction INPUT))
+     (port S (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell FDRE (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port C (direction INPUT))
+     (port CE (direction INPUT))
+     (port D (direction INPUT))
+     (port R (direction INPUT))
+     (port Q (direction OUTPUT)))))
+  (cell INV (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port I (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell LUT3 (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port I0 (direction INPUT))
+     (port I1 (direction INPUT))
+     (port I2 (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell LUT2 (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port I0 (direction INPUT))
+     (port I1 (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell LUT4 (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port I0 (direction INPUT))
+     (port I1 (direction INPUT))
+     (port I2 (direction INPUT))
+     (port I3 (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell LUT5 (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port I0 (direction INPUT))
+     (port I1 (direction INPUT))
+     (port I2 (direction INPUT))
+     (port I3 (direction INPUT))
+     (port I4 (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell LUT6 (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port I0 (direction INPUT))
+     (port I1 (direction INPUT))
+     (port I2 (direction INPUT))
+     (port I3 (direction INPUT))
+     (port I4 (direction INPUT))
+     (port I5 (direction INPUT))
+     (port O (direction OUTPUT)))))
+  (cell VCC (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port P (direction OUTPUT))))))
+ (library work 
+  (edifLevel 0)
+  (technology (numberDefinition ))
+  (cell DispProcTest_core_0 (cellType GENERIC)
+   (view INTERFACE  (viewType NETLIST)
+    (interface 
+     (port (array (rename p_nbus_img_out_rsc_wadr "p_nbus_img_out_rsc_wadr(16:0)") 17 )(direction OUTPUT))
+     (port (array (rename p_nbus_img_out_rsc_d "p_nbus_img_out_rsc_d(7:0)") 8 )(direction OUTPUT))
+     (port p_img_out_rsc_we (direction OUTPUT))
+     (port p_img_out_triosy_lz (direction OUTPUT))
+     (port p_rst (direction INPUT))
+     (port p_clk (direction INPUT))
+     (port px246 (direction INPUT)))
+    (contents 
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_0 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_1 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_2 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_3 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_4 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_5 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_6 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_7 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_xorcy_8 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_8 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_0 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_1 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_2 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_3 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_4 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_5 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_6 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_xorcy_7 (viewRef NETLIST  (cellRef XORCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_7 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_8_ "reg_lx_x_8_0_sva(8)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_7_ "reg_lx_x_8_0_sva(7)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_6_ "reg_lx_x_8_0_sva(6)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_5_ "reg_lx_x_8_0_sva(5)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_4_ "reg_lx_x_8_0_sva(4)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_3_ "reg_lx_x_8_0_sva(3)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_2_ "reg_lx_x_8_0_sva(2)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_1_ "reg_lx_x_8_0_sva(1)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_lx_x_8_0_sva_0_ "reg_lx_x_8_0_sva(0)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_7_ "reg_ly_y_7_0_sva(7)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_6_ "reg_ly_y_7_0_sva(6)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_5_ "reg_ly_y_7_0_sva(5)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_4_ "reg_ly_y_7_0_sva(4)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_0_ "reg_ly_y_7_0_sva(0)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance ix35224z1315 (viewRef NETLIST  (cellRef INV (libraryRef xca7 ))))
+     (instance ix45142z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix46139z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix47136z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix48133z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix49130z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix50127z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix51124z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix52121z1568 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "FE")))
+     (instance ix24302z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_7"))
+      (property INIT (string "6")))
+     (instance ix25299z39804 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_5"))
+      (property INIT (string "965A")))
+     (instance ix29242z53794 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_3"))
+      (property INIT (string "CC01CD00")))
+     (instance ix30239z53794 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "CC01CD00CD00CD00")))
+     (instance ix31236z36266 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "9CCCCCCC88888888")))
+     (instance ix44620z1313 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "A222222AFFFFFFFF")))
+     (instance ix40632z1328 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_9"))
+      (property INIT (string "E")))
+     (instance ix3954z45004 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "AAAAEAAAEAAAAAAA")))
+     (instance ix8555z1328 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_10"))
+      (property INIT (string "E")))
+     (instance ix63750z45004 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "AAAAAAAA6AAAAAAA")))
+     (instance ix63750z24445 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "5A5A5A5A9A5A5A5A")))
+     (instance ix63751z28620 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property INIT (string "AAAA6AAA")))
+     (instance ix63751z40829 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property INIT (string "5A5A9A5A")))
+     (instance ix63752z44940 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property INIT (string "AA6A")))
+     (instance ix63752z24509 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property INIT (string "5A9A")))
+     (instance ix63753z1480 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "A6")))
+     (instance ix63753z24505 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property INIT (string "5A96")))
+     (instance ix63754z1323 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "9")))
+     (instance ix63754z1421 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property INIT (string "69")))
+     (instance ix63755z23244 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "A956956A996655AA")))
+     (instance ix47751z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47750z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47749z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47748z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47747z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47746z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47745z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix47744z1320 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property INIT (string "6")))
+     (instance ix28245z1315 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_3"))
+      (property INIT (string "01")))
+     (instance ix32233z1314 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "6AAAAAAA00000000")))
+     (instance ix33230z5426 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "0110101010101010")))
+     (instance ix34227z5426 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "0110101010101010")))
+     (instance ix35224z1319 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "6AAAAAAA00000000")))
+     (instance ix33230z1443 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_5"))
+      (property INIT (string "80")))
+     (instance ix44620z1364 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_8"))
+      (property INIT (string "31")))
+     (instance ix42626z1322 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_10"))
+      (property INIT (string "8")))
+     (instance ix41629z36258 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_1"))
+      (property INIT (string "08888880")))
+     (instance ix34227z34083 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_7"))
+      (property INIT (string "8000")))
+     (instance ix1576z1318 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_8"))
+      (property INIT (string "4")))
+     (instance ix2573z1410 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_6"))
+      (property INIT (string "60")))
+     (instance ix3570z28450 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_2"))
+      (property INIT (string "6A00")))
+     (instance ix4567z1314 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_2"))
+      (property INIT (string "6AAA0000")))
+     (instance ix5564z1314 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "6AAAAAAA00000000")))
+     (instance ix6561z44834 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property INIT (string "6A00AA00")))
+     (instance ix7558z1354 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_4"))
+      (property INIT (string "28")))
+     (instance ix8555z11691 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_4"))
+      (property INIT (string "2888")))
+     (instance ix9552z36266 (viewRef NETLIST  (cellRef LUT5 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_1"))
+      (property INIT (string "28888888")))
+     (instance ix7558z1315 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "8000000000000000")))
+     (instance ix6561z1443 (viewRef NETLIST  (cellRef LUT3 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_6"))
+      (property INIT (string "80")))
+     (instance ix31236z1316 (viewRef NETLIST  (cellRef LUT2 (libraryRef xca7 )))
+      (property HLUTNM (string "LUT62_1_9"))
+      (property INIT (string "1")))
+     (instance ix35224z34085 (viewRef NETLIST  (cellRef LUT4 (libraryRef xca7 )))
+      (property INIT (string "8000")))
+     (instance ix63754z23330 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "0157157F117755FF")))
+     (instance ix63755z55165 (viewRef NETLIST  (cellRef LUT6 (libraryRef xca7 )))
+      (property INIT (string "4B692DA5B496D25A")))
+     (instance ps_vcc (viewRef NETLIST  (cellRef VCC (libraryRef xca7 ))))
+     (instance ps_gnd (viewRef NETLIST  (cellRef GND (libraryRef xca7 ))))
+     (instance reg_DispProcTest_core_core_fsm_inst_ly_C_1_tr0 (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename DispProcTest_core_core_fsm_inst_reg_state_var_4_ "DispProcTest_core_core_fsm_inst_reg_state_var(4)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename DispProcTest_core_core_fsm_inst_reg_state_var_3_ "DispProcTest_core_core_fsm_inst_reg_state_var(3)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename DispProcTest_core_core_fsm_inst_reg_state_var_2_ "DispProcTest_core_core_fsm_inst_reg_state_var(2)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename DispProcTest_core_core_fsm_inst_reg_state_var_1_ "DispProcTest_core_core_fsm_inst_reg_state_var(1)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename DispProcTest_core_core_fsm_inst_reg_state_var_0_ "DispProcTest_core_core_fsm_inst_reg_state_var(0)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_3_ "reg_ly_y_7_0_sva(3)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_2_ "reg_ly_y_7_0_sva(2)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance (rename reg_ly_y_7_0_sva_1_ "reg_ly_y_7_0_sva(1)") (viewRef NETLIST  (cellRef FDRE (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_0 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_1 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_2 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_3 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_4 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_5 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_6 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance ly_acc_2_psp_sva_1_add9_5_muxcy_7 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_0 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_1 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_2 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_3 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_4 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_5 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (instance img_out_rsci_wadr_d_add8_6_muxcy_6 (viewRef NETLIST  (cellRef MUXCY (libraryRef xca7 ))))
+     (net nx6561z2 
+      (joined 
+       (portRef O (instanceRef ix6561z1443 ))
+       (portRef I4 (instanceRef ix6561z44834 ))))
+     (net nx35224z4 
+      (joined 
+       (portRef O (instanceRef ix35224z34085 ))
+       (portRef I4 (instanceRef ix35224z1319 ))))
+     (net nx33230z3 
+      (joined 
+       (portRef O (instanceRef ix33230z1443 ))
+       (portRef I5 (instanceRef ix33230z5426 ))))
+     (net nx63754z3 
+      (joined 
+       (portRef O (instanceRef ix63754z23330 ))
+       (portRef I5 (instanceRef ix63750z45004 ))
+       (portRef I5 (instanceRef ix63750z24445 ))
+       (portRef I4 (instanceRef ix63751z28620 ))
+       (portRef I4 (instanceRef ix63751z40829 ))
+       (portRef I3 (instanceRef ix63752z44940 ))
+       (portRef I3 (instanceRef ix63752z24509 ))
+       (portRef I2 (instanceRef ix63753z1480 ))
+       (portRef I3 (instanceRef ix63753z24505 ))
+       (portRef I1 (instanceRef ix63754z1323 ))
+       (portRef I2 (instanceRef ix63754z1421 ))))
+     (net nx34227z3 
+      (joined 
+       (portRef O (instanceRef ix34227z34083 ))
+       (portRef I5 (instanceRef ix3954z45004 ))
+       (portRef I5 (instanceRef ix34227z5426 ))))
+     (net nx44620z2 
+      (joined 
+       (portRef O (instanceRef ix44620z1364 ))
+       (portRef I5 (instanceRef ix44620z1313 ))))
+     (net nx7558z2 
+      (joined 
+       (portRef O (instanceRef ix7558z1315 ))
+       (portRef I4 (instanceRef ix41629z36258 ))
+       (portRef I2 (instanceRef ix7558z1354 ))
+       (portRef I3 (instanceRef ix8555z11691 ))
+       (portRef I4 (instanceRef ix9552z36266 ))
+       (portRef I4 (instanceRef ix44620z1313 ))))
+     (net nx31236z2 
+      (joined 
+       (portRef O (instanceRef ix31236z1316 ))
+       (portRef I5 (instanceRef ix31236z36266 ))
+       (portRef I5 (instanceRef ix32233z1314 ))
+       (portRef I5 (instanceRef ix35224z1319 ))))
+     (net (rename img_out_rsc_wadr_7_ "img_out_rsc_wadr(7)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 0))
+       (portRef O (instanceRef ix25299z39804 ))))
+     (net (rename img_out_rsc_wadr_6_ "img_out_rsc_wadr(6)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 1))
+       (portRef O (instanceRef ix24302z1320 ))))
+     (net (rename img_out_rsc_d_7_ "img_out_rsc_d(7)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 0))
+       (portRef O (instanceRef ix52121z1568 ))))
+     (net (rename img_out_rsc_d_6_ "img_out_rsc_d(6)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 1))
+       (portRef O (instanceRef ix51124z1568 ))))
+     (net (rename img_out_rsc_d_5_ "img_out_rsc_d(5)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 2))
+       (portRef O (instanceRef ix50127z1568 ))))
+     (net (rename img_out_rsc_d_4_ "img_out_rsc_d(4)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 3))
+       (portRef O (instanceRef ix49130z1568 ))))
+     (net (rename img_out_rsc_d_3_ "img_out_rsc_d(3)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 4))
+       (portRef O (instanceRef ix48133z1568 ))))
+     (net (rename img_out_rsc_d_2_ "img_out_rsc_d(2)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 5))
+       (portRef O (instanceRef ix47136z1568 ))))
+     (net (rename img_out_rsc_d_1_ "img_out_rsc_d(1)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 6))
+       (portRef O (instanceRef ix46139z1568 ))))
+     (net (rename img_out_rsc_d_0_ "img_out_rsc_d(0)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_d 7))
+       (portRef O (instanceRef ix45142z1568 ))))
+     (net nx28245z1 
+      (joined 
+       (portRef O (instanceRef ix28245z1315 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_0_ ))))
+     (net nx29242z2 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_0_ ))
+       (portRef I1 (instanceRef ix24302z1320 ))
+       (portRef I1 (instanceRef ix47744z1320 ))
+       (portRef I2 (instanceRef ix28245z1315 ))
+       (portRef I3 (instanceRef ix25299z39804 ))
+       (portRef I4 (instanceRef ix29242z53794 ))
+       (portRef I5 (instanceRef ix30239z53794 ))
+       (portRef I4 (instanceRef ix31236z36266 ))
+       (portRef I5 (instanceRef ix63755z23244 ))
+       (portRef I4 (instanceRef ix32233z1314 ))
+       (portRef I3 (instanceRef ix35224z1319 ))
+       (portRef I2 (instanceRef ix33230z1443 ))
+       (portRef I3 (instanceRef ix34227z34083 ))
+       (portRef I5 (instanceRef ix63754z23330 ))
+       (portRef I0 (instanceRef ix63755z55165 ))))
+     (net nx29242z1 
+      (joined 
+       (portRef O (instanceRef ix29242z53794 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_1_ ))))
+     (net nx30239z1 
+      (joined 
+       (portRef O (instanceRef ix30239z53794 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_2_ ))))
+     (net nx31236z1 
+      (joined 
+       (portRef O (instanceRef ix31236z36266 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_3_ ))))
+     (net nx32233z1 
+      (joined 
+       (portRef O (instanceRef ix32233z1314 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_4_ ))))
+     (net nx33230z2 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_4_ ))
+       (portRef I1 (instanceRef ix47748z1320 ))
+       (portRef I1 (instanceRef ix63752z44940 ))
+       (portRef I1 (instanceRef ix63752z24509 ))
+       (portRef I3 (instanceRef ix33230z5426 ))
+       (portRef I4 (instanceRef ix3954z45004 ))
+       (portRef I3 (instanceRef ix63750z45004 ))
+       (portRef I3 (instanceRef ix63750z24445 ))
+       (portRef I2 (instanceRef ix63751z28620 ))
+       (portRef I2 (instanceRef ix63751z40829 ))
+       (portRef I0 (instanceRef ix63753z1480 ))
+       (portRef I0 (instanceRef ix63753z24505 ))
+       (portRef I0 (instanceRef ix32233z1314 ))
+       (portRef I4 (instanceRef ix34227z5426 ))
+       (portRef I2 (instanceRef ix35224z34085 ))))
+     (net nx33230z1 
+      (joined 
+       (portRef O (instanceRef ix33230z5426 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_5_ ))))
+     (net nx34227z2 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_5_ ))
+       (portRef I1 (instanceRef ix47749z1320 ))
+       (portRef I2 (instanceRef ix63750z45004 ))
+       (portRef I2 (instanceRef ix63750z24445 ))
+       (portRef I3 (instanceRef ix34227z5426 ))
+       (portRef I3 (instanceRef ix3954z45004 ))
+       (portRef I1 (instanceRef ix63751z28620 ))
+       (portRef I1 (instanceRef ix63751z40829 ))
+       (portRef I0 (instanceRef ix63752z44940 ))
+       (portRef I0 (instanceRef ix63752z24509 ))
+       (portRef I2 (instanceRef ix33230z5426 ))
+       (portRef I1 (instanceRef ix35224z34085 ))))
+     (net nx34227z1 
+      (joined 
+       (portRef O (instanceRef ix34227z5426 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_6_ ))))
+     (net nx35224z2 
+      (joined 
+       (portRef O (instanceRef ix35224z1319 ))
+       (portRef D (instanceRef reg_ly_y_7_0_sva_7_ ))))
+     (net nx35224z1 
+      (joined 
+       (portRef O (instanceRef ix35224z1315 ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_0_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_4_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_5_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_6_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_7_ ))))
+     (net nx44620z1 
+      (joined 
+       (portRef O (instanceRef ix44620z1313 ))
+       (portRef D (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_0_ ))))
+     (net nx42626z1 
+      (joined 
+       (portRef O (instanceRef ix42626z1322 ))
+       (portRef D (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_2_ ))))
+     (net nx41629z1 
+      (joined 
+       (portRef O (instanceRef ix41629z36258 ))
+       (portRef D (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_3_ ))))
+     (net nx40632z1 
+      (joined 
+       (portRef O (instanceRef ix40632z1328 ))
+       (portRef D (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_4_ ))))
+     (net nx3954z1 
+      (joined 
+       (portRef O (instanceRef ix3954z45004 ))
+       (portRef D (instanceRef reg_DispProcTest_core_core_fsm_inst_ly_C_1_tr0 ))))
+     (net nx1576z1 
+      (joined 
+       (portRef O (instanceRef ix1576z1318 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_0_ ))))
+     (net nx2573z1 
+      (joined 
+       (portRef O (instanceRef ix2573z1410 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_1_ ))))
+     (net nx3570z1 
+      (joined 
+       (portRef O (instanceRef ix3570z28450 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_2_ ))))
+     (net nx4567z1 
+      (joined 
+       (portRef O (instanceRef ix4567z1314 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_3_ ))))
+     (net nx5564z1 
+      (joined 
+       (portRef O (instanceRef ix5564z1314 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_4_ ))))
+     (net nx6561z1 
+      (joined 
+       (portRef O (instanceRef ix6561z44834 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_5_ ))))
+     (net nx7558z1 
+      (joined 
+       (portRef O (instanceRef ix7558z1354 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_6_ ))))
+     (net nx8555z2 
+      (joined 
+       (portRef O (instanceRef ix8555z11691 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_7_ ))))
+     (net rst 
+      (joined 
+       (portRef p_rst )
+       (portRef R (instanceRef reg_lx_x_8_0_sva_0_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_1_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_2_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_3_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_4_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_5_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_6_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_7_ ))
+       (portRef R (instanceRef reg_lx_x_8_0_sva_8_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_0_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_4_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_5_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_6_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_7_ ))
+       (portRef R (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_3_ ))
+       (portRef R (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_2_ ))
+       (portRef R (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_1_ ))
+       (portRef R (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_0_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_3_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_2_ ))
+       (portRef R (instanceRef reg_ly_y_7_0_sva_1_ ))
+       (portRef I0 (instanceRef ix40632z1328 ))
+       (portRef I0 (instanceRef ix3954z45004 ))))
+     (net nx9552z1 
+      (joined 
+       (portRef O (instanceRef ix9552z36266 ))
+       (portRef D (instanceRef reg_lx_x_8_0_sva_8_ ))))
+     (net nx8555z1 
+      (joined 
+       (portRef O (instanceRef ix8555z1328 ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_0_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_1_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_2_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_3_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_4_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_5_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_6_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_7_ ))
+       (portRef CE (instanceRef reg_lx_x_8_0_sva_8_ ))))
+     (net clk 
+      (joined 
+       (portRef p_clk )
+       (portRef C (instanceRef reg_lx_x_8_0_sva_0_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_1_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_2_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_3_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_4_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_5_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_6_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_7_ ))
+       (portRef C (instanceRef reg_lx_x_8_0_sva_8_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_0_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_4_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_5_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_6_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_7_ ))
+       (portRef C (instanceRef reg_DispProcTest_core_core_fsm_inst_ly_C_1_tr0 ))
+       (portRef C (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_4_ ))
+       (portRef C (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_3_ ))
+       (portRef C (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_2_ ))
+       (portRef C (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_1_ ))
+       (portRef C (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_0_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_3_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_2_ ))
+       (portRef C (instanceRef reg_ly_y_7_0_sva_1_ ))))
+     (net (rename img_out_rsc_wadr_16_ "img_out_rsc_wadr(16)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 2))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_7 ))))
+     (net nx3954z2 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_7_ ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_7 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_7 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_7 ))
+       (portRef I1 (instanceRef ix47751z1320 ))
+       (portRef I1 (instanceRef ix3954z45004 ))
+       (portRef I0 (instanceRef ix63750z45004 ))
+       (portRef I0 (instanceRef ix63750z24445 ))
+       (portRef I0 (instanceRef ix35224z1319 ))))
+     (net (rename img_out_rsc_wadr_15_ "img_out_rsc_wadr(15)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 3))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_7 ))))
+     (net nx63748z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_6 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_7 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_7 ))))
+     (net nx35224z5 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_6_ ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_6 ))
+       (portRef I1 (instanceRef ix47750z1320 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_6 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_6 ))
+       (portRef I2 (instanceRef ix3954z45004 ))
+       (portRef I1 (instanceRef ix63750z45004 ))
+       (portRef I1 (instanceRef ix63750z24445 ))
+       (portRef I0 (instanceRef ix63751z28620 ))
+       (portRef I0 (instanceRef ix63751z40829 ))
+       (portRef I2 (instanceRef ix34227z5426 ))
+       (portRef I0 (instanceRef ix35224z34085 ))))
+     (net (rename img_out_rsc_wadr_14_ "img_out_rsc_wadr(14)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 4))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_6 ))))
+     (net nx63750z2 
+      (joined 
+       (portRef O (instanceRef ix63750z45004 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_5 ))))
+     (net nx63749z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_5 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_6 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_6 ))))
+     (net nx63750z3 
+      (joined 
+       (portRef O (instanceRef ix63750z24445 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_5 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_5 ))))
+     (net (rename img_out_rsc_wadr_13_ "img_out_rsc_wadr(13)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 5))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_5 ))))
+     (net nx63751z2 
+      (joined 
+       (portRef O (instanceRef ix63751z28620 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_4 ))))
+     (net nx63750z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_4 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_5 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_5 ))))
+     (net nx63751z3 
+      (joined 
+       (portRef O (instanceRef ix63751z40829 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_4 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_4 ))))
+     (net (rename img_out_rsc_wadr_12_ "img_out_rsc_wadr(12)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 6))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_4 ))))
+     (net nx63752z2 
+      (joined 
+       (portRef O (instanceRef ix63752z44940 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_3 ))))
+     (net nx63751z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_3 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_4 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_4 ))))
+     (net nx63752z3 
+      (joined 
+       (portRef O (instanceRef ix63752z24509 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_3 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_3 ))))
+     (net (rename img_out_rsc_wadr_11_ "img_out_rsc_wadr(11)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 7))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_3 ))))
+     (net nx63753z2 
+      (joined 
+       (portRef O (instanceRef ix63753z1480 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_2 ))))
+     (net nx63752z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_2 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_3 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_3 ))))
+     (net nx63753z3 
+      (joined 
+       (portRef O (instanceRef ix63753z24505 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_2 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_2 ))))
+     (net (rename img_out_rsc_wadr_10_ "img_out_rsc_wadr(10)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 8))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_2 ))))
+     (net nx63754z2 
+      (joined 
+       (portRef O (instanceRef ix63754z1323 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_1 ))))
+     (net nx63753z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_1 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_2 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_2 ))))
+     (net nx63754z4 
+      (joined 
+       (portRef O (instanceRef ix63754z1421 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_1 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_1 ))))
+     (net (rename img_out_rsc_wadr_9_ "img_out_rsc_wadr(9)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 9))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_1 ))))
+     (net nx63755z1 
+      (joined 
+       (portRef O (instanceRef ix63755z23244 ))
+       (portRef DI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_0 ))))
+     (net nx63754z1 
+      (joined 
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_0 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_1 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_1 ))))
+     (net nx63755z2 
+      (joined 
+       (portRef O (instanceRef ix63755z55165 ))
+       (portRef LI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_0 ))
+       (portRef S (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_0 ))))
+     (net (rename img_out_rsc_wadr_8_ "img_out_rsc_wadr(8)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 10))
+       (portRef O (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_0 ))))
+     (net (rename ly_acc_2_psp_sva_1_9_ "ly_acc_2_psp_sva_1(9)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_8 ))
+       (portRef I0 (instanceRef ix45142z1568 ))
+       (portRef I0 (instanceRef ix46139z1568 ))
+       (portRef I0 (instanceRef ix47136z1568 ))
+       (portRef I0 (instanceRef ix48133z1568 ))
+       (portRef I0 (instanceRef ix49130z1568 ))
+       (portRef I0 (instanceRef ix50127z1568 ))
+       (portRef I0 (instanceRef ix51124z1568 ))
+       (portRef I0 (instanceRef ix52121z1568 ))))
+     (net (rename lx_x_8_0_sva_8_ "lx_x_8_0_sva(8)") 
+      (joined 
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_8_ ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_8 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_8 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_8 ))
+       (portRef I1 (instanceRef ix44620z1313 ))
+       (portRef I0 (instanceRef ix63755z23244 ))
+       (portRef I1 (instanceRef ix41629z36258 ))
+       (portRef I1 (instanceRef ix9552z36266 ))
+       (portRef I0 (instanceRef ix63754z23330 ))
+       (portRef I5 (instanceRef ix63755z55165 ))))
+     (net (rename ly_acc_2_psp_sva_1_8_ "ly_acc_2_psp_sva_1(8)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_8 ))
+       (portRef I1 (instanceRef ix45142z1568 ))
+       (portRef I1 (instanceRef ix46139z1568 ))
+       (portRef I1 (instanceRef ix47136z1568 ))
+       (portRef I1 (instanceRef ix48133z1568 ))
+       (portRef I1 (instanceRef ix49130z1568 ))
+       (portRef I1 (instanceRef ix50127z1568 ))
+       (portRef I1 (instanceRef ix51124z1568 ))
+       (portRef I1 (instanceRef ix52121z1568 ))))
+     (net (rename lx_x_8_0_sva_7_ "lx_x_8_0_sva(7)") 
+      (joined 
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_7_ ))
+       (portRef I2 (instanceRef ix44620z1313 ))
+       (portRef I1 (instanceRef ix63755z23244 ))
+       (portRef I0 (instanceRef ix47751z1320 ))
+       (portRef I2 (instanceRef ix41629z36258 ))
+       (portRef I2 (instanceRef ix9552z36266 ))
+       (portRef I1 (instanceRef ix63754z23330 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_7 ))
+       (portRef I0 (instanceRef ix25299z39804 ))
+       (portRef I1 (instanceRef ix8555z11691 ))
+       (portRef I4 (instanceRef ix63755z55165 ))))
+     (net nx47752z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_7 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_8 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_8 ))))
+     (net nx47751z2 
+      (joined 
+       (portRef O (instanceRef ix47751z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_7 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_7 ))))
+     (net (rename ly_acc_2_psp_sva_1_7_ "ly_acc_2_psp_sva_1(7)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_7 ))
+       (portRef I2 (instanceRef ix52121z1568 ))))
+     (net (rename lx_x_8_0_sva_6_ "lx_x_8_0_sva(6)") 
+      (joined 
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_6_ ))
+       (portRef I0 (instanceRef ix24302z1320 ))
+       (portRef I0 (instanceRef ix47750z1320 ))
+       (portRef I1 (instanceRef ix7558z1354 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_6 ))
+       (portRef I1 (instanceRef ix25299z39804 ))
+       (portRef I3 (instanceRef ix44620z1313 ))
+       (portRef I2 (instanceRef ix63755z23244 ))
+       (portRef I3 (instanceRef ix41629z36258 ))
+       (portRef I2 (instanceRef ix8555z11691 ))
+       (portRef I3 (instanceRef ix9552z36266 ))
+       (portRef I2 (instanceRef ix63754z23330 ))
+       (portRef I3 (instanceRef ix63755z55165 ))))
+     (net nx47751z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_6 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_7 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_7 ))))
+     (net nx47750z2 
+      (joined 
+       (portRef O (instanceRef ix47750z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_6 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_6 ))))
+     (net (rename ly_acc_2_psp_sva_1_6_ "ly_acc_2_psp_sva_1(6)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_6 ))
+       (portRef I2 (instanceRef ix51124z1568 ))))
+     (net (rename img_out_rsc_wadr_5_ "img_out_rsc_wadr(5)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 11))
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_5_ ))
+       (portRef I0 (instanceRef ix47749z1320 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_5 ))
+       (portRef I0 (instanceRef ix6561z44834 ))
+       (portRef I0 (instanceRef ix7558z1315 ))))
+     (net nx47750z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_5 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_6 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_6 ))))
+     (net nx47749z2 
+      (joined 
+       (portRef O (instanceRef ix47749z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_5 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_5 ))))
+     (net (rename ly_acc_2_psp_sva_1_5_ "ly_acc_2_psp_sva_1(5)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_5 ))
+       (portRef I2 (instanceRef ix50127z1568 ))))
+     (net (rename img_out_rsc_wadr_4_ "img_out_rsc_wadr(4)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 12))
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_4_ ))
+       (portRef I0 (instanceRef ix47748z1320 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_4 ))
+       (portRef I0 (instanceRef ix5564z1314 ))
+       (portRef I1 (instanceRef ix6561z44834 ))
+       (portRef I1 (instanceRef ix7558z1315 ))))
+     (net nx47749z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_4 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_5 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_5 ))))
+     (net nx47748z2 
+      (joined 
+       (portRef O (instanceRef ix47748z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_4 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_4 ))))
+     (net (rename ly_acc_2_psp_sva_1_4_ "ly_acc_2_psp_sva_1(4)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_4 ))
+       (portRef I2 (instanceRef ix49130z1568 ))))
+     (net (rename img_out_rsc_wadr_3_ "img_out_rsc_wadr(3)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 13))
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_3_ ))
+       (portRef I0 (instanceRef ix47747z1320 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_3 ))
+       (portRef I0 (instanceRef ix4567z1314 ))
+       (portRef I1 (instanceRef ix5564z1314 ))
+       (portRef I2 (instanceRef ix6561z44834 ))
+       (portRef I2 (instanceRef ix7558z1315 ))))
+     (net nx47748z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_3 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_4 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_4 ))))
+     (net nx47747z2 
+      (joined 
+       (portRef O (instanceRef ix47747z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_3 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_3 ))))
+     (net (rename ly_acc_2_psp_sva_1_3_ "ly_acc_2_psp_sva_1(3)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_3 ))
+       (portRef I2 (instanceRef ix48133z1568 ))))
+     (net (rename img_out_rsc_wadr_2_ "img_out_rsc_wadr(2)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 14))
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_2_ ))
+       (portRef I0 (instanceRef ix47746z1320 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_2 ))
+       (portRef I0 (instanceRef ix3570z28450 ))
+       (portRef I1 (instanceRef ix4567z1314 ))
+       (portRef I2 (instanceRef ix5564z1314 ))
+       (portRef I3 (instanceRef ix7558z1315 ))
+       (portRef I0 (instanceRef ix6561z1443 ))))
+     (net nx47747z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_2 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_3 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_3 ))))
+     (net nx47746z2 
+      (joined 
+       (portRef O (instanceRef ix47746z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_2 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_2 ))))
+     (net (rename ly_acc_2_psp_sva_1_2_ "ly_acc_2_psp_sva_1(2)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_2 ))
+       (portRef I2 (instanceRef ix47136z1568 ))))
+     (net (rename img_out_rsc_wadr_1_ "img_out_rsc_wadr(1)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 15))
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_1_ ))
+       (portRef I0 (instanceRef ix47745z1320 ))
+       (portRef I2 (instanceRef ix4567z1314 ))
+       (portRef I1 (instanceRef ix6561z1443 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_1 ))
+       (portRef I0 (instanceRef ix2573z1410 ))
+       (portRef I1 (instanceRef ix3570z28450 ))
+       (portRef I3 (instanceRef ix5564z1314 ))
+       (portRef I4 (instanceRef ix7558z1315 ))))
+     (net nx47746z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_1 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_2 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_2 ))))
+     (net nx47745z2 
+      (joined 
+       (portRef O (instanceRef ix47745z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_1 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_1 ))))
+     (net (rename ly_acc_2_psp_sva_1_1_ "ly_acc_2_psp_sva_1(1)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_1 ))
+       (portRef I2 (instanceRef ix46139z1568 ))))
+     (net (rename img_out_rsc_wadr_0_ "img_out_rsc_wadr(0)") 
+      (joined 
+       (portRef (member p_nbus_img_out_rsc_wadr 16))
+       (portRef Q (instanceRef reg_lx_x_8_0_sva_0_ ))
+       (portRef I0 (instanceRef ix47744z1320 ))
+       (portRef I1 (instanceRef ix2573z1410 ))
+       (portRef DI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_0 ))
+       (portRef I0 (instanceRef ix1576z1318 ))
+       (portRef I2 (instanceRef ix3570z28450 ))
+       (portRef I3 (instanceRef ix4567z1314 ))
+       (portRef I4 (instanceRef ix5564z1314 ))
+       (portRef I5 (instanceRef ix7558z1315 ))
+       (portRef I2 (instanceRef ix6561z1443 ))))
+     (net nx47745z1 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_0 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_1 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_1 ))))
+     (net nx47744z2 
+      (joined 
+       (portRef O (instanceRef ix47744z1320 ))
+       (portRef LI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_0 ))
+       (portRef S (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_0 ))))
+     (net nx47744z1 
+      (joined 
+       (portRef px246 )
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_xorcy_0 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_0 ))
+       (portRef CI (instanceRef ly_acc_2_psp_sva_1_add9_5_muxcy_0 ))
+       (portRef CI (instanceRef img_out_rsci_wadr_d_add8_6_muxcy_0 ))))
+     (net (rename ly_acc_2_psp_sva_1_0_ "ly_acc_2_psp_sva_1(0)") 
+      (joined 
+       (portRef O (instanceRef ly_acc_2_psp_sva_1_add9_5_xorcy_0 ))
+       (portRef I2 (instanceRef ix45142z1568 ))))
+     (net nx50 
+      (joined 
+       (portRef P (instanceRef ps_vcc ))
+       (portRef CE (instanceRef reg_DispProcTest_core_core_fsm_inst_ly_C_1_tr0 ))
+       (portRef CE (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_4_ ))
+       (portRef CE (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_3_ ))
+       (portRef CE (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_2_ ))
+       (portRef CE (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_1_ ))
+       (portRef CE (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_0_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_3_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_2_ ))
+       (portRef CE (instanceRef reg_ly_y_7_0_sva_1_ ))))
+     (net nx52 
+      (joined 
+       (portRef G (instanceRef ps_gnd ))
+       (portRef R (instanceRef reg_DispProcTest_core_core_fsm_inst_ly_C_1_tr0 ))
+       (portRef R (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_4_ ))))
+     (net DispProcTest_core_core_fsm_inst_ly_C_1_tr0 
+      (joined 
+       (portRef Q (instanceRef reg_DispProcTest_core_core_fsm_inst_ly_C_1_tr0 ))
+       (portRef I2 (instanceRef ix44620z1364 ))
+       (portRef I1 (instanceRef ix42626z1322 ))))
+     (net (rename fsm_output_0_ "fsm_output(0)") 
+      (joined 
+       (portRef Q (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_4_ ))
+       (portRef I1 (instanceRef ix44620z1364 ))
+       (portRef I2 (instanceRef ix29242z53794 ))
+       (portRef I2 (instanceRef ix30239z53794 ))
+       (portRef I1 (instanceRef ix8555z1328 ))
+       (portRef I1 (instanceRef ix28245z1315 ))
+       (portRef I1 (instanceRef ix33230z5426 ))
+       (portRef I1 (instanceRef ix34227z5426 ))
+       (portRef I1 (instanceRef ix31236z1316 ))))
+     (net img_out_triosy_lz 
+      (joined 
+       (portRef p_img_out_triosy_lz )
+       (portRef Q (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_3_ ))
+       (portRef I1 (instanceRef ix40632z1328 ))))
+     (net (rename fsm_output_3_ "fsm_output(3)") 
+      (joined 
+       (portRef Q (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_2_ ))
+       (portRef I0 (instanceRef ix44620z1313 ))
+       (portRef I0 (instanceRef ix41629z36258 ))
+       (portRef I0 (instanceRef ix7558z1354 ))
+       (portRef I0 (instanceRef ix8555z11691 ))
+       (portRef I0 (instanceRef ix9552z36266 ))
+       (portRef I0 (instanceRef ix29242z53794 ))
+       (portRef I0 (instanceRef ix30239z53794 ))
+       (portRef I0 (instanceRef ix8555z1328 ))
+       (portRef I0 (instanceRef ix28245z1315 ))
+       (portRef I0 (instanceRef ix33230z5426 ))
+       (portRef I0 (instanceRef ix34227z5426 ))
+       (portRef I1 (instanceRef ix1576z1318 ))
+       (portRef I2 (instanceRef ix2573z1410 ))
+       (portRef I3 (instanceRef ix3570z28450 ))
+       (portRef I4 (instanceRef ix4567z1314 ))
+       (portRef I5 (instanceRef ix5564z1314 ))
+       (portRef I3 (instanceRef ix6561z44834 ))
+       (portRef I0 (instanceRef ix31236z1316 ))))
+     (net (rename fsm_output_2_ "fsm_output(2)") 
+      (joined 
+       (portRef Q (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_1_ ))
+       (portRef I1 (instanceRef ix29242z53794 ))
+       (portRef I1 (instanceRef ix30239z53794 ))
+       (portRef I0 (instanceRef ix31236z36266 ))
+       (portRef I (instanceRef ix35224z1315 ))
+       (portRef I0 (instanceRef ix44620z1364 ))
+       (portRef I0 (instanceRef ix42626z1322 ))))
+     (net img_out_rsc_we 
+      (joined 
+       (portRef p_img_out_rsc_we )
+       (portRef Q (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_0_ ))
+       (portRef D (instanceRef DispProcTest_core_core_fsm_inst_reg_state_var_1_ ))))
+     (net nx32233z2 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_3_ ))
+       (portRef I1 (instanceRef ix47747z1320 ))
+       (portRef I0 (instanceRef ix63754z1323 ))
+       (portRef I1 (instanceRef ix31236z36266 ))
+       (portRef I4 (instanceRef ix63750z45004 ))
+       (portRef I4 (instanceRef ix63750z24445 ))
+       (portRef I3 (instanceRef ix63751z28620 ))
+       (portRef I3 (instanceRef ix63751z40829 ))
+       (portRef I2 (instanceRef ix63752z44940 ))
+       (portRef I2 (instanceRef ix63752z24509 ))
+       (portRef I1 (instanceRef ix63753z1480 ))
+       (portRef I1 (instanceRef ix63753z24505 ))
+       (portRef I0 (instanceRef ix63754z1421 ))
+       (portRef I1 (instanceRef ix32233z1314 ))
+       (portRef I4 (instanceRef ix33230z5426 ))
+       (portRef I0 (instanceRef ix34227z34083 ))
+       (portRef I3 (instanceRef ix35224z34085 ))))
+     (net nx35224z3 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_2_ ))
+       (portRef I1 (instanceRef ix47746z1320 ))
+       (portRef I2 (instanceRef ix63753z24505 ))
+       (portRef I3 (instanceRef ix30239z53794 ))
+       (portRef I2 (instanceRef ix31236z36266 ))
+       (portRef I3 (instanceRef ix63755z23244 ))
+       (portRef I2 (instanceRef ix32233z1314 ))
+       (portRef I1 (instanceRef ix35224z1319 ))
+       (portRef I0 (instanceRef ix33230z1443 ))
+       (portRef I1 (instanceRef ix34227z34083 ))
+       (portRef I3 (instanceRef ix63754z23330 ))
+       (portRef I2 (instanceRef ix63755z55165 ))))
+     (net nx30239z2 
+      (joined 
+       (portRef Q (instanceRef reg_ly_y_7_0_sva_1_ ))
+       (portRef I4 (instanceRef ix30239z53794 ))
+       (portRef I4 (instanceRef ix63755z23244 ))
+       (portRef I1 (instanceRef ix47745z1320 ))
+       (portRef I1 (instanceRef ix33230z1443 ))
+       (portRef I4 (instanceRef ix63754z23330 ))
+       (portRef I2 (instanceRef ix25299z39804 ))
+       (portRef I3 (instanceRef ix29242z53794 ))
+       (portRef I3 (instanceRef ix31236z36266 ))
+       (portRef I1 (instanceRef ix63754z1421 ))
+       (portRef I3 (instanceRef ix32233z1314 ))
+       (portRef I2 (instanceRef ix35224z1319 ))
+       (portRef I2 (instanceRef ix34227z34083 ))
+       (portRef I1 (instanceRef ix63755z55165 )))))))
+  (cell DispProcTest (cellType GENERIC)
+   (view v1  (viewType NETLIST)
+    (interface 
+     (port clk (direction INPUT))
+     (port rst (direction INPUT))
+     (port (array (rename img_out_rsc_wadr "img_out_rsc_wadr(16:0)") 17 )(direction OUTPUT))
+     (port (array (rename img_out_rsc_d "img_out_rsc_d(7:0)") 8 )(direction OUTPUT))
+     (port img_out_rsc_we (direction OUTPUT))
+     (port img_out_triosy_lz (direction OUTPUT)))
+    (property DESIGN_IS_RTL (string "NO"))
+    (contents 
+     (instance ps_gnd (viewRef NETLIST  (cellRef GND (libraryRef xca7 ))))
+     (instance DispProcTest_core_inst (viewRef INTERFACE  (cellRef DispProcTest_core_0 )))
+     (net clk 
+      (joined 
+       (portRef clk )
+       (portRef p_clk (instanceRef DispProcTest_core_inst ))))
+     (net rst 
+      (joined 
+       (portRef rst )
+       (portRef p_rst (instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_16_ "img_out_rsc_wadr(16)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 0))
+       (portRef (member p_nbus_img_out_rsc_wadr 2)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_15_ "img_out_rsc_wadr(15)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 1))
+       (portRef (member p_nbus_img_out_rsc_wadr 3)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_14_ "img_out_rsc_wadr(14)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 2))
+       (portRef (member p_nbus_img_out_rsc_wadr 4)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_13_ "img_out_rsc_wadr(13)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 3))
+       (portRef (member p_nbus_img_out_rsc_wadr 5)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_12_ "img_out_rsc_wadr(12)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 4))
+       (portRef (member p_nbus_img_out_rsc_wadr 6)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_11_ "img_out_rsc_wadr(11)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 5))
+       (portRef (member p_nbus_img_out_rsc_wadr 7)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_10_ "img_out_rsc_wadr(10)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 6))
+       (portRef (member p_nbus_img_out_rsc_wadr 8)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_9_ "img_out_rsc_wadr(9)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 7))
+       (portRef (member p_nbus_img_out_rsc_wadr 9)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_8_ "img_out_rsc_wadr(8)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 8))
+       (portRef (member p_nbus_img_out_rsc_wadr 10)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_5_ "img_out_rsc_wadr(5)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 11))
+       (portRef (member p_nbus_img_out_rsc_wadr 11)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_4_ "img_out_rsc_wadr(4)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 12))
+       (portRef (member p_nbus_img_out_rsc_wadr 12)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_3_ "img_out_rsc_wadr(3)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 13))
+       (portRef (member p_nbus_img_out_rsc_wadr 13)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_2_ "img_out_rsc_wadr(2)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 14))
+       (portRef (member p_nbus_img_out_rsc_wadr 14)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_1_ "img_out_rsc_wadr(1)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 15))
+       (portRef (member p_nbus_img_out_rsc_wadr 15)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_0_ "img_out_rsc_wadr(0)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 16))
+       (portRef (member p_nbus_img_out_rsc_wadr 16)(instanceRef DispProcTest_core_inst ))))
+     (net img_out_rsc_we 
+      (joined 
+       (portRef img_out_rsc_we )
+       (portRef p_img_out_rsc_we (instanceRef DispProcTest_core_inst ))))
+     (net img_out_triosy_lz 
+      (joined 
+       (portRef img_out_triosy_lz )
+       (portRef p_img_out_triosy_lz (instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_0_ "img_out_rsc_d(0)") 
+      (joined 
+       (portRef (member img_out_rsc_d 7))
+       (portRef (member p_nbus_img_out_rsc_d 7)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_1_ "img_out_rsc_d(1)") 
+      (joined 
+       (portRef (member img_out_rsc_d 6))
+       (portRef (member p_nbus_img_out_rsc_d 6)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_2_ "img_out_rsc_d(2)") 
+      (joined 
+       (portRef (member img_out_rsc_d 5))
+       (portRef (member p_nbus_img_out_rsc_d 5)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_3_ "img_out_rsc_d(3)") 
+      (joined 
+       (portRef (member img_out_rsc_d 4))
+       (portRef (member p_nbus_img_out_rsc_d 4)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_4_ "img_out_rsc_d(4)") 
+      (joined 
+       (portRef (member img_out_rsc_d 3))
+       (portRef (member p_nbus_img_out_rsc_d 3)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_5_ "img_out_rsc_d(5)") 
+      (joined 
+       (portRef (member img_out_rsc_d 2))
+       (portRef (member p_nbus_img_out_rsc_d 2)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_6_ "img_out_rsc_d(6)") 
+      (joined 
+       (portRef (member img_out_rsc_d 1))
+       (portRef (member p_nbus_img_out_rsc_d 1)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_d_7_ "img_out_rsc_d(7)") 
+      (joined 
+       (portRef (member img_out_rsc_d 0))
+       (portRef (member p_nbus_img_out_rsc_d 0)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_6_ "img_out_rsc_wadr(6)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 10))
+       (portRef (member p_nbus_img_out_rsc_wadr 1)(instanceRef DispProcTest_core_inst ))))
+     (net (rename img_out_rsc_wadr_7_ "img_out_rsc_wadr(7)") 
+      (joined 
+       (portRef (member img_out_rsc_wadr 9))
+       (portRef (member p_nbus_img_out_rsc_wadr 0)(instanceRef DispProcTest_core_inst ))))
+     (net nx38455z1 
+      (joined 
+       (portRef G (instanceRef ps_gnd ))
+       (portRef px246 (instanceRef DispProcTest_core_inst ))))))))
+ (design DispProcTest (cellRef DispProcTest (libraryRef work ))))

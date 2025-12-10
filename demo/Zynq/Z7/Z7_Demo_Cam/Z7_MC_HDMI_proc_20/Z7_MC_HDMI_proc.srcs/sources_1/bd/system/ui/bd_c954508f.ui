@@ -1,0 +1,63 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.5781",
+   "Default View_TopLeft":"-254,-76",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 3 -x 780 -y 390 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 3 -x 780 -y 410 -defaultsOSRD
+preplace port cam_iic -pg 1 -lvl 3 -x 780 -y 430 -defaultsOSRD
+preplace port pl_clk -pg 1 -lvl 0 -x -60 -y 110 -defaultsOSRD
+preplace port D_PHY_CLK_N -pg 1 -lvl 0 -x -60 -y 170 -defaultsOSRD
+preplace port D_PHY_CLK_P -pg 1 -lvl 0 -x -60 -y 190 -defaultsOSRD
+preplace port D_PHY_LP_CLK_N -pg 1 -lvl 0 -x -60 -y 250 -defaultsOSRD
+preplace port D_PHY_LP_CLK_P -pg 1 -lvl 0 -x -60 -y 270 -defaultsOSRD
+preplace port hdmi_TMDS_Clk_p -pg 1 -lvl 3 -x 780 -y 170 -defaultsOSRD
+preplace port hdmi_TMDS_Clk_n -pg 1 -lvl 3 -x 780 -y 190 -defaultsOSRD
+preplace portBus D_PHY_DATA_N -pg 1 -lvl 0 -x -60 -y 210 -defaultsOSRD
+preplace portBus D_PHY_DATA_P -pg 1 -lvl 0 -x -60 -y 230 -defaultsOSRD
+preplace portBus D_PHY_LP_DATA_N -pg 1 -lvl 0 -x -60 -y 290 -defaultsOSRD
+preplace portBus D_PHY_LP_DATA_P -pg 1 -lvl 0 -x -60 -y 310 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 780 -y 150 -defaultsOSRD
+preplace portBus hdmi_TMDS_Data_p -pg 1 -lvl 3 -x 780 -y 210 -defaultsOSRD
+preplace portBus hdmi_TMDS_Data_n -pg 1 -lvl 3 -x 780 -y 230 -defaultsOSRD
+preplace portBus btn -pg 1 -lvl 0 -x -60 -y 20 -defaultsOSRD
+preplace portBus sw -pg 1 -lvl 0 -x -60 -y 40 -defaultsOSRD
+preplace portBus cam_clk -pg 1 -lvl 3 -x 780 -y 530 -defaultsOSRD
+preplace portBus cam_gpio -pg 1 -lvl 3 -x 780 -y 550 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 110 -defaultsOSRD
+preplace inst processing_system7_1 -pg 1 -lvl 2 -x 520 -y 410 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 2 -x 520 -y 550 -defaultsOSRD
+preplace inst MC_HDMI_proc_0 -pg 1 -lvl 2 -x 520 -y 150 -defaultsOSRD
+preplace netloc clk_in1_1 1 0 1 NJ 110
+preplace netloc clk_wiz_0_clk_vga 1 1 1 230 70n
+preplace netloc clk_wiz_0_clk_hdmi 1 1 1 N 110
+preplace netloc clk_wiz_0_clk_camera 1 1 1 240 90n
+preplace netloc D_PHY_CLK_N_1 1 0 2 -30J 190 250J
+preplace netloc D_PHY_CLK_P_1 1 0 2 -40J 200 260J
+preplace netloc D_PHY_DATA_N_1 1 0 2 NJ 210 270J
+preplace netloc D_PHY_DATA_P_1 1 0 2 NJ 230 280J
+preplace netloc D_PHY_LP_CLK_N_1 1 0 2 -40J 220 290J
+preplace netloc D_PHY_LP_CLK_P_1 1 0 2 NJ 270 290J
+preplace netloc D_PHY_LP_DATA_N_1 1 0 2 NJ 290 300J
+preplace netloc D_PHY_LP_DATA_P_1 1 0 2 NJ 310 310J
+preplace netloc MC_HDMI_proc_0_led 1 2 1 760J 110n
+preplace netloc MC_HDMI_proc_0_hdmi_TMDS_Clk_p 1 2 1 750J 130n
+preplace netloc MC_HDMI_proc_0_hdmi_TMDS_Clk_n 1 2 1 740J 150n
+preplace netloc MC_HDMI_proc_0_hdmi_TMDS_Data_p 1 2 1 730J 170n
+preplace netloc MC_HDMI_proc_0_hdmi_TMDS_Data_n 1 2 1 720J 190n
+preplace netloc btn_1 1 0 2 NJ 20 240J
+preplace netloc sw_1 1 0 2 -30J 30 230J
+preplace netloc xlconstant_0_dout 1 2 1 740J 530n
+preplace netloc processing_system7_1_DDR 1 2 1 750J 370n
+preplace netloc processing_system7_1_IIC_0 1 2 1 720J 410n
+preplace netloc processing_system7_1_FIXED_IO 1 2 1 730J 390n
+levelinfo -pg 1 -60 120 520 780
+pagesize -pg 1 -db -bbox -sgen -280 -30 1010 610
+"
+}
+{
+   "da_axi4_cnt":"5",
+   "da_ps7_cnt":"2"
+}

@@ -1,0 +1,35 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.984832",
+   "Default View_TopLeft":"306,-106",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port pl_clk -pg 1 -lvl 0 -x -10 -y 150 -defaultsOSRD
+preplace port hdmi_TMDS_Clk_p -pg 1 -lvl 3 -x 580 -y 70 -defaultsOSRD
+preplace port hdmi_TMDS_Clk_n -pg 1 -lvl 3 -x 580 -y 90 -defaultsOSRD
+preplace portBus btn -pg 1 -lvl 0 -x -10 -y 60 -defaultsOSRD
+preplace portBus sw -pg 1 -lvl 0 -x -10 -y 80 -defaultsOSRD
+preplace portBus hdmi_TMDS_Data_p -pg 1 -lvl 3 -x 580 -y 110 -defaultsOSRD
+preplace portBus hdmi_TMDS_Data_n -pg 1 -lvl 3 -x 580 -y 130 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 580 -y 50 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 150 -defaultsOSRD
+preplace inst HDMI_proc_0 -pg 1 -lvl 2 -x 400 -y 90 -defaultsOSRD
+preplace netloc clk_in1_1 1 0 1 NJ 150
+preplace netloc btn_1 1 0 2 NJ 60 NJ
+preplace netloc sw_1 1 0 2 10J 70 230J
+preplace netloc clk_wiz_0_clk_vga 1 1 1 230 100n
+preplace netloc clk_wiz_0_clk_hdmi 1 1 1 240 120n
+preplace netloc HDMI_proc_0_hdmi_TMDS_Clk_p 1 2 1 NJ 70
+preplace netloc HDMI_proc_0_hdmi_TMDS_Clk_n 1 2 1 NJ 90
+preplace netloc HDMI_proc_0_hdmi_TMDS_Data_p 1 2 1 NJ 110
+preplace netloc HDMI_proc_0_hdmi_TMDS_Data_n 1 2 1 NJ 130
+preplace netloc HDMI_proc_0_led 1 2 1 NJ 50
+levelinfo -pg 1 -10 120 400 580
+pagesize -pg 1 -db -bbox -sgen -120 -10 810 230
+"
+}
+{
+   "da_axi4_cnt":"5",
+   "da_ps7_cnt":"2"
+}

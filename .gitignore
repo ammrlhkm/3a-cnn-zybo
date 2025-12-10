@@ -70,19 +70,18 @@ results/
 logs/
 *.log
 
-# Xilinx Vivado
+# Xilinx Vivado - Keep project files but ignore generated content
+# Keep: *.xpr, *.srcs/ (sources and constraints), *.bd (block designs)
+# Ignore: all generated/build/simulation outputs
 *.jou
 *.log
 *.str
-*.xpr
 .Xil/
 vivado*.backup.*
+vitis_pid*.str
+vivado_pid*.str
 *.cache/
 *.hw/
-*.ip_user_files/
-*.runs/
-*.sim/
-*.srcs/
 *.gen/
 *.hw_emu/
 *.sw_emu/
@@ -90,6 +89,33 @@ vivado*.backup.*
 webtalk*
 usage_statistics_webtalk.*
 .hbs/
+
+# IP user files - keep only bd/ (block designs), ignore generated content
+**/ip_user_files/ipstatic/
+**/ip_user_files/mem_init_files/
+**/ip_user_files/sim_scripts/
+**/ip_user_files/ip/
+**/ip_user_files/README.txt
+
+# Build outputs
+*.runs/
+*.sim/
+
+# Workspace files
+*_wk/
+
+# Exported hardware
+system_wrapper.xsa
+*.hdf
+
+# SDK/Vitis workspaces
+.metadata/
+RemoteSystemsTempFiles/
+.analytics
+
+# Vivado/XSCT temp folders
+Vivado-*/
+XSCT-*/
 
 # Catapult HLS
 Catapult*/

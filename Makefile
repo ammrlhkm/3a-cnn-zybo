@@ -58,11 +58,30 @@ clean:
 
 clean-hls:
 	@echo "Cleaning HLS generated files, preserving *.tcl scripts..."
-	cd hls && \
-    rm -rf Catapult/ && \
-	rm *.log *.ccs
+	cd hls && rm -rf Catapult/
+	cd hls && rm -f *.log *.ccs
+	@echo "HLS clean complete"
+
+# Clean all generated files (build + Vivado/HLS outputs)
+cleanall: clean clean-hls
+	@echo "Cleaning all Vivado/FPGA generated files..."
+	find demo/Zynq -type d -name ".Xil" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "*.hw" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "*.runs" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "*.sim" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "*.gen" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "*_wk" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "Vivado-*" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -type d -name "XSCT-*" -exec rm -rf {} + 2>/dev/null || true
+	find demo/Zynq -name "*.log" -delete 2>/dev/null || true
+	find demo/Zynq -name "*.jou" -delete 2>/dev/null || true
+	find demo/Zynq -name "*.str" -delete 2>/dev/null || true
+	find demo/Zynq -name "system_wrapper.xsa" -delete 2>/dev/null || true
+	find demo/Zynq -name "*.hdf" -delete 2>/dev/null || true
+	find demo/Zynq -name "vivado*.backup.*" -delete 2>/dev/null || true
+	@echo "Clean all complete"
 
 # Rebuild
 rebuild: clean all
 
-.PHONY: all clean rebuild directories
+.PHONY: all clean clean-hls cleanall rebuild directories

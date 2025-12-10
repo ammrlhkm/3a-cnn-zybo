@@ -1,0 +1,16 @@
+# Vivado generated files
+.Xil/
+Z7_ProcHDMI_axi_20.hw/
+Z7_ProcHDMI_axi_20.runs/
+Z7_ProcHDMI_axi_20.sim/
+Z7_ProcHDMI_axi_20_wk/
+Z7_ProcHDMI_axi_20.ip_user_files/ipstatic/
+Z7_ProcHDMI_axi_20.ip_user_files/mem_init_files/
+Z7_ProcHDMI_axi_20.ip_user_files/sim_scripts/
+Z7_ProcHDMI_axi_20.ip_user_files/ip/
+Vivado-*/
+XSCT-*/
+system_wrapper.xsa
+*.hdf
+*.log
+*.jou
