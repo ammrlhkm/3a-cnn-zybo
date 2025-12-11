@@ -11,11 +11,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
 entity MC_HDMI_proc is
-  
-  port (
 
+  port (
     led : out std_logic_vector(3 downto 0);
     btn: in std_logic_vector(3 downto 0);
     sw : in std_logic_vector(3 downto 0);
@@ -82,20 +80,8 @@ architecture RTL of MC_HDMI_proc is
       );
   end component MC_HDMI_RAM_syn;
   
-  signal bypass                  :  STD_LOGIC;
-  signal clk_proc                  :  STD_LOGIC;
-
-  signal \camera_mem_ctl[we]\    :  STD_LOGIC;
-  signal \camera_mem_ctl[en]\    : STD_LOGIC;
-  signal \camera_mem_ctl[addr]\  :  STD_LOGIC_VECTOR ( 21 downto 0 );
-  signal camera_mem_data         : STD_LOGIC_VECTOR (7 downto 0 );
-  signal \display_mem_ctl[we]\   : STD_LOGIC;
-  signal \display_mem_ctl[en]\   :  STD_LOGIC;
-  signal \display_mem_ctl[addr]\ : STD_LOGIC_VECTOR ( 21 downto 0 );
-  signal display_mem_data        : STD_LOGIC_VECTOR (7 downto 0 );
-  
-  component ImgProcTest IS
-    PORT(
+  component ImgProcTest is
+    port(
       clk : IN STD_LOGIC;
       rst : IN STD_LOGIC;
       img_in_triosy_lz : OUT STD_LOGIC;
@@ -109,12 +95,23 @@ architecture RTL of MC_HDMI_proc is
       img_out_rsc_d : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
       img_out_rsc_we : OUT STD_LOGIC
       );
-  END component ImgProcTest;
+  end component ImgProcTest;
 
+  signal bypass                  :  STD_LOGIC;
+  signal clk_proc                :  STD_LOGIC;
+  signal reset                   :  STD_LOGIC;  
+
+  signal \camera_mem_ctl[we]\    :  STD_LOGIC;
+  signal \camera_mem_ctl[en]\    :  STD_LOGIC;
+  signal \camera_mem_ctl[addr]\  :  STD_LOGIC_VECTOR ( 21 downto 0 );
+  signal camera_mem_data         :  STD_LOGIC_VECTOR (7 downto 0 );
+
+  signal \display_mem_ctl[we]\   :  STD_LOGIC;
+  signal \display_mem_ctl[en]\   :  STD_LOGIC;
+  signal \display_mem_ctl[addr]\ :  STD_LOGIC_VECTOR ( 21 downto 0 );
+  signal display_mem_data        :  STD_LOGIC_VECTOR (7 downto 0 );
   
-  signal  reset : std_logic;  
-  
-begin
+  begin
   clk_proc <= clk_display;
   
   reset_auto : process(clk_proc)
@@ -134,7 +131,6 @@ begin
       btn_q := btn(0);
     end if;
   end process reset_auto;
-
   
   cam:   MC_HDMI_RAM_syn
     port map (
@@ -172,15 +168,10 @@ begin
       \proc_display_mem_ctl[en]\ => \display_mem_ctl[en]\,
       \proc_display_mem_ctl[addr]\ => \display_mem_ctl[addr]\,
       proc_display_mem_data => display_mem_data
-      
       );
-  \camera_mem_ctl[we]\ <= '0';
-  \camera_mem_ctl[addr]\(21 downto 17) <= (others=>'0');
-  \display_mem_ctl[addr]\(21 downto 17) <= (others=>'0');
-  \display_mem_ctl[en]\ <= \display_mem_ctl[we]\;
   
   proc :  ImgProcTest
-    PORT map(
+    port map(
       clk => clk_proc,
       rst => reset,
       img_in_triosy_lz => open,
@@ -192,6 +183,11 @@ begin
       img_out_rsc_d => display_mem_data,
       img_out_rsc_we => \display_mem_ctl[we]\
       );
+
+  \camera_mem_ctl[we]\ <= '0';
+  \camera_mem_ctl[addr]\(21 downto 17) <= (others=>'0');
+  \display_mem_ctl[addr]\(21 downto 17) <= (others=>'0');
+  \display_mem_ctl[en]\ <= \display_mem_ctl[we]\;
   
 end RTL;
 
