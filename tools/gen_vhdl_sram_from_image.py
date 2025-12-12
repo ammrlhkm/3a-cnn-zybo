@@ -424,9 +424,101 @@ architecture rtl of {entity_name} is
     for i, val in enumerate(values):
         hex_val = f'X"{val:02X}"'
         if i < len(values) - 1:
-            lines.append(f"        {i} => {hex_val},")
+            lines.append(f"        {i} => {hex_val},  -- {values[i]:+.4f}")
         else:
-            lines.append(f"        {i} => {hex_val}")
+            lines.append(f"        {i} => {hex_val},  -- {values[i]:+.4f}")
+    
+    vhdl += "\n".join(lines)
+    
+    vhdl += f"""
+    );
+    
+begin
+    
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            dout_reg <= mem(to_integer(unsigned(addr)));
+        end if;
+    end process;
+
+    -- Output assignment
+    dout <= dout_reg;
+    
+end architecture rtl;
+"""
+    
+    return vhdl
+
+
+def generate_vhdl_rom_grayscale(pixels, width, height, entity_name, image_file):
+    """
+    Generate VHDL ROM entity (read-only) with grayscale pixel initialization.
+    Converts RGB to grayscale using luminance formula: Y = 0.299*R + 0.587*G + 0.114*B
+    """
+    depth = width * height
+    addr_bits = max(1, math.ceil(math.log2(depth)))
+    
+    vhdl = f"""--------------------------------------------------------------------------------
+-- VHDL ROM with grayscale image pixel initialization (Read-Only)
+-- Generated from: {image_file}
+-- Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+-- Image size: {width}x{height} Grayscale
+-- Memory depth: {depth} bytes
+-- Address bits: {addr_bits}
+-- Conversion: Y = 0.299*R + 0.587*G + 0.114*B
+--------------------------------------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity {entity_name} is
+    generic (
+        CELL_COUNT : integer := {depth};
+        ADDR_WIDTH : integer := {addr_bits};
+        DATA_WIDTH : integer := 8
+    );
+    port (
+        clk     : in  std_logic;
+        addr    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
+        dout    : out std_logic_vector(DATA_WIDTH-1 downto 0)
+    );
+end entity {entity_name};
+
+architecture rtl of {entity_name} is
+    
+    -- Memory type
+    type mem_type is array (0 to {depth-1}) of std_logic_vector(DATA_WIDTH-1 downto 0);
+
+    -- Output register for better timing (addresses SYNTH-6 warning)
+    signal dout_reg : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
+
+    -- Constant memory with grayscale pixels
+    constant mem : mem_type := (
+"""
+    
+    # Generate grayscale values using luminance formula
+    values = []
+    for h in range(height):
+        for w in range(width):
+            pixel = pixels[h][w]
+            if isinstance(pixel, tuple):
+                r, g, b = pixel
+                # ITU-R BT.601 luma coefficients
+                gray = int(0.299 * r + 0.587 * g + 0.114 * b)
+            else:
+                gray = pixel
+            values.append(gray)
+    
+    # Format VHDL array initialization
+    lines = []
+    for i, val in enumerate(values):
+        hex_val = f'X"{val:02X}"'
+        if i < len(values) - 1:
+            lines.append(f"        {i} => {hex_val},  -- {values[i]}")
+        else:
+            lines.append(f"        {i} => {hex_val}   -- {values[i]}")
     
     vhdl += "\n".join(lines)
     
@@ -463,6 +555,8 @@ def main():
     # parser.add_argument("--rom", action="store_true", help="Generate ROM instead of SRAM")
     parser.add_argument("--normalize", action="store_true",
                         help="Apply mean/std normalization and output fixed-point values")
+    parser.add_argument("--grayscale", action="store_true",
+                        help="Apply grayscale transformation")    
     parser.add_argument("--total-bits", type=int, default=10,
                         help="Total bits for fixed-point (default: 10)")
     parser.add_argument("--int-bits", type=int, default=5,
@@ -512,7 +606,12 @@ def main():
             signed=not args.unsigned,
         )
         data_bits = args.total_bits
-    elif args.rom:
+    elif args.grayscale:
+        vhdl_content = generate_vhdl_rom_grayscale(
+            pixels, width, height, entity_name, os.path.basename(args.image)
+        )
+        data_bits = 8
+    else:
         vhdl_content = generate_vhdl_rom_rgb(
             pixels, width, height, entity_name, os.path.basename(args.image)
         )

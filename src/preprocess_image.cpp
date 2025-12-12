@@ -47,6 +47,51 @@ bool writePPM(const char* filename, double* image_data) {
     return true;
 }
 
+bool loadPGM(const char* filename, unsigned char* image_data) {
+    FILE *fp = fopen(filename, "rb");
+    if (!fp) {
+        printf("Error: Cannot open file %s\n", filename);
+        return false;
+    }
+    
+    char format[3];
+    int width, height, maxval;
+    
+    fscanf(fp, "%2s\n", format);
+    if (strcmp(format, "P5") != 0) {
+        printf("Error: Unsupported PGM format %s\n", format);
+        fclose(fp);
+        return false;
+    }
+    
+    // Skip comments
+    int c = fgetc(fp);
+    while (c == '#') {
+        while (fgetc(fp) != '\n');
+        c = fgetc(fp);
+    }
+    ungetc(c, fp);
+    
+    fscanf(fp, "%d %d\n%d\n", &width, &height, &maxval);
+    
+    fread(image_data, sizeof(unsigned char), width * height, fp);
+    fclose(fp);
+    return true;
+}
+
+bool writePGM(const char* filename, unsigned char* data, int width, int height) {
+    FILE *fp = fopen(filename, "wb");
+    if (!fp) {
+        printf("Error: Cannot open file %s for writing\n", filename);
+        return false;
+    }
+    
+    fprintf(fp, "P5\n%d %d\n255\n", width, height);
+    fwrite(data, sizeof(unsigned char), width * height, fp);
+    fclose(fp);
+    return true;
+}
+
 void normalizeImage(double* image_data) {
     double sum = 0;
     double sum_sq = 0;
