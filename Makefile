@@ -3,7 +3,7 @@ CXX = g++
 # Flags communs
 COMMON_FLAGS = -std=c++11 -Wall -Wextra
 INCLUDES = -I./include -I./ac_fixed
-LDFLAGS =
+LDFLAGS = -lm
 
 CXXFLAGS_REF = $(COMMON_FLAGS)
 CXXFLAGS_FIXED = $(COMMON_FLAGS)
@@ -18,13 +18,15 @@ BIN_DIR = bin
 TARGET_REF = $(BIN_DIR)/cnn_ref
 TARGET_FIXED = $(BIN_DIR)/cnn_fixed
 TARGET_SCVERIFY = $(BIN_DIR)/cnn_scverify
+TARGET_CONV = $(BIN_DIR)/conv_ref
 
 OBJS_REF = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_ref_bench.o
 OBJS_FIXED = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_fixed_bench.o
 OBJS_SCVERIFY = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_scverify_bench.o
+OBJS_CONV = $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/conv_ref.o $(BUILD_DIR)/conv_ref_bench.o
 
 # Default target: build both
-all: directories $(TARGET_REF) $(TARGET_FIXED) $(TARGET_SCVERIFY)
+all: directories $(TARGET_REF) $(TARGET_FIXED) $(TARGET_SCVERIFY) $(TARGET_CONV)
 
 # Create necessary directories
 directories:
@@ -48,6 +50,12 @@ $(TARGET_SCVERIFY): $(OBJS_SCVERIFY)
 	$(CXX) $(OBJS_SCVERIFY) $(LDFLAGS) -o $@
 	@echo "Build complete: $(TARGET_SCVERIFY)"
 
+# Link Rule for Conv
+$(TARGET_CONV): $(OBJS_CONV)
+	@echo "Linking Conv..."
+	$(CXX) $(OBJS_CONV) $(LDFLAGS) -o $@
+	@echo "Build complete: $(TARGET_CONV)"
+
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS_FIXED) $(INCLUDES) -c $< -o $@
 
@@ -56,21 +64,20 @@ clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)
 	@echo "Clean complete"
 
-clean-hls:
+cleanhls:
 	@echo "Cleaning HLS generated files, preserving *.tcl scripts..."
 	cd hls && rm -rf Catapult/
 	cd hls && rm -f *.log *.ccs
 	@echo "HLS clean complete"
 
 # Clean all generated files (build + Vivado/HLS outputs)
-cleanall: clean clean-hls
+cleanall: clean cleanhls
 	@echo "Cleaning all Vivado/FPGA generated files..."
 	find demo/Zynq -type d -name ".Xil" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -type d -name "*.hw" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -type d -name "*.runs" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -type d -name "*.sim" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -type d -name "*.gen" -exec rm -rf {} + 2>/dev/null || true
-	find demo/Zynq -type d -name "*_wk" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -type d -name "Vivado-*" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -type d -name "XSCT-*" -exec rm -rf {} + 2>/dev/null || true
 	find demo/Zynq -name "*.log" -delete 2>/dev/null || true
