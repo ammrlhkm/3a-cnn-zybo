@@ -6,7 +6,8 @@ if __name__ == "__main__":
 
     with open('include/image_ppm.h', 'w') as f:
         f.write('#ifndef IMAGE_PPM\n#define IMAGE_PPM\n\n')
-        f.write('#include "fixedp.h"\n\n')
+        f.write('#include "config.h"\n\n')
+        f.write('typedef ac_fixed<IMAGE_P> image_t;\n\n')
         img=open('dataset/cat.ppm')
 
         format=img.readline()
