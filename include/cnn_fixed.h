@@ -1,9 +1,13 @@
 #ifndef CNN_FIXED_H
 #define CNN_FIXED_H
 
+#include <ac_fixed.h>
 #include "config.h"
-#include "fixedp.h"
 #include "coeffs_fixed.h"
+
+typedef ac_fixed<IMAGE_P> image_t;
+typedef ac_fixed<ACC_P> acc_t;
+typedef ac_fixed<PROB_P> prob_t;
 
 template <int H, int W, int CIN, int COUT>
 void conv2d_fixed(const image_t image[H][W][CIN],

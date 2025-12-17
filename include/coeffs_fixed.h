@@ -1,7 +1,11 @@
 #ifndef COEFFS_FIXED_H_
 #define COEFFS_FIXED_H_
 
-#include "fixedp.h"
+#include <ac_fixed.h>
+#include "config.h"
+
+typedef ac_fixed<WEIGHT_P> kernel_t;
+typedef ac_fixed<BIAS_P> bias_t;
 
 const kernel_t CONV1_W_FIXED[3][3][3][64] = {
     {
