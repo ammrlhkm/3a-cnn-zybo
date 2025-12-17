@@ -15,7 +15,7 @@ Options:
 
 Usage:
     python gen_vhdl_sram_from_image.py <image_file> [--output output.vhd] [--width 24] [--height 24]
-    python gen_vhdl_sram_from_image.py <image_file> --normalize --rom -o normalized_rom.vhd
+    python gen_vhdl_sram_from_image.py <image_file> --normalize -e input_image_rom -o input_image_rom.vhd
 """
 
 import argparse
@@ -120,18 +120,19 @@ def resize_image(pixels, src_w, src_h, dst_w, dst_h):
 def normalize_image(pixels, width, height):
     """
     Normalize image using mean and standard deviation.
-    This matches the normalize_img() function in cnn_ref.py:
+    This matches the normalizeImage() function in preprocess_image.cpp:
     
         mean = sum(pixels) / N
-        std_dev = sqrt(sum((pixel - mean)^2) / N)
-        normalized = (pixel - mean) / max(std_dev, 1/sqrt(N))
+        std = sqrt(sum_sq / N - mean * mean)
+        normalized = (pixel - mean) / max(std, 1/sqrt(N))
     
     Returns normalized values as floating point array.
     """
     N = width * height * 3
     
-    # Calculate mean
-    mean = 0.0
+    # Calculate sum and sum of squares
+    sum_val = 0.0
+    sum_sq = 0.0
     for h in range(height):
         for w in range(width):
             pixel = pixels[h][w]
@@ -139,25 +140,19 @@ def normalize_image(pixels, width, height):
                 r, g, b = pixel
             else:
                 r = g = b = pixel
-            mean += float(r) + float(g) + float(b)
-    mean /= N
+            
+            sum_val += float(r) + float(g) + float(b)
+            sum_sq += float(r) * float(r) + float(g) * float(g) + float(b) * float(b)
     
-    # Calculate standard deviation
-    std_dev = 0.0
-    for h in range(height):
-        for w in range(width):
-            pixel = pixels[h][w]
-            if isinstance(pixel, tuple):
-                r, g, b = pixel
-            else:
-                r = g = b = pixel
-            std_dev += (float(r) - mean)**2
-            std_dev += (float(g) - mean)**2
-            std_dev += (float(b) - mean)**2
-    std_dev = np.sqrt(std_dev / N)
+    # Calculate mean and standard deviation using computational formula
+    mean = sum_val / N
+    std_dev = np.sqrt(sum_sq / N - mean * mean)
     
-    # Normalize: (pixel - mean) / max(std_dev, 1/sqrt(N))
-    divisor = max(std_dev, 1.0 / np.sqrt(N))
+    # Minimum standard deviation threshold
+    min_std = 1.0 / np.sqrt(N)
+    
+    # Normalize: (pixel - mean) / max(std_dev, min_std)
+    divisor = max(std_dev, min_std)
     
     # Create normalized pixel array
     normalized = []
@@ -194,8 +189,8 @@ def float_to_fixed_point(value, total_bits, int_bits, signed=True):
     frac_bits = total_bits - int_bits
     scale = 2 ** frac_bits
     
-    # Scale and round
-    fixed_val = int(round(value * scale))
+    # Scale and truncate (floor) - matches ac_fixed default quantization mode AC_TRN
+    fixed_val = int(np.floor(value * scale))
     
     if signed:
         # Clamp to signed range
