@@ -20,4 +20,8 @@
 #define BIAS_P 10, 3, true   
 #define PROB_P 10, 6, true   
 
+#define SOBEL_P 3, 3, true
+#define CAM_IMAGE_P 8, 8, false
+#define CAM_ACC_P 10, 10, true
+
 #endif // CONFIG_H

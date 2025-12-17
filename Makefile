@@ -18,12 +18,12 @@ BIN_DIR = bin
 TARGET_REF = $(BIN_DIR)/cnn_ref
 TARGET_FIXED = $(BIN_DIR)/cnn_fixed
 TARGET_SCVERIFY = $(BIN_DIR)/cnn_scverify
-TARGET_CONV = $(BIN_DIR)/conv_ref
+TARGET_CONV = $(BIN_DIR)/conv_edge_detection
 
 OBJS_REF = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_ref_bench.o
 OBJS_FIXED = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_fixed_bench.o
 OBJS_SCVERIFY = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_scverify_bench.o
-OBJS_CONV = $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/conv_ref.o $(BUILD_DIR)/conv_ref_bench.o
+OBJS_CONV = $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/conv_fixed.o $(BUILD_DIR)/conv_scverify_bench.o
 
 # Default target: build both
 all: directories $(TARGET_REF) $(TARGET_FIXED) $(TARGET_SCVERIFY) $(TARGET_CONV)
@@ -66,8 +66,8 @@ clean:
 
 cleanhls:
 	@echo "Cleaning HLS generated files, preserving *.tcl scripts..."
-	cd hls && rm -rf Catapult/
-	cd hls && rm -f *.log *.ccs
+	cd hls && find . ! -name '*.tcl' -type f -delete
+	cd hls && find . ! -name '*.tcl' -type d -mindepth 1 -exec rm -rf {} + 2>/dev/null || true
 	@echo "HLS clean complete"
 
 # Clean all generated files (build + Vivado/HLS outputs)
