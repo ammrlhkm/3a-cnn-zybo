@@ -15,8 +15,7 @@
 //                       DesignPad v2.78_1.0, DesignAnalyzer 2024.2/1129066
 //
 project new -name Catapult_Conv -dir ./Catapult_Conv
-solution new -state initial
-solution new -name solution_v1
+solution new solution
 solution options defaults
 options set Project/ProjectNamePrefix Catapult_Conv
 solution options set /Input/TargetPlatform x86_64
