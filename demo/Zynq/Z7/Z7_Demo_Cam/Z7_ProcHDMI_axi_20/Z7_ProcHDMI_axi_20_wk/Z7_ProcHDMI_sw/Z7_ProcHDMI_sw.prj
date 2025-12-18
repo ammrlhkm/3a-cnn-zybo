@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="Z7_ProcHDMI_sw" location="/tima/smancini/Zynq/Z7/Z7_Demo_Cam/Z7_ProcHDMI_axi_20/Z7_ProcHDMI_axi_20_wk/Z7_ProcHDMI_sw" platform="/tima/smancini/Zynq/Z7/Z7_Demo_Cam/Z7_ProcHDMI_axi_20/Z7_ProcHDMI_axi_20_wk/system_wrapper/export/system_wrapper/system_wrapper.xpfm" platformUID="xilinx:zybo-z7-20::0.0(custom)" systemProject="Z7_ProcHDMI_sw_system" sysConfig="system_wrapper" runtime="cpp" cpu="standalone_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="16d08c3cb5c1d5255174b7cac9a4edc2">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.227625627">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.2102734011" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="hello_world"/>
+</sdkproject:SdkProject>
