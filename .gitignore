@@ -102,7 +102,7 @@ usage_statistics_webtalk.*
 *.sim/
 
 # Workspace files
-*_wk/
+# *_wk/
 
 # Exported hardware
 system_wrapper.xsa

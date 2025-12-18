@@ -1,0 +1,6 @@
+vhdl xil_defaultlib  \
+"../../../bd/system/ipshared/99c2/src/MC_HDMI_proc.vhd" \
+"../../../bd/system/ip/system_MC_HDMI_proc_0_0/sim/system_MC_HDMI_proc_0_0.vhd" \
+"../../../bd/system/sim/system.vhd" \
+
+nosort
