@@ -274,6 +274,7 @@ entity {entity_name} is
     port (
         clk     : in  std_logic;
         addr    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
+        re      : in  std_logic;
         dout    : out std_logic_vector(DATA_WIDTH-1 downto 0)
     );
 end entity {entity_name};
@@ -334,7 +335,9 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            dout_reg <= mem(to_integer(unsigned(addr)));
+            if re = '1' then
+                dout_reg <= mem(to_integer(unsigned(addr)));
+            end if;
         end if;
     end process;
 
