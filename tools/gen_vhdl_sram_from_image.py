@@ -388,6 +388,7 @@ entity {entity_name} is
     port (
         clk     : in  std_logic;
         addr    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
+        re      : in  std_logic;
         dout    : out std_logic_vector(DATA_WIDTH-1 downto 0)
     );
 end entity {entity_name};
@@ -436,7 +437,9 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            dout_reg <= mem(to_integer(unsigned(addr)));
+            if re = '1' then
+                dout_reg <= mem(to_integer(unsigned(addr)));
+            end if;
         end if;
     end process;
 
@@ -480,6 +483,7 @@ entity {entity_name} is
     port (
         clk     : in  std_logic;
         addr    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
+        re      : in  std_logic;
         dout    : out std_logic_vector(DATA_WIDTH-1 downto 0)
     );
 end entity {entity_name};
@@ -528,7 +532,9 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            dout_reg <= mem(to_integer(unsigned(addr)));
+            if re = '1' then
+                dout_reg <= mem(to_integer(unsigned(addr)));
+            end if;
         end if;
     end process;
 
@@ -619,7 +625,7 @@ def main():
     with open(output_file, 'w') as f:
         f.write(vhdl_content)
     
-    depth = width * height * 3
+    depth = width * height * (1 if args.grayscale else 3)
     addr_bits = max(1, math.ceil(math.log2(depth)))
     
     print(f"\nGenerated: {output_file}")
@@ -629,7 +635,7 @@ def main():
     print(f"  Data width: {data_bits} bits")
     if args.normalize:
         print(f"  Fixed-point: Q{args.int_bits}.{args.total_bits - args.int_bits} ({'unsigned' if args.unsigned else 'signed'})")
-    print(f"  Format: Interleaved RGB")
+    print(f"  Format: {'Normalized fixed-point' if args.normalize else 'Grayscale' if args.grayscale else 'RGB'}")
 
 
 if __name__ == "__main__":
