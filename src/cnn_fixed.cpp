@@ -113,10 +113,14 @@ void fully_connected_fixed(const image_t input[3][3][20], prob_t output[10]) {
     }
 }
 
-void cnn_hardware(const image_t input[IMG_SIZE], prob_t output[10], done_signal_t &done_signal) {
+void cnn_hardware(const image_t input[IMG_SIZE], prob_t output[10], ctrl_signal_t &ctrl_signal, done_signal_t &done_signal) {
 
     done_signal = 0;
     image_t (*img_buffer)[24][3] = (image_t (*)[24][3])input;
+
+    if (ctrl_signal == 0) {
+        return;
+    }
 
     image_t conv1_out[24][24][64];
     image_t pool1_out[12][12][64];

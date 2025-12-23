@@ -71,23 +71,25 @@ int main(int argc, char** argv) {
         for (int i = 0; i < IMG_SIZE; i++) {
             image_fixed[i] = (image_t)image[i];
         }
-
-        // Start timing
-        auto t_start = chrono::high_resolution_clock::now();
-
+        
         // Run CNN inference
         prob_t probabilities[10];
+        ctrl_signal_t ctrl_signal = 1;
         done_signal_t done_signal;
-        cnn_hardware(image_fixed, probabilities, done_signal);
-
-        // Stop timing
+        
+        
+        // Start timing
+        auto t_start = chrono::high_resolution_clock::now();
+        
+        cnn_hardware(image_fixed, probabilities, ctrl_signal, done_signal);
+        
         auto t_end = chrono::high_resolution_clock::now();
         double elapsed_us = chrono::duration<double, micro>(t_end - t_start).count();
-        
-        if(done_signal != 1) {
+        if (done_signal != 1) {
             cerr << "Error: CNN hardware did not signal done." << endl;
             return -1;
         } else {
+            ctrl_signal = 0;
             cout << "Inference completed successfully." << endl;
         }
 

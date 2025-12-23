@@ -24,6 +24,6 @@
 #define CAM_IMAGE_P 8, 8, false
 #define CAM_ACC_P 10, 10, true
 
-#define DONE_SIGNAL_P 1, false
+#define SIGNAL_P 1, false
 
 #endif // CONFIG_H

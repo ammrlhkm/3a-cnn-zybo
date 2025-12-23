@@ -56,14 +56,16 @@ CCS_MAIN(int argc, char **argv) {
     double probabilities[10];
     cnn_ref(img_in, probabilities);
     prob_t probabilities_fixed[10];
+    ctrl_signal_t ctrl_signal = 1;
     done_signal_t done_signal;
-    CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed, done_signal);
+    CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed, ctrl_signal, done_signal);
 
     if (done_signal != 1) {
         cerr << "Error: CNN hardware did not signal done." << endl;
         CCS_RETURN(1);
     } else {
         cout << "Inference completed successfully." << endl;
+        ctrl_signal = 0;
     }
 
     // compare with double precision reference
