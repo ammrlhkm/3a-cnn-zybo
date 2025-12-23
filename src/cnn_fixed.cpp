@@ -114,8 +114,15 @@ void fully_connected_fixed(const image_t input[3][3][20], prob_t output[10]) {
 }
 
 void cnn_hardware(const image_t image_in[IMG_SIZE], prob_t prob_out[10], ctrl_signal_t &ctrl_signal, done_signal_t &done_signal) {
-
-    done_signal = 0;
+    static ctrl_signal_t ctrl_prev = 0;  // Track previous ctrl state
+    
+    // Clear done on rising edge of ctrl_signal
+    if (ctrl_signal && !ctrl_prev) {
+        done_signal = 0;
+    }
+    
+    ctrl_prev = ctrl_signal;
+    
     image_t (*img_buffer)[24][3] = (image_t (*)[24][3])image_in;
 
     if (ctrl_signal == 0) {
@@ -136,5 +143,6 @@ void cnn_hardware(const image_t image_in[IMG_SIZE], prob_t prob_out[10], ctrl_si
     conv3_fixed_32to20(pool2_out, conv3_out);
     maxpool_fixed_6to3(conv3_out, pool3_out);
     fully_connected_fixed(pool3_out, prob_out);
+    
     done_signal = 1;
 }
