@@ -8,6 +8,7 @@
 typedef ac_fixed<IMAGE_P> image_t;
 typedef ac_fixed<ACC_P> acc_t;
 typedef ac_fixed<PROB_P> prob_t;
+typedef ac_int<DONE_SIGNAL_P> done_signal_t;
 
 template <int H, int W, int CIN, int COUT>
 void conv2d_fixed(const image_t image[H][W][CIN],
@@ -27,7 +28,7 @@ void conv3_fixed_32to20(const image_t input[6][6][32], image_t output[6][6][20])
 void maxpool_fixed_6to3(const image_t input[6][6][20], image_t output[3][3][20]);
 void fully_connected_fixed(const image_t input[3][3][20], prob_t output[10]);
 
-void cnn_hardware(const image_t input[IMG_SIZE], prob_t output[10]);
+void cnn_hardware(const image_t input[IMG_SIZE], prob_t output[10], done_signal_t &done_signal);
 
 #endif // CNN_FIXED_H
 

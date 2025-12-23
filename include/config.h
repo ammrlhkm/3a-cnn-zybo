@@ -18,10 +18,12 @@
 #define WEIGHT_P 10, 3, true 
 #define ACC_P 32, 17, true   
 #define BIAS_P 10, 3, true   
-#define PROB_P 10, 6, true   
+#define PROB_P 10, 6, true
 
 #define SOBEL_P 3, 3, true
 #define CAM_IMAGE_P 8, 8, false
 #define CAM_ACC_P 10, 10, true
+
+#define DONE_SIGNAL_P 1, false
 
 #endif // CONFIG_H

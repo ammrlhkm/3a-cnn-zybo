@@ -56,7 +56,15 @@ CCS_MAIN(int argc, char **argv) {
     double probabilities[10];
     cnn_ref(img_in, probabilities);
     prob_t probabilities_fixed[10];
-    CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed);
+    done_signal_t done_signal;
+    CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed, done_signal);
+
+    if (done_signal != 1) {
+        cerr << "Error: CNN hardware did not signal done." << endl;
+        CCS_RETURN(1);
+    } else {
+        cout << "Inference completed successfully." << endl;
+    }
 
     // compare with double precision reference
     double worst_error = 0.0 ;
@@ -74,6 +82,7 @@ CCS_MAIN(int argc, char **argv) {
              << right << fixed << setprecision(4)
              << setw(12) << double_out << setw(12) << fixed_out << setw(12) << diff[i] << endl;
     }
+    
     for(int i=0; i < 10; i++) {
         if (diff[i] > worst_error) worst_error = diff[i] ;
     }
