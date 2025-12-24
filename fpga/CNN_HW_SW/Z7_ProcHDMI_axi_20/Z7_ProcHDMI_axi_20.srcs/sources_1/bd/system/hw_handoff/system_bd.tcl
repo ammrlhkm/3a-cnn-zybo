@@ -44,7 +44,6 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
    create_project project_1 myproj -part xc7z020clg400-1
-   set_property BOARD_PART digilentinc.com:zybo-z7-20:part0:1.0 [current_project]
 }
 
 
@@ -171,7 +170,7 @@ proc create_root_design { parentCell } {
   set sw [ create_bd_port -dir I -from 3 -to 0 sw ]
 
   # Create instance: axi_Z7_ProcHDMI_0, and set properties
-  set axi_Z7_ProcHDMI_0 [ create_bd_cell -type ip -vlnv user.org:user:axi_Z7_ProcHDMI:1.0 axi_Z7_ProcHDMI_0 ]
+  set axi_Z7_ProcHDMI_0 [ create_bd_cell -type ip -vlnv user.org:user:axi_Z7_ProcHDMI:2.0 axi_Z7_ProcHDMI_0 ]
   set_property -dict [ list \
    CONFIG.C_S00_AXI_ADDR_WIDTH {22} \
  ] $axi_Z7_ProcHDMI_0
@@ -179,9 +178,9 @@ proc create_root_design { parentCell } {
   # Create instance: clk_wiz_0, and set properties
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
   set_property -dict [ list \
-   CONFIG.CLKOUT1_JITTER {183.467} \
+   CONFIG.CLKOUT1_JITTER {146.170} \
    CONFIG.CLKOUT1_PHASE_ERROR {105.461} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {25.000} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {75.000} \
    CONFIG.CLKOUT2_JITTER {122.980} \
    CONFIG.CLKOUT2_PHASE_ERROR {105.461} \
    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {180.000} \
@@ -194,7 +193,7 @@ proc create_root_design { parentCell } {
    CONFIG.CLK_OUT2_PORT {clk_camera} \
    CONFIG.CLK_OUT3_PORT {clk_hdmi} \
    CONFIG.MMCM_CLKFBOUT_MULT_F {9.000} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {36.000} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {12.000} \
    CONFIG.MMCM_CLKOUT1_DIVIDE {5} \
    CONFIG.MMCM_CLKOUT2_DIVIDE {4} \
    CONFIG.MMCM_DIVCLK_DIVIDE {1} \
@@ -434,7 +433,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_I2C1_HIGHADDR {0xE0005FFF} \
    CONFIG.PCW_I2C1_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_I2C1_RESET_ENABLE {0} \
-   CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ {111.111115} \
+   CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ {25} \
    CONFIG.PCW_I2C_RESET_ENABLE {0} \
    CONFIG.PCW_I2C_RESET_POLARITY {Active Low} \
    CONFIG.PCW_IMPORT_BOARD_PRESET {None} \

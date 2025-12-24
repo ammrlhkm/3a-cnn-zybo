@@ -1,8 +1,8 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
---Date        : Thu Dec 21 11:04:50 2023
---Host        : cimeld20.cime.inpg.fr running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
+--Date        : Wed Dec 24 02:00:38 2025
+--Host        : ammar running 64-bit Ubuntu 22.04.5 LTS
 --Command     : generate_target system.bd
 --Design      : system
 --Purpose     : IP block netlist
@@ -49,6 +49,65 @@ entity system is
 end system;
 
 architecture STRUCTURE of system is
+  component system_axi_Z7_ProcHDMI_0_0 is
+  port (
+    btn : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    sw : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    led : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    clk_display : in STD_LOGIC;
+    clk_hdmi : in STD_LOGIC;
+    hdmi_TMDS_Clk_p : out STD_LOGIC;
+    hdmi_TMDS_Clk_n : out STD_LOGIC;
+    hdmi_TMDS_Data_p : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    hdmi_TMDS_Data_n : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_aclk : in STD_LOGIC;
+    s00_axi_aresetn : in STD_LOGIC;
+    s00_axi_awid : in STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 21 downto 0 );
+    s00_axi_awlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    s00_axi_awsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_awlock : in STD_LOGIC;
+    s00_axi_awcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_awqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_awregion : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_awuser : in STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_awvalid : in STD_LOGIC;
+    s00_axi_awready : out STD_LOGIC;
+    s00_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_wlast : in STD_LOGIC;
+    s00_axi_wuser : in STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_wvalid : in STD_LOGIC;
+    s00_axi_wready : out STD_LOGIC;
+    s00_axi_bid : out STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_buser : out STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_bvalid : out STD_LOGIC;
+    s00_axi_bready : in STD_LOGIC;
+    s00_axi_arid : in STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_araddr : in STD_LOGIC_VECTOR ( 21 downto 0 );
+    s00_axi_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    s00_axi_arsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_arlock : in STD_LOGIC;
+    s00_axi_arcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_arqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_arregion : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_aruser : in STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_arvalid : in STD_LOGIC;
+    s00_axi_arready : out STD_LOGIC;
+    s00_axi_rid : out STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_rlast : out STD_LOGIC;
+    s00_axi_ruser : out STD_LOGIC_VECTOR ( 0 to 0 );
+    s00_axi_rvalid : out STD_LOGIC;
+    s00_axi_rready : in STD_LOGIC
+  );
+  end component system_axi_Z7_ProcHDMI_0_0;
   component system_clk_wiz_0_0 is
   port (
     reset : in STD_LOGIC;
@@ -216,65 +275,6 @@ architecture STRUCTURE of system is
     M00_AXI_rready : out STD_LOGIC
   );
   end component system_smartconnect_0_0;
-  component system_axi_Z7_ProcHDMI_0_0 is
-  port (
-    btn : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    sw : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    led : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    clk_display : in STD_LOGIC;
-    clk_hdmi : in STD_LOGIC;
-    hdmi_TMDS_Clk_p : out STD_LOGIC;
-    hdmi_TMDS_Clk_n : out STD_LOGIC;
-    hdmi_TMDS_Data_p : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    hdmi_TMDS_Data_n : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_aclk : in STD_LOGIC;
-    s00_axi_aresetn : in STD_LOGIC;
-    s00_axi_awid : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 21 downto 0 );
-    s00_axi_awlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    s00_axi_awsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s00_axi_awlock : in STD_LOGIC;
-    s00_axi_awcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_awqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_awregion : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_awuser : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_awvalid : in STD_LOGIC;
-    s00_axi_awready : out STD_LOGIC;
-    s00_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s00_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_wlast : in STD_LOGIC;
-    s00_axi_wuser : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_wvalid : in STD_LOGIC;
-    s00_axi_wready : out STD_LOGIC;
-    s00_axi_bid : out STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s00_axi_buser : out STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_bvalid : out STD_LOGIC;
-    s00_axi_bready : in STD_LOGIC;
-    s00_axi_arid : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_araddr : in STD_LOGIC_VECTOR ( 21 downto 0 );
-    s00_axi_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    s00_axi_arsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s00_axi_arlock : in STD_LOGIC;
-    s00_axi_arcache : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_arqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_arregion : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_aruser : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_arvalid : in STD_LOGIC;
-    s00_axi_arready : out STD_LOGIC;
-    s00_axi_rid : out STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s00_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s00_axi_rlast : out STD_LOGIC;
-    s00_axi_ruser : out STD_LOGIC_VECTOR ( 0 to 0 );
-    s00_axi_rvalid : out STD_LOGIC;
-    s00_axi_rready : in STD_LOGIC
-  );
-  end component system_axi_Z7_ProcHDMI_0_0;
   signal axi_Z7_ProcHDMI_0_hdmi_TMDS_Clk_n : STD_LOGIC;
   signal axi_Z7_ProcHDMI_0_hdmi_TMDS_Clk_p : STD_LOGIC;
   signal axi_Z7_ProcHDMI_0_hdmi_TMDS_Data_n : STD_LOGIC_VECTOR ( 2 downto 0 );

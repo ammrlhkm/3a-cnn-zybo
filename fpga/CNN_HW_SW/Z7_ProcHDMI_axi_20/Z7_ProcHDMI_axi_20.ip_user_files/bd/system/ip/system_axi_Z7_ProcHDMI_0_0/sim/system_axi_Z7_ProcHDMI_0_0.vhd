@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2025 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -46,8 +46,8 @@
 -- 
 -- DO NOT MODIFY THIS FILE.
 
--- IP VLNV: user.org:user:axi_Z7_ProcHDMI:1.0
--- IP Revision: 34
+-- IP VLNV: user.org:user:axi_Z7_ProcHDMI:2.0
+-- IP Revision: 40
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;

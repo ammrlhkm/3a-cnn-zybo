@@ -38,3 +38,8 @@ platform clean
 platform active {system_wrapper}
 platform config -updatehw {/tima/smancini/Zynq/Z7/Z7_Demo_Cam/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
 platform generate
+platform active {system_wrapper}
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
+platform generate -domains standalone_ps7_cortexa9_0,zynq_fsbl 
+platform clean
+platform generate

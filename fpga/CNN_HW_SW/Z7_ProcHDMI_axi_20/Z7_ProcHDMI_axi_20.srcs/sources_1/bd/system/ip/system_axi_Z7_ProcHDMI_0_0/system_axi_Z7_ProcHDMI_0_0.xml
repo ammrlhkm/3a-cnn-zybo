@@ -938,11 +938,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Dec 21 10:08:47 UTC 2023</spirit:value>
+            <spirit:value>Wed Dec 24 00:57:54 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37d76b66</spirit:value>
+            <spirit:value>9:d7354c03</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -953,7 +953,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37d76b66</spirit:value>
+            <spirit:value>9:d7354c03</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -969,11 +969,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Dec 21 10:08:47 UTC 2023</spirit:value>
+            <spirit:value>Wed Dec 24 00:57:54 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37d76b66</spirit:value>
+            <spirit:value>9:d7354c03</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -988,11 +988,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Dec 21 10:08:47 UTC 2023</spirit:value>
+            <spirit:value>Wed Dec 24 00:57:54 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f357286c</spirit:value>
+            <spirit:value>9:86385c4b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1008,11 +1008,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Dec 21 10:08:47 UTC 2023</spirit:value>
+            <spirit:value>Wed Dec 24 00:57:54 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f357286c</spirit:value>
+            <spirit:value>9:86385c4b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1026,11 +1026,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Dec 21 10:08:47 UTC 2023</spirit:value>
+            <spirit:value>Wed Dec 24 00:57:54 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37d76b66</spirit:value>
+            <spirit:value>9:d7354c03</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1044,11 +1044,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Dec 21 10:08:57 UTC 2023</spirit:value>
+            <spirit:value>Wed Dec 24 01:00:23 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37d76b66</spirit:value>
+            <spirit:value>9:d7354c03</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2051,23 +2051,23 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/8935/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd</spirit:name>
+        <spirit:name>../../ipshared/3a90/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>io_video</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/8935/src/io_video/axi_Z7_ProcHDMI.vhd</spirit:name>
+        <spirit:name>../../ipshared/3a90/src/io_video/axi_Z7_ProcHDMI.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/mem2p_240_8/mem2p_240_8.xci</spirit:name>
+        <spirit:name>src/mem2p_1728_10/mem2p_1728_10.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
-        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.vlign/mem2p_240_8</spirit:userFileType>
+        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.cnn_input_mem/mem2p_1728_10</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/mem2p_76800_8/mem2p_76800_8.xci</spirit:name>
+        <spirit:name>src/mem2p_10_10/mem2p_10_10.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
-        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.img_in/mem2p_76800_8</spirit:userFileType>
+        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.cnn_output_mem/mem2p_10_10</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2081,23 +2081,23 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/8935/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd</spirit:name>
+        <spirit:name>../../ipshared/3a90/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>io_video</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/8935/src/io_video/axi_Z7_ProcHDMI.vhd</spirit:name>
+        <spirit:name>../../ipshared/3a90/src/io_video/axi_Z7_ProcHDMI.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/mem2p_240_8/mem2p_240_8.xci</spirit:name>
+        <spirit:name>src/mem2p_1728_10/mem2p_1728_10.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
-        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.vlign/mem2p_240_8</spirit:userFileType>
+        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.cnn_input_mem/mem2p_1728_10</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/mem2p_76800_8/mem2p_76800_8.xci</spirit:name>
+        <spirit:name>src/mem2p_10_10/mem2p_10_10.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
-        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.img_in/mem2p_76800_8</spirit:userFileType>
+        <spirit:userFileType>CELL_NAME_axi_Z7_ProcHDMI_L8_S00_AXI_inst/capture.cnn_output_mem/mem2p_10_10</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2111,11 +2111,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_implementation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/ImgProcParamTest.edf</spirit:name>
-        <spirit:userFileType>edn</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/HDMI_RAM_syn.edf</spirit:name>
+        <spirit:name>src/cnn_hardware.edf</spirit:name>
         <spirit:userFileType>edn</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -2129,10 +2125,9 @@
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>system_axi_Z7_ProcHDMI_0_0_sim_netlist.vhdl</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:name>system_axi_Z7_ProcHDMI_0_0_stub.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>
       <spirit:file>
@@ -2149,9 +2144,10 @@
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>system_axi_Z7_ProcHDMI_0_0_stub.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:name>system_axi_Z7_ProcHDMI_0_0_sim_netlist.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
@@ -2211,7 +2207,7 @@
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>34</xilinx:coreRevision>
+      <xilinx:coreRevision>40</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="user.org:user:axi_Z7_ProcHDMI:1.0_ARCHIVE_LOCATION">/tima/smancini/Zynq/Z7/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@324879ae_ARCHIVE_LOCATION">/tima/smancini/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
@@ -2378,6 +2374,39 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7027dc14_ARCHIVE_LOCATION">/tima/smancini/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@19baee95_ARCHIVE_LOCATION">/tima/smancini/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1447a884_ARCHIVE_LOCATION">/tima/smancini/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@87f5518_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7aef8eaf_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2204aa86_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75f482f6_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67c51dcb_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@555f443d_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a643af8_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2975558c_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17c3ec5_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a779356_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11eef4b0_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e6a78e8_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d40241b_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2aad3ca2_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b2f1b1f_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f6e2626_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@133a104a_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a922bc1_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ecffe10_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@130c88e2_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2801e8e5_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ace0012_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19e81933_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4da8b5d5_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f8127b4_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ebac6d9_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2026ee7e_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1452631d_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56a807b5_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21348fa4_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f202721_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ff5b50e_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79e10d6e_ARCHIVE_LOCATION">/home/ammrlhkm/Documents/Zynq/Z7/Z7_Demo_Cam/ip_repo/axi_Z7_ProcHDMI</xilinx:tag>
       </xilinx:tags>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.HDMI_TMDS_CLK_N.ASSOCIATED_BUSIF" xilinx:valuePermission="bd_and_user"/>
@@ -2436,7 +2465,7 @@
       <xilinx:xilinxVersion>2020.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="9d516980"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ac2f522d"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="c552df8f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="feaa1e45"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="39cf4111"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="71ac7c40"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="d455aa0c"/>

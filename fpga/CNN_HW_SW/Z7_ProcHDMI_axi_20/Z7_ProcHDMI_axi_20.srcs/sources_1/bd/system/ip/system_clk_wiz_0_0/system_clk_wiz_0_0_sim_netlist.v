@@ -1,8 +1,8 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Fri May 28 05:36:31 2021
-// Host        : cimeld20.cime.inpg.fr running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
+// Date        : Wed Dec 24 01:12:04 2025
+// Host        : ammar running 64-bit Ubuntu 22.04.5 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top system_clk_wiz_0_0 -prefix
 //               system_clk_wiz_0_0_ system_clk_wiz_0_0_sim_netlist.v
 // Design      : system_clk_wiz_0_0
@@ -117,7 +117,7 @@ module system_clk_wiz_0_0_system_clk_wiz_0_0_clk_wiz
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(10.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(36.000000),
+    .CLKOUT0_DIVIDE_F(12.000000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),

@@ -1,21 +1,21 @@
 -makelib xcelium_lib/xilinx_vip -sv \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/axi4stream_vip_axi4streampc.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/axi_vip_axi4pc.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/xil_common_vip_pkg.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/axi4stream_vip_pkg.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/axi_vip_pkg.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/axi4stream_vip_if.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/axi_vip_if.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/clk_vip_if.sv" \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/xilinx_vip/hdl/rst_vip_if.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/axi4stream_vip_axi4streampc.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/axi_vip_axi4pc.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/xil_common_vip_pkg.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/axi4stream_vip_pkg.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/axi_vip_pkg.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/axi4stream_vip_if.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/axi_vip_if.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/clk_vip_if.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/hdl/rst_vip_if.sv" \
 -endlib
 -makelib xcelium_lib/xpm -sv \
-  "/softslin/vivado_20.2/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
-  "/softslin/vivado_20.2/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv" \
-  "/softslin/vivado_20.2/Vivado/2020.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv" \
+  "/tools/Xilinx/Vivado/2020.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
 -endlib
 -makelib xcelium_lib/xpm \
-  "/softl2/XILINX/vivado_20.2/Vivado/2020.2/data/ip/xpm/xpm_VCOMP.vhd" \
+  "/tools/Xilinx/Vivado/2020.2/data/ip/xpm/xpm_VCOMP.vhd" \
 -endlib
 -makelib xcelium_lib/axi_infrastructure_v1_1_0 \
   "../../../../Z7_ProcHDMI_axi_20.srcs/sources_1/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v" \
@@ -109,22 +109,17 @@
   "../../../bd/system/ip/system_clk_wiz_0_0/system_clk_wiz_0_0.v" \
 -endlib
 -makelib xcelium_lib/blk_mem_gen_v8_4_4 \
-  "../../../../Z7_ProcHDMI_axi_20.srcs/sources_1/bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_240_8/simulation/blk_mem_gen_v8_4.v" \
+  "../../../../Z7_ProcHDMI_axi_20.srcs/sources_1/bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_1728_10/simulation/blk_mem_gen_v8_4.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_240_8/sim/mem2p_240_8.v" \
--endlib
--makelib xcelium_lib/blk_mem_gen_v8_3_6 \
-  "../../../../Z7_ProcHDMI_axi_20.srcs/sources_1/bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_76800_8/simulation/blk_mem_gen_v8_3.v" \
--endlib
--makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_76800_8/sim/mem2p_76800_8.v" \
+  "../../../bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_1728_10/sim/mem2p_1728_10.v" \
+  "../../../bd/system/ip/system_axi_Z7_ProcHDMI_0_0/src/mem2p_10_10/sim/mem2p_10_10.v" \
 -endlib
 -makelib xcelium_lib/io_video \
-  "../../../bd/system/ipshared/8935/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd" \
+  "../../../bd/system/ipshared/3a90/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/system/ipshared/8935/src/io_video/axi_Z7_ProcHDMI.vhd" \
+  "../../../bd/system/ipshared/3a90/src/io_video/axi_Z7_ProcHDMI.vhd" \
   "../../../bd/system/ip/system_axi_Z7_ProcHDMI_0_0/sim/system_axi_Z7_ProcHDMI_0_0.vhd" \
   "../../../bd/system/sim/system.vhd" \
 -endlib

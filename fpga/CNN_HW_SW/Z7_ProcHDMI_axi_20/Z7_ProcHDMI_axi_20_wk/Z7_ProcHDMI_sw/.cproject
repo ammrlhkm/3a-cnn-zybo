@@ -89,7 +89,7 @@
                                 								
                                 <option id="xilinx.gnu.linker.inferred.swplatform.flags.1050912614" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs">
                                     									
-                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,--end-group"/>
+                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,-lm,--end-group"/>
                                     								
                                 </option>
                                 								
@@ -119,7 +119,7 @@
                                 								
                                 <option id="xilinx.gnu.linker.inferred.swplatform.flags.532769820" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs">
                                     									
-                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,--end-group"/>
+                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,-lm,--end-group"/>
                                     								
                                 </option>
                                 								
@@ -233,7 +233,7 @@
                                 								
                                 <option id="xilinx.gnu.linker.inferred.swplatform.flags.98678083" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs">
                                     									
-                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,--end-group"/>
+                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,-lm,--end-group"/>
                                     								
                                 </option>
                                 								
@@ -263,7 +263,7 @@
                                 								
                                 <option id="xilinx.gnu.linker.inferred.swplatform.flags.1543562250" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs">
                                     									
-                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,--end-group"/>
+                                    <listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,-lm,--end-group"/>
                                     								
                                 </option>
                                 								

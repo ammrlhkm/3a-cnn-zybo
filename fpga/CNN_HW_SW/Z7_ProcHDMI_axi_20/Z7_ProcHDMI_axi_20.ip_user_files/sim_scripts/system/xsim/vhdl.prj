@@ -3,10 +3,10 @@ vhdl xil_defaultlib  \
 "../../../bd/system/ip/system_proc_sys_reset_0_0/sim/system_proc_sys_reset_0_0.vhd" \
 
 vhdl io_video  \
-"../../../bd/system/ipshared/8935/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd" \
+"../../../bd/system/ipshared/3a90/src/io_video/axi_Z7_ProcHDMI_S00_AXI.vhd" \
 
 vhdl xil_defaultlib  \
-"../../../bd/system/ipshared/8935/src/io_video/axi_Z7_ProcHDMI.vhd" \
+"../../../bd/system/ipshared/3a90/src/io_video/axi_Z7_ProcHDMI.vhd" \
 "../../../bd/system/ip/system_axi_Z7_ProcHDMI_0_0/sim/system_axi_Z7_ProcHDMI_0_0.vhd" \
 "../../../bd/system/sim/system.vhd" \
 
