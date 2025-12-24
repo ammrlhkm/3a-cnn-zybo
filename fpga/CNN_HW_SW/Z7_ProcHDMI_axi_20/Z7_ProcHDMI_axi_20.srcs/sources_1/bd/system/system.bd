@@ -176,13 +176,13 @@
         "xci_name": "system_clk_wiz_0_0",
         "parameters": {
           "CLKOUT1_JITTER": {
-            "value": "146.170"
+            "value": "159.475"
           },
           "CLKOUT1_PHASE_ERROR": {
             "value": "105.461"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "75.000"
+            "value": "50.000"
           },
           "CLKOUT2_JITTER": {
             "value": "122.980"
@@ -221,7 +221,7 @@
             "value": "9.000"
           },
           "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "12.000"
+            "value": "18.000"
           },
           "MMCM_CLKOUT1_DIVIDE": {
             "value": "5"

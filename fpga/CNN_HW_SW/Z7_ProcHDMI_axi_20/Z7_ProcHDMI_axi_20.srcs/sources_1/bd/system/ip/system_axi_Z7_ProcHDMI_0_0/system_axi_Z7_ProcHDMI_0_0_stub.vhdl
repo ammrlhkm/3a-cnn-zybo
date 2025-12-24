@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Wed Dec 24 02:00:21 2025
--- Host        : ammar running 64-bit Ubuntu 22.04.5 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/Z7_ProcHDMI_axi_20.srcs/sources_1/bd/system/ip/system_axi_Z7_ProcHDMI_0_0/system_axi_Z7_ProcHDMI_0_0_stub.vhdl
+-- Date        : Wed Dec 24 14:04:26 2025
+-- Host        : cimeld23.cime.inpg.fr running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
+-- Command     : write_vhdl -force -mode synth_stub -rename_top system_axi_Z7_ProcHDMI_0_0 -prefix
+--               system_axi_Z7_ProcHDMI_0_0_ system_axi_Z7_ProcHDMI_0_0_stub.vhdl
 -- Design      : system_axi_Z7_ProcHDMI_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1
