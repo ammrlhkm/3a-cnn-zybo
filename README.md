@@ -1,8 +1,14 @@
 # System-On-Chip (SoC) Integration Project
 
-The main objective of this project is to design and implement a complete hardware (HW) and software (SW) processing system to execute a Convolutional Neural Network (CNN). The final deliverable is a functional implementation on a Xilinx FPGA board (Zybo Z7) that integrates a live camera feed for input and an on-screen display for the output.
+The main objective of this project is to design and implement a complete hardware (HW) and software (SW) processing system to execute a Convolutional Neural Network (CNN). The final deliverable is a functional implementation on a Xilinx FPGA board (Zybo Z7-20) that integrates hardware acceleration for real-time image classification on the CIFAR-10 dataset.
 
-## Architecture
+This project covers the full design cycle:
+1. **Algorithmic Development**: Python reference model and C++ fixed-point translation.
+2. **HLS Optimization**: Transition from C++ to optimized RTL using Mentor Catapult HLS.
+3. **SoC Integration**: Hardware/Software co-design in Vivado and Vitis.
+4. **Validation**: Real-time testing via UART with a dedicated Python tool.
+
+## CNN Architecture
 
 ```
 Input: 24×24×3 RGB image
@@ -25,6 +31,42 @@ Fully Connected (180x10)
   ↓
 Softmax → 10 class probabilities
 ```
+
+## System Architecture
+
+<p align="center">
+  <img src="doc/system_hw_sw.png" alt="System Architecture">
+</p>
+
+The architecture follows a classic HW/SW co-design pattern:
+- **Processing System (PS)**: An ARM Cortex-A9 processor running a C++ application that manages data transfers, UART communication with the host, and orchestrates the hardware accelerator.
+- **Programmable Logic (PL)**:
+  - **CNN Accelerator**: A custom IP core synthesized from HLS C++.
+  - **Memory Subsystem**: Dual-port BRAMs for image input (24x24x3) and class probability outputs (10 classes).
+  - **Control**: AXI-Lite interface for triggering the start signal and monitoring the 'done' state.
+
+## The CIFAR-10 Dataset
+
+**Source:** [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)
+
+60,000 32×32 color images in 10 classes (6,000 per class):
+- Airplane, Automobile, Bird, Cat, Deer
+- Dog, Frog, Horse, Ship, Truck
+
+## Project Structure
+
+- `hls/`: Catapult HLS source code and directives
+- `fpga/`: Vivado project files and hardware netlists
+- `src/`: C++ source code for CNN accelerator
+- `model/`: Python reference implementation
+- `tools/`: UART streaming, code generation, and validation scripts
+- `dataset/`: CIFAR-10 dataset and weight files
+
+## Project Timeline
+
+- **Phase 1**: Python functional model implementation
+- **Phase 2**: C++ conversion and HLS exploration
+- **Phase 3**: FPGA integration and optimization
 
 ## Quick Setup
 
@@ -103,24 +145,82 @@ make rebuild
 ./bin/cnn_scverify
 ```
 
-## The CIFAR-10 Dataset
+## HLS Workflow (Mentor Catapult)
 
-**Source:** [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)
+The core of the acceleration is the `cnn_hardware` IP. We explored two implementation strategies located in `hls/Catapult_CNN`:
 
-60,000 32×32 color images in 10 classes (6,000 per class):
-- Airplane, Automobile, Bird, Cat, Deer
-- Dog, Frog, Horse, Ship, Truck
+### 1. Baseline Implementation (`directives_cnn.tcl`)
+- Straightforward C++ to RTL synthesis without specific loop optimizations.
+- **Clock Period**: 20ns (50MHz)
+- **Latency**: ~9.8 million cycles
 
-## Project Timeline
+**Run baseline synthesis:**
+```bash
+cd hls
+catapult -file directives_cnn.tcl
+```
 
-- **Phase 1** : Python functional model implementation
-- **Phase 2** : C++ conversion and HLS exploration
-- **Phase 3** : FPGA integration and optimization
+### 2. Optimized Implementation (`directives_opt_cnn.tcl`)
+- **Pipelining**: `PIPELINE_INIT_INTERVAL 1` applied to critical loops (Convolution, Flatten, and Dense layers)
+- **Unrolling**: Parallel processing of MaxPool kernels (`KH_MAXPOOL_LOOP`, `KW_MAXPOOL_LOOP`)
+- **Latency**: ~3.9 million cycles
+- **Performance Gain**: **~2.5x speedup** compared to the baseline
 
-## Authors
+**Run optimized synthesis:**
+```bash
+cd hls
+catapult -file directives_opt_cnn.tcl
+```
 
-**KAKOU Serges-Williams**  
-Email: [serges-williams.kakou@grenoble-inp.org](mailto:serges-williams.kakou@grenoble-inp.org)
+### Simulation & Verification
+Functional verification was performed using SCVerify:
+- **C++ Simulation**: Verification of fixed-point accuracy against floating-point reference
+- **RTL Simulation**: Bit-accurate simulation of the synthesized hardware using Questasim
+- Run the simulation by running directives_sim.tcl
 
-**LUKMAN HAKIM Muhammad Ammar**  
-Email: [muhammad-ammar.lukman-hakim@grenoble-inp.org](mailto:muhammad-ammar.lukman-hakim@grenoble-inp.org)
+
+## Vivado/Vitis Design Flow
+
+### Vivado Block Design
+1. **IP Export**: The optimized RTL from Catapult was exported as an EDF netlist (`cnn_hardware.edf`)
+2. **Project Location**:
+```bash
+cd fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20
+vivado Z7_ProcHDMI_axi_20.xpr
+```
+3. **Synthesis and Implementation**: The design was synthesized and implemented to ensure timing closure at 50MHz (20ns clock period). 
+
+<p align="center">
+  <img src="doc/vivado_timing.png" alt="Timing Report">
+</p>
+
+4. **Export of hardware XSA**: Export of the hardware description in XSA format from the project
+
+### Vitis IDE
+1. **Development of software application**: 
+   - Load image data batch from UART to DDR3
+   - Load image to PL-side BRAM
+   - Run the CNN accelerator
+   - Read the result from PL-side BRAM
+   - Find the maximum probability
+   - Output results via UART
+2. **Update of the hardware platform**: Update hardware specification and build the project 
+3. **Update of the software platform**: Build the project and launch on hardware
+4. **Output results via UART**: Run minicom on terminal to view the results
+```bash
+minicom -D /dev/ttyUSB1
+```
+
+## Hardware Testing via UART
+
+We developed a testing tool to stream images from the PC to the FPGA via UART.
+
+### Usage
+
+```bash
+# Send 100 images from the CIFAR-10 test batch via UART
+python3 tools/send_ppm_uart.py /dev/ttyUSB1 --binary dataset/cifar-10-batches-bin/test_batch.bin --count 100
+
+# Send specific images with labels
+python3 tools/send_ppm_uart.py /dev/ttyUSB1 image1.ppm:0 image2.ppm:3
+```
