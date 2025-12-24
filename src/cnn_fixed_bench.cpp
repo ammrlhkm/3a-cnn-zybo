@@ -12,7 +12,6 @@ using namespace std;
 int main(int argc, char** argv) {
     int num_images = 100;  // Default: test 100 images
     string cifar10_filename = "dataset/cifar-10-batches-bin/data_batch_1.bin";
-    int debug_images = 0;  // Number of images to dump for debugging
     
     if (argc > 1) {
         cifar10_filename = string(argv[1]);
@@ -20,12 +19,9 @@ int main(int argc, char** argv) {
     if (argc > 2) {
         num_images = atoi(argv[2]);
     }
-    if (argc > 3) {
-        debug_images = atoi(argv[3]);
-    }
 
     cout << "=== CIFAR-10 CNN Inference ===" << endl;
-    cout << "Testing on " << num_images << " images" << endl << endl;
+    cout << "Testing on " << num_images << " images" << endl;
 
     CIFAR10Batch test_batch;
     if (!loadCIFAR10Binary(cifar10_filename, test_batch)) {
@@ -71,29 +67,18 @@ int main(int argc, char** argv) {
         for (int i = 0; i < IMG_SIZE; i++) {
             image_fixed[i] = (image_t)image[i];
         }
-        
+
+        /* Start timing */
+        auto t_start = chrono::high_resolution_clock::now();
+
         // Run CNN inference
         prob_t probabilities[10];
-        ctrl_signal_t ctrl_signal = 1;
-        done_signal_t done_signal;
-        
-        
-        // Start timing
-        auto t_start = chrono::high_resolution_clock::now();
-        
-        cnn_hardware(image_fixed, probabilities, ctrl_signal, done_signal);
-        
+        cnn_hardware(image_fixed, probabilities);
+
+        /* Stop timing */
         auto t_end = chrono::high_resolution_clock::now();
         double elapsed_us = chrono::duration<double, micro>(t_end - t_start).count();
-        if (done_signal != 1) {
-            cerr << "Error: CNN hardware did not signal done." << endl;
-            return -1;
-        } else {
-            ctrl_signal = 0;
-            cout << "Inference completed successfully." << endl;
-        }
 
-        // Update timing statistics
         total_inference_time_us += elapsed_us;
         if (elapsed_us < min_inference_time_us) {
             min_inference_time_us = elapsed_us;
@@ -133,7 +118,7 @@ int main(int argc, char** argv) {
              << " (" << (max_prob.to_double() ) << ")"
              << " " << (is_correct ? "✓" : "✗") << endl;
     }
-    
+
     // ===== Print Summary Statistics =====
     cout << "\n=== Results ===" << endl;
     cout << "Overall Accuracy: " << correct << "/" << total

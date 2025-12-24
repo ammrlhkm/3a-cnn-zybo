@@ -43,12 +43,13 @@ solution library add mgc_Xilinx-ZYNQ-2_beh -- -rtlsyntool Precision -manufacture
 solution library add Xilinx_RAMS
 go libraries
 directive set -CLOCKS {clk {-CLOCK_PERIOD 20 -CLOCK_EDGE rising -CLOCK_HIGH_TIME 10 -CLOCK_OFFSET 0.000000 -CLOCK_UNCERTAINTY 0.0 -RESET_KIND sync -RESET_SYNC_NAME rst -RESET_SYNC_ACTIVE high -RESET_ASYNC_NAME arst_n -RESET_ASYNC_ACTIVE low -ENABLE_NAME {} -ENABLE_ACTIVE high}}
+directive set /cnn_hardware -START_FLAG start
+directive set /cnn_hardware -READY_FLAG ready
+directive set /cnn_hardware -DONE_FLAG done
 go assembly
 directive set /cnn_hardware/image_in:rsc -MAP_TO_MODULE {Xilinx_RAMS.BLOCK_1R1W_RBW_DUAL suppress_sim_read_addr_range_errs=1}
 directive set /cnn_hardware/prob_out:rsc -MAP_TO_MODULE {Xilinx_RAMS.BLOCK_1R1W_RBW_DUAL suppress_sim_read_addr_range_errs=1}
 directive set /cnn_hardware/prob_out -WORD_WIDTH 10
-directive set /cnn_hardware/ctrl_signal:rsc -MAP_TO_MODULE {[DirectInput]}
-directive set /cnn_hardware/done_signal:rsc -MAP_TO_MODULE mgc_ioport.mgc_out_reg
 go architect
 go allocate
 go extract
