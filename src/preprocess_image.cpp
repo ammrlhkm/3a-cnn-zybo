@@ -57,7 +57,12 @@ bool loadPGM(const char* filename, unsigned char* image_data) {
     char format[3];
     int width, height, maxval;
     
-    fscanf(fp, "%2s\n", format);
+    if(!fscanf(fp, "%2s\n", format)) {
+        printf("Error: Unable to read PGM format\n");
+        fclose(fp);
+        return false;
+    }
+
     if (strcmp(format, "P5") != 0) {
         printf("Error: Unsupported PGM format %s\n", format);
         fclose(fp);
@@ -72,9 +77,17 @@ bool loadPGM(const char* filename, unsigned char* image_data) {
     }
     ungetc(c, fp);
     
-    fscanf(fp, "%d %d\n%d\n", &width, &height, &maxval);
+    if(!fscanf(fp, "%d %d\n%d\n", &width, &height, &maxval)) {
+        printf("Error: Unable to read PGM header\n");
+        fclose(fp);
+        return false;
+    }
     
-    fread(image_data, sizeof(unsigned char), width * height, fp);
+    if(!fread(image_data, sizeof(unsigned char), width * height, fp)) {
+        printf("Error: Unable to read PGM pixel data\n");
+        fclose(fp);
+        return false;
+    }
     fclose(fp);
     return true;
 }

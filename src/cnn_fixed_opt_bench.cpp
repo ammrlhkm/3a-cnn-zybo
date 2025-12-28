@@ -1,43 +1,46 @@
 #include "cifar10_loader.h"
 #include "preprocess_image.h"
-#include "coeffs_double.h"
-#include "cnn_ref.h"
+#include "coeffs_fixed.h"
+#include "cnn_fixed_opt.h"
 #include <iostream>
 #include <chrono>
+#include <iomanip>
+#include <bitset>
 
 using namespace std;
 
 int main(int argc, char** argv) {
-    int num_images = 1000;  // Default: test 1000 images
+    int num_images = 100;  // Default: test 100 images
     string cifar10_filename = "dataset/cifar-10-batches-bin/data_batch_1.bin";
+    
     if (argc > 1) {
         cifar10_filename = string(argv[1]);
-    } 
+    }
     if (argc > 2) {
         num_images = atoi(argv[2]);
     }
-    
+
     cout << "=== CIFAR-10 CNN Inference ===" << endl;
-    cout << "Testing on " << num_images << " images" << endl << endl;
-    
+    cout << "Testing on " << num_images << " images" << endl;
+
     CIFAR10Batch test_batch;
     if (!loadCIFAR10Binary(cifar10_filename, test_batch)) {
         cerr << "\nError: Could not load CIFAR-10 binary file." << endl;
         return -1;
     }
-    
+
     if (num_images > test_batch.num_images) {     // Limit to available images
         num_images = test_batch.num_images;
     }
-    
+
     int correct = 0;
     int total = 0;
     int class_correct[10] = {0};
     int class_total[10] = {0};
-    double max_pixel = 0;
-    double min_pixel = 1000;
-    double max_prob_val = 0;
-    double min_prob_val = 1000;
+    double max_image_t = 0;
+    double min_image_t = 1000;
+    double max_prob_t = 0;
+    double min_prob_t = 1000;
     
     /* Timing variables */
     double total_inference_time_us = 0;
@@ -53,19 +56,25 @@ int main(int argc, char** argv) {
         // Normalize
         normalizeImage(image);
         
+        // Print pixels in txt file
         for (int i = 0; i < IMG_SIZE; i++) {
-            if (image[i] > max_pixel) max_pixel = image[i];
-            if (image[i] < min_pixel) min_pixel = image[i];
+            if (image[i] > max_image_t) max_image_t = image[i];
+            if (image[i] < min_image_t) min_image_t = image[i];
         }
 
-        double probabilities[10];
+        // Convert to fixed-point
+        image_t image_fixed[IMG_SIZE];
+        for (int i = 0; i < IMG_SIZE; i++) {
+            image_fixed[i] = (image_t)image[i];
+        }
 
         /* Start timing */
         auto t_start = chrono::high_resolution_clock::now();
 
         // Run CNN inference
-        cnn_ref(image, probabilities);
-        
+        prob_t probabilities[10];
+        cnn_hardware_opt(image_fixed, probabilities);
+
         /* Stop timing */
         auto t_end = chrono::high_resolution_clock::now();
         double elapsed_us = chrono::duration<double, micro>(t_end - t_start).count();
@@ -77,44 +86,44 @@ int main(int argc, char** argv) {
         if (elapsed_us > max_inference_time_us) {
             max_inference_time_us = elapsed_us;
         }
-
+        
         // Find predicted class
         int predicted = 0;
-        double max_prob = probabilities[0];
+        prob_t max_prob = probabilities[0];
         for (int i = 1; i < 10; i++) {
             if (probabilities[i] > max_prob) {
                 max_prob = probabilities[i];
                 predicted = i;
             }
-            double prob_val = probabilities[i];
-            if (prob_val > max_prob_val) max_prob_val = prob_val;
-            if (prob_val < min_prob_val) min_prob_val = prob_val;
+            double prob_val = probabilities[i].to_double();
+            if (prob_val > max_prob_t) max_prob_t = prob_val;
+            if (prob_val < min_prob_t) min_prob_t = prob_val;
         }
-        
+
         // Check if correct
         int true_label = cifar_img.label;
         bool is_correct = (predicted == true_label);
-        
+
         if (is_correct) {
             correct++;
             class_correct[true_label]++;
         }
         total++;
         class_total[true_label]++;
-        
+
         // Print result
-        cout << "Image " << (img_idx + 1) << "/" << num_images 
+        cout << "Image " << (img_idx + 1) << "/" << num_images
              << ": True=" << cifar10_class_names[true_label]
              << ", Pred=" << cifar10_class_names[predicted]
-             << " (" << (max_prob * 100.0f) << "%)"
+             << " (" << (max_prob.to_double() ) << ")"
              << " " << (is_correct ? "✓" : "✗") << endl;
     }
-    
+
     // ===== Print Summary Statistics =====
     cout << "\n=== Results ===" << endl;
-    cout << "Overall Accuracy: " << correct << "/" << total 
+    cout << "Overall Accuracy: " << correct << "/" << total
          << " = " << (100.0f * correct / total) << "%" << endl;
-    
+
     cout << "\nPer-Class Accuracy:" << endl;
     for (int i = 0; i < 10; i++) {
         if (class_total[i] > 0) {
@@ -125,8 +134,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    cout << "\nProbability Value Range: [" << min_prob_val << ", " << max_prob_val << "]" << endl;
-    cout << "\nImage Pixel Value Range: [" << min_pixel << ", " << max_pixel << "]" << endl;
+    cout << "\nProbability Value Range: [" << min_prob_t << ", " << max_prob_t << "]" << endl;
+    cout << "\nImage Pixel Value Range: [" << min_image_t << ", " << max_image_t << "]" << endl;
 
     /* Print timing statistics */
     cout << "\n=== Inference Timing ===" << endl;
@@ -135,6 +144,7 @@ int main(int argc, char** argv) {
         double avg_time_ms = avg_time_us / 1000.0;
         double throughput_fps = 1000000.0 / avg_time_us;
         
+        cout << fixed << setprecision(2);
         cout << "Average Time: " << avg_time_us << " us (" << avg_time_ms << " ms)" << endl;
         cout << "Min Time:     " << min_inference_time_us << " us" << endl;
         cout << "Max Time:     " << max_inference_time_us << " us" << endl;

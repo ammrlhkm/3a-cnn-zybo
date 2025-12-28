@@ -8,8 +8,6 @@
 typedef ac_fixed<IMAGE_P> image_t;
 typedef ac_fixed<ACC_P> acc_t;
 typedef ac_fixed<PROB_P> prob_t;
-typedef ac_int<SIGNAL_P> ctrl_signal_t;
-typedef ac_int<SIGNAL_P> done_signal_t;
 
 template <int H, int W, int CIN, int COUT>
 void conv2d_fixed(const image_t image[H][W][CIN],
