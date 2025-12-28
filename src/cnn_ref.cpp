@@ -53,13 +53,13 @@ template <int H_IN, int W_IN, int CH, int H_OUT, int W_OUT>
 void maxpool(const double input[H_IN][W_IN][CH], double output[H_OUT][W_OUT][CH]) {
     const int STRIDE = 2;
 
-    static double padded[H_IN + 2][W_IN + 2][CH] = {0};
+    static double padded[H_IN + 1][W_IN + 1][CH] = {0};
 
     // Padding
     for (int i = 0; i < H_IN; i++)
         for (int j = 0; j < W_IN; j++)
             for (int c = 0; c < CH; c++)
-                padded[i + 1][j + 1][c] = input[i][j][c];
+                padded[i][j][c] = input[i][j][c];
 
     for (int c = 0; c < CH; c++) {
         for (int i = 0; i < H_OUT; i++) {

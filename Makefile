@@ -6,7 +6,7 @@ INCLUDES = -I./include -I./ac_fixed
 LDFLAGS = -lm
 
 CXXFLAGS_REF = $(COMMON_FLAGS)
-CXXFLAGS_FIXED = -O3
+CXXFLAGS_FIXED = $(COMMON_FLAGS) -O3
 
 # Directories
 SRC_DIR = src
