@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX = g++
 # Flags communs
-COMMON_FLAGS = -g -std=c++11 -Wall
+COMMON_FLAGS = -g -std=c++11 -Wall -Wno-unused-label
 INCLUDES = -I./include -I./ac_fixed
 LDFLAGS = -lm
 

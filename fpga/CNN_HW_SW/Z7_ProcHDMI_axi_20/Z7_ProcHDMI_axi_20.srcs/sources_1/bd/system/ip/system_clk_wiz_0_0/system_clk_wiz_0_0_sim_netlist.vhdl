@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Wed Dec 24 16:00:56 2025
--- Host        : cimeld23.cime.inpg.fr running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
--- Command     : write_vhdl -force -mode funcsim -rename_top system_clk_wiz_0_0 -prefix
---               system_clk_wiz_0_0_ system_clk_wiz_0_0_sim_netlist.vhdl
+-- Date        : Sun Jan  4 23:54:38 2026
+-- Host        : ammar running 64-bit Ubuntu 22.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/Z7_ProcHDMI_axi_20.srcs/sources_1/bd/system/ip/system_clk_wiz_0_0/system_clk_wiz_0_0_sim_netlist.vhdl
 -- Design      : system_clk_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -23,6 +23,8 @@ entity system_clk_wiz_0_0_system_clk_wiz_0_0_clk_wiz is
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_clk_wiz_0_0_system_clk_wiz_0_0_clk_wiz : entity is "system_clk_wiz_0_0_clk_wiz";
 end system_clk_wiz_0_0_system_clk_wiz_0_0_clk_wiz;
 
 architecture STRUCTURE of system_clk_wiz_0_0_system_clk_wiz_0_0_clk_wiz is

@@ -43,3 +43,7 @@ platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI
 platform generate -domains standalone_ps7_cortexa9_0,zynq_fsbl 
 platform clean
 platform generate
+platform active {system_wrapper}
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
+platform generate -domains 

@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Wed Dec 24 14:04:18 2025
--- Host        : cimeld23.cime.inpg.fr running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
+-- Date        : Tue Dec 23 16:44:33 2025
+-- Host        : ammar running 64-bit Ubuntu 22.04.5 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top system_smartconnect_0_0 -prefix
 --               system_smartconnect_0_0_ system_smartconnect_0_0_stub.vhdl
 -- Design      : system_smartconnect_0_0
