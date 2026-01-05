@@ -16,7 +16,7 @@
 // Fixed-point configuration parameters
 #define IMAGE_P 10, 5, true  
 #define WEIGHT_P 10, 3, true 
-#define ACC_P 32, 17, true   
+#define ACC_P 24, 12, true   
 #define BIAS_P 10, 3, true   
 #define PROB_P 10, 6, true
 

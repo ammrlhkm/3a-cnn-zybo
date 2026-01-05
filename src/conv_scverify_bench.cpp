@@ -4,6 +4,7 @@
 #include "config.h"
 #include "preprocess_image.h"
 #include "conv_fixed.h"
+#include <chrono>
 
 using namespace std;
 
@@ -27,7 +28,15 @@ CCS_MAIN(int argc, char **argv) {
     }
 
     printf("Start verification Edge Detection\n");
+    auto t_start = chrono::high_resolution_clock::now();
+
     CCS_DESIGN(edge_detection)(input_image, output_image);
+
+    auto t_end = chrono::high_resolution_clock::now();
+    double elapsed_us = chrono::duration<double, micro>(t_end - t_start).count();
+
+    printf("Edge detection time: %.3f ms\n", elapsed_us / 1000.0);
+    printf("FPS: %.2f\n", 1e6 / elapsed_us);
 
     for (int i = 0; i < CAM_IMG_SIZE; ++i) {
         out_image[i] = output_image[i].to_int();

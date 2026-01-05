@@ -2,7 +2,7 @@
 #include <iomanip>
 #include "config.h"
 #include "cnn_ref.h"
-#include "cnn_fixed.h"
+#include "cnn_fixed_opt.h"
 #include "preprocess_image.h"
 #include "coeffs_double.h"
 #include "coeffs_fixed.h"
@@ -56,7 +56,7 @@ CCS_MAIN(int argc, char **argv) {
     double probabilities[10];
     cnn_ref(img_in, probabilities);
     prob_t probabilities_fixed[10];
-    CCS_DESIGN(cnn_hardware)(img_in_fixed,probabilities_fixed);
+    CCS_DESIGN(cnn_hardware_opt)(img_in_fixed,probabilities_fixed);
 
     // compare with double precision reference
     double worst_error = 0.0 ;

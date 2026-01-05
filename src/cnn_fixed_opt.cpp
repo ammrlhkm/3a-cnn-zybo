@@ -1,9 +1,5 @@
 #include "cnn_fixed_opt.h"
 
-typedef ac_fixed<IMAGE_P> image_t;
-typedef ac_fixed<ACC_P> acc_t;
-typedef ac_fixed<PROB_P> prob_t;
-
 template <int H, int W, int CIN, int COUT>
 void conv2d_fixed_opt(const image_t image[H][W][CIN],
             const kernel_t kernel[3][3][CIN][COUT],

@@ -5,8 +5,8 @@ COMMON_FLAGS = -g -std=c++11 -Wall -Wno-unused-label
 INCLUDES = -I./include -I./ac_fixed
 LDFLAGS = -lm
 
-CXXFLAGS_REF = $(COMMON_FLAGS)
-CXXFLAGS_FIXED = $(COMMON_FLAGS) -O3
+CXXFLAGS_REF = $(COMMON_FLAGS) 
+CXXFLAGS_FIXED = $(COMMON_FLAGS)
 
 # Directories
 SRC_DIR = src
@@ -23,7 +23,7 @@ TARGET_FIXED_OPT = $(BIN_DIR)/cnn_fixed_opt
 
 OBJS_REF = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_ref_bench.o
 OBJS_FIXED = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_fixed_bench.o
-OBJS_SCVERIFY = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_fixed.o $(BUILD_DIR)/cnn_scverify_bench.o
+OBJS_SCVERIFY = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_ref.o $(BUILD_DIR)/cnn_fixed_opt.o $(BUILD_DIR)/cnn_scverify_bench.o
 OBJS_CONV = $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/conv_fixed.o $(BUILD_DIR)/conv_scverify_bench.o
 OBJS_FIXED_OPT = $(BUILD_DIR)/cifar10_loader.o $(BUILD_DIR)/preprocess_image.o $(BUILD_DIR)/cnn_fixed_opt.o $(BUILD_DIR)/cnn_fixed_opt_bench.o
 
