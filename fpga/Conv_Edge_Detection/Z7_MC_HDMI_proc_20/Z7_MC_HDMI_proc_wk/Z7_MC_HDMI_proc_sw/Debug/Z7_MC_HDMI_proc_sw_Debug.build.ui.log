@@ -1,0 +1,25 @@
+2025-11-28T09:56:55.48962600255-09:56:55 **** Incremental Build of configuration Debug for project Z7_MC_HDMI_proc_sw ****
+000-make all 
+000-make --no-print-directory pre-build
+000-a9-linaro-pre-build-step
+000- 
+000-make --no-print-directory main-build
+000-Building file: ../src/CameraConfig_Z7_IMX_base.c
+000-Invoking: ARM v7 gcc compiler
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/CameraConfig_Z7_IMX_base.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/tima/smancini/Zynq/Z7/Z7_Demo_Cam/Z7_MC_HDMI_proc_20/Z7_MC_HDMI_proc_wk/system_wrapper/export/system_wrapper/sw/system_wrapper/standalone_ps7_cortexa9_0/bspinclude/include -MMD -MP -MF"src/CameraConfig_Z7_IMX_base.d" -MT"src/CameraConfig_Z7_IMX_base.o" -o "src/CameraConfig_Z7_IMX_base.o" "../src/CameraConfig_Z7_IMX_base.c"
+000-Finished building: ../src/CameraConfig_Z7_IMX_base.c
+000- 
+000-Building target: Z7_MC_HDMI_proc_sw.elf
+000-Invoking: ARM v7 gcc linker
+000-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/tima/smancini/Zynq/Z7/Z7_Demo_Cam/Z7_MC_HDMI_proc_20/Z7_MC_HDMI_proc_wk/system_wrapper/export/system_wrapper/sw/system_wrapper/standalone_ps7_cortexa9_0/bsplib/lib -o "Z7_MC_HDMI_proc_sw.elf"  ./src/IMX219/IMX219_camera.o ./src/IMX219/IMX219_camera_config.o ./src/IMX219/IMX219_main.o  ./src/I2C/i2c_control.o  ./src/CameraConfig_Z7_IMX_base.o ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+000-Finished building target: Z7_MC_HDMI_proc_sw.elf
+000- 
+000-Invoking: ARM v7 Print Size
+000-arm-none-eabi-size Z7_MC_HDMI_proc_sw.elf  |tee "Z7_MC_HDMI_proc_sw.elf.size"
+000-   text	   data	    bss	    dec	    hex	filename
+000-  76060	   3062	  22704	 101826	  18dc2	Z7_MC_HDMI_proc_sw.elf
+000-Finished building: Z7_MC_HDMI_proc_sw.elf.size
+000- 
+00255-
+09:56:56 Build Finished (took 968ms)
+

@@ -1,0 +1,8 @@
+2024-01-09T08:41:11.40896700255-08:41:11 **** Clean-only build of configuration Debug for project Z7_MC_HDMI_proc_sw_system ****
+000-make clean 
+000-rm -rf ./_sds
+000-rm -rf package
+000-rm -f system.bif
+00255-
+08:41:12 Build Finished (took 616ms)
+
