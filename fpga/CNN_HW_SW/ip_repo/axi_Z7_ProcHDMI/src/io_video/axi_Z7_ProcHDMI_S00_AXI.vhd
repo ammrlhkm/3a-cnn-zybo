@@ -548,7 +548,7 @@ begin
     
     -- HDMI_RAM_syn component removed per user request
     
-    component cnn_hardware is
+    component cnn_hardware_opt is
       port(
         clk                   : in  std_logic;
         rst                   : in  std_logic;
@@ -567,7 +567,7 @@ begin
         start_sync_rdy        : out std_logic;                       -- Start ready (acknowledgment)
         done_sync_vld         : out std_logic                        -- Done valid (done signal)
       );
-    end component cnn_hardware;
+    end component cnn_hardware_opt;
     
     COMPONENT mem2p_10_10
       PORT (
@@ -676,7 +676,7 @@ begin
     hdmi_TMDS_Data_p <= (others => '0');
     hdmi_TMDS_Data_n <= (others => '0');
     
-    cnn_proc: cnn_hardware
+    cnn_proc: cnn_hardware_opt
       port map (
         clk                   => clk_proc,
         rst                   => proc_rst,

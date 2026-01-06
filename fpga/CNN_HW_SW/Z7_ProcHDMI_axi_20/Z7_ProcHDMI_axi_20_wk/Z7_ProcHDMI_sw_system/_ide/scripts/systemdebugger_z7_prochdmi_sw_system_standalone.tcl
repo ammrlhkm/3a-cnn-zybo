@@ -13,7 +13,7 @@ connect -url tcp:127.0.0.1:3121
 targets -set -nocase -filter {name =~"APU*"}
 rst -system
 after 3000
-targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351A81EC5A" && level==0 && jtag_device_ctx=="jsn-Zybo Z7-210351A81EC5A-23727093-0"}
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351A82564A" && level==0 && jtag_device_ctx=="jsn-Zybo Z7-210351A82564A-23727093-0"}
 fpga -file /home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/Z7_ProcHDMI_axi_20_wk/Z7_ProcHDMI_sw/_ide/bitstream/system_wrapper.bit
 targets -set -nocase -filter {name =~"APU*"}
 loadhw -hw /home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/Z7_ProcHDMI_axi_20_wk/system_wrapper/export/system_wrapper/hw/system_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs

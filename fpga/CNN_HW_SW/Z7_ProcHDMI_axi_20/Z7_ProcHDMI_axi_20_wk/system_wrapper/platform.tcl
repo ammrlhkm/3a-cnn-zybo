@@ -47,3 +47,13 @@ platform active {system_wrapper}
 platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
 platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
 platform generate -domains 
+platform active {system_wrapper}
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
+platform generate -domains 
+platform active {system_wrapper}
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/system_wrapper.xsa}
+platform generate -domains 
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
+platform generate -domains 
+platform config -updatehw {/home/ammrlhkm/3a-cnn-zybo/fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20/system_wrapper.xsa}
+platform generate -domains 
