@@ -62,12 +62,6 @@ The architecture follows a classic HW/SW co-design pattern:
 - `tools/`: UART streaming, code generation, and validation scripts
 - `dataset/`: CIFAR-10 dataset and weight files
 
-## Project Timeline
-
-- **Phase 1**: Python functional model implementation
-- **Phase 2**: C++ conversion and HLS exploration
-- **Phase 3**: FPGA integration and optimization
-
 ## Quick Setup
 
 1. Download CIFAR-10 (Python and binary version):
@@ -147,29 +141,26 @@ make rebuild
 
 ## HLS Workflow (Mentor Catapult)
 
-The core of the acceleration is the `cnn_hardware` IP. We explored two implementation strategies located in `hls/Catapult_CNN`:
+The core of the acceleration is the `cnn_hardware_opt` IP. We explored two implementation strategies located in `hls/Catapult_CNN`:
 
 ### 1. Baseline Implementation (`directives_cnn.tcl`)
-- Straightforward C++ to RTL synthesis without specific loop optimizations.
 - **Clock Period**: 20ns (50MHz)
-- **Latency**: ~9.8 million cycles
+- **Latency**: ~3.8 million cycles
 
 **Run baseline synthesis:**
 ```bash
 cd hls
-catapult -file directives_cnn.tcl
+catapult -f directives_cnn.tcl
 ```
 
-### 2. Optimized Implementation (`directives_opt_cnn.tcl`)
-- **Pipelining**: `PIPELINE_INIT_INTERVAL 1` applied to critical loops (Convolution, Flatten, and Dense layers)
-- **Unrolling**: Parallel processing of MaxPool kernels (`KH_MAXPOOL_LOOP`, `KW_MAXPOOL_LOOP`)
-- **Latency**: ~3.9 million cycles
-- **Performance Gain**: **~2.5x speedup** compared to the baseline
+### 2. Optimized Implementation (`directives_cnn_opt.tcl`)
+- **Latency**: ~1.7 million cycles
+- **Performance Gain**: **~2.3x speedup** compared to the baseline
 
 **Run optimized synthesis:**
 ```bash
 cd hls
-catapult -file directives_opt_cnn.tcl
+catapult -f directives_cnn_opt.tcl
 ```
 
 ### Simulation & Verification
@@ -182,7 +173,7 @@ Functional verification was performed using SCVerify:
 ## Vivado/Vitis Design Flow
 
 ### Vivado Block Design
-1. **IP Export**: The optimized RTL from Catapult was exported as an EDF netlist (`cnn_hardware.edf`)
+1. **IP Export**: The optimized RTL from Catapult was exported as an EDF netlist (`cnn_hardware_opt.edf`)
 2. **Project Location**:
 ```bash
 cd fpga/CNN_HW_SW/Z7_ProcHDMI_axi_20
@@ -213,9 +204,7 @@ minicom -D /dev/ttyUSB1
 
 ## Hardware Testing via UART
 
-We developed a testing tool to stream images from the PC to the FPGA via UART.
-
-### Usage
+We developed a testing tool to stream images from the PC to the FPGA via UART. In another terminal:
 
 ```bash
 # Send 100 images from the CIFAR-10 test batch via UART
